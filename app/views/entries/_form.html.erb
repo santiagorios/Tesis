@@ -1,12 +1,23 @@
+<%= tinymce_assets %>
 <%= simple_form_for @entry, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :title %>
-  <%= f.input :date %>
+  <% if @entry.errors.any? %>
+  <div class="alert">
+    <button class="close" data-dismiss="alert">x</button>
+    <strong><%= t('application.warning') %></strong> <%= t('entry.could_not_create', :count => @entry.errors.count) %>
+  </div>
+  <% end %>
+
+  <%= f.input :title, :input_html => { :class => 'span7' } %>
+  <%= f.input :date, :as => :string, :input_html => { :class => 'span7' } %>
   <%= f.input :published %>
-  <%= f.input :body %>
+  <%= f.input :body, :input_html => { :class => 'tinymce span7' } %>
+  <%= tinymce %>
 
   <div class="form-actions">
-    <%= f.submit nil, :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                entries_path, :class => 'btn' %>
+    <div class="pull-right">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  entries_path, :class => 'btn' %>
+    </div>
   </div>
 <% end %>
