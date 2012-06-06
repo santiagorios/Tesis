@@ -1,3 +1,60 @@
 // Place all the styles related to the Entries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.entries .entry {
+	border-bottom: 1px solid #bbbbbb;
+	padding-bottom: 10px;
+}
+
+.entries .entry h2{
+	display: inline-block;
+}
+
+.entry .entry-actions{
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.entry:hover .entry-actions{
+	display: inline-block;
+}
+
+.entries .entry .label{
+	position: absolute;
+	top: 5px;
+	left: 5px;
+}
+
+.entry p{
+	text-align: justify;
+}
+
+.entry {
+	position: relative;
+}
+
+.entry .content {
+	padding-bottom: 20px;
+}
+
+/*.author {
+	position: fixed;
+}*/
+
+.entry-count, .entry-last {
+	display: inline-block;
+}
+
+.entry-count {
+	padding-right: 10px;
+	border-right: 1px solid #bbbbbb;
+	line-height: 1em;
+}
+
+.entry-last {
+	padding-left: 10px;
+	line-height: 1em;
+}
