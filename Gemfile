@@ -40,3 +40,4 @@ end
 gem 'simple_form'
 gem 'tinymce-rails'
 gem 'truncate_html'
+gem 'rails_bootstrap_navbar'
