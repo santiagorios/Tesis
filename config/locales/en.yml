@@ -5,9 +5,14 @@ en:
   hello: "Hello world"
   application:
     warning: "Warning"
+    home: "Home"
+    explore: "Explore"
+    help: "Help"
+    about: "About"
   entry:
     could_not_create: 
         one: "Due to an error the entry wasn't created. Please check the form."
         other: "Due to %{count} errors the entry wasn't created. Please check the form."
     published: "Published"
     not_published: "Not published"
+    create: "Create entry"
