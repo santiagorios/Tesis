@@ -2,7 +2,7 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-    @entries = Entry.all
+    @entries = Entry.paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

@@ -41,4 +41,7 @@
             new_entry_path,
             :class => 'btn btn-primary' %>
   </ul>
+  <div class="pull-right">
+    <%= will_paginate @entries, :renderer => BootstrapPagination::Rails %>
+  </div>
 </div>
