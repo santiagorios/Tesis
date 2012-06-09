@@ -16,3 +16,7 @@ en:
     published: "Published"
     not_published: "Not published"
     create: "Create entry"
+  user:
+    singup: "Signed up!"
+    email:
+      placeholder: "user@espe.edu.ec"

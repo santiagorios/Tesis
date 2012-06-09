@@ -1,8 +1,10 @@
 VirtusKnowledge::Application.routes.draw do
   get "sessions/new"
 
-  get "users/new"
+  get "signup" => "users#new", :as => "signup"
 
+  resources :users
+  resources :sessions
   resources :entries
 
   # The priority is based upon order of creation:
