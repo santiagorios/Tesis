@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
+  revision: 5269f0022179ef442820a124dae4da8f06275010
+  specs:
+    twitter-bootstrap-rails (2.0.9)
+      actionpack (>= 3.1)
+      less-rails (~> 2.2.2)
+      railties (>= 3.1)
+      therubyracer (~> 0.10.1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -117,11 +127,6 @@ GEM
     truncate_html (0.5.5)
     turn (0.8.2)
       ansi (>= 1.2.2)
-    twitter-bootstrap-rails (2.0.8)
-      actionpack (>= 3.1)
-      less-rails (~> 2.2.2)
-      railties (>= 3.1)
-      therubyracer (~> 0.10.1)
     tzinfo (0.3.33)
     uglifier (1.2.4)
       execjs (>= 0.3.0)
@@ -144,7 +149,7 @@ DEPENDENCIES
   tinymce-rails
   truncate_html
   turn (= 0.8.2)
-  twitter-bootstrap-rails
+  twitter-bootstrap-rails!
   uglifier (>= 1.0.3)
   will_paginate
   will_paginate-bootstrap
