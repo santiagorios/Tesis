@@ -30,7 +30,7 @@
             <% end %>
             </div>
             <h3><small><%= l entry.date, :format => :long %></small></h3>
-            <%= truncate_html(entry.body.html_safe, :length => 250) %>
+            <%= truncate_html(sanitize(entry.body.html_safe), :length => 250) %>
           </div>
         </div>
       </li>

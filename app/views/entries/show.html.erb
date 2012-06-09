@@ -18,6 +18,6 @@
   </div>
   <h2> <small><%= l @entry.date, :format => :long %></small></h2>
   <div class="content">
-    <%= @entry.body.html_safe %>
+    <%= sanitize @entry.body.html_safe %>
   </div>
 </div>
