@@ -9,4 +9,5 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require tinymce
+//= require rails.validations
 //= require_tree .

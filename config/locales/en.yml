@@ -2,6 +2,17 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              invalid: "please enter your @espe.edu.ec email"
+              blank: "can't be empty"
+            password:
+              too_short: "is too short (minimum is %{count} characters)"
+              blank: "can't be empty"
   hello: "Hello world"
   application:
     warning: "Warning"
