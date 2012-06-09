@@ -16,3 +16,6 @@
 
 # Ignore Mac files
 .DS_Store
+
+# Ignore Rubymine file
+.idea/*
