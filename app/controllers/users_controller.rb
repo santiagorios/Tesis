@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :require_login, :only => [:edit, :update]
+  before_filter :require_login, :only => [:edit, :update, :myaccount]
 
   def new
   	@user = User.new
@@ -16,11 +16,15 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
+  end
+
+  def myaccount 
     @user = current_user
   end
   
   def update
-    @user = current_user
+    @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       redirect_to entries_path, :notice => t('user.update_success')
     else
