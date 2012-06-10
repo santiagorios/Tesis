@@ -25,14 +25,16 @@
     <% end %>
     <%= menu_group :pull => :right do %>
       <% if current_user %>
-        <%= drop_down '<i class="icon-user icon-white"></i> '.html_safe + "Santiago Rios" do %>
+        <%= drop_down '<i class="icon-user icon-white"></i> '.html_safe + current_user.email do %>
           <%= menu_item '<i class="icon-plus icon-white"></i> '.html_safe + t('entry.create'), new_entry_path %>
           <%= menu_item '<i class="icon-edit icon-white"></i> '.html_safe + t('user.my_account'), new_entry_path %>
           <%= drop_down_divider %>
           <%= menu_item '<i class="icon-signout icon-white"></i> '.html_safe + t('user.signout'), logout_path %>
         <% end %>
       <% else %>
-        <%= menu_item '<i class="icon-user icon-white"></i> '.html_safe + t("application.signin"), login_path %>
+        <%= drop_down '<i class="icon-user icon-white"></i> '.html_safe + t("application.signin") do %>
+          <%= render :partial => 'sessions/form_small' %>
+        <% end %>
       <% end %>
     <% end %>
   <% end %>

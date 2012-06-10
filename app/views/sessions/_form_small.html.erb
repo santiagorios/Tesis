@@ -1,0 +1,30 @@
+
+<%= simple_form_for(:session, url: sessions_path, :html => { :class => 'form-horizontal span3', :id => "small-login" }) do |f| %>
+  
+  <div class="control-group">
+    <div class="input-prepend">
+      <span class="add-on">
+        <i class="icon-envelope"></i>
+      </span><%= f.input_field :email, :placeholder => t("user.login.email.placeholder"), :id => "email", :name => "email", :class => "input-login", :size => 16 %>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <div class="input-prepend">
+      <span class="add-on">
+        <i class="icon-lock"></i>
+      </span><%= f.input_field :password, :placeholder => t("user.login.password.placeholder"), :id => "password", :name => "password", :class => "input-login", :size => 16 %>
+    </div>
+  </div>
+  
+  <div class="row"> 
+    <div class="span2">
+      <%= f.input_field :remember_me, as: :boolean, :id => "remember_me", :name => "remember_me", :render_input_first => false, :inline_label => t('user.login.remember_me.placeholder') %>
+    </div>
+  
+    <div class="pull-right" id="submit-wrapper">
+      <%= f.submit "Log in", :class => 'btn btn-primary btn-mini' %>
+    </div>
+  </div>
+  
+<% end %>

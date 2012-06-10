@@ -35,6 +35,8 @@ en:
         placeholder: "Email"
       password:
         placeholder: "Password"
+      remember_me:
+        placeholder: "Remember me"
     email:
       placeholder: "user@espe.edu.ec"
   session:

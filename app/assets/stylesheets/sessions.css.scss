@@ -1,3 +1,41 @@
 // Place all the styles related to the sessions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#small-login {
+	padding: 15px;
+	margin: 0px;
+}
+
+#submit-wrapper {
+	margin-right: 0px;
+}
+
+.input-login {
+	width: 180px;
+ }
+
+ .navbar #submit-wrapper .btn {
+  margin: 0px;
+  padding: 1px 10px;
+ }
+
+@media (min-width: 1200px) {
+  .input-login {
+    width: 220px;
+  }
+  #submit-wrapper {
+    margin-right: 14px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+  .input-login {
+  	width: 130px;
+  }
+}
+
+@media (max-width: 767px) {
+  .input-login {
+  	width: 140px;
+  }
+}

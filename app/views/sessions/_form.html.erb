@@ -5,7 +5,7 @@
       <div class="input-prepend">
         <span class="add-on">
           <i class="icon-envelope"></i>
-        </span><%= f.input_field :email, :placeholder => t("user.login.email.placeholder"), :id => "email", :name => "email" %>
+        </span><%= f.input_field :email, :placeholder => t("user.login.email.placeholder"), :id => "email", :name => "email", :size => 16 %>
       </div>
     </div>
   </div>
@@ -15,12 +15,16 @@
       <div class="input-prepend">
         <span class="add-on">
           <i class="icon-lock"></i>
-        </span><%= f.input_field :password, :placeholder => t("user.login.password.placeholder"), :id => "password", :name => "password" %>
+        </span><%= f.input_field :password, :placeholder => t("user.login.password.placeholder"), :id => "password", :name => "password", :size => 16 %>
       </div>
     </div>
   </div>
 
-  <%= f.input :remember_me, as: :boolean, :id => "remember_me", :name => "remember_me" %>
+  <div class="control-group">
+    <div class="controls">
+  <%= f.input_field :remember_me, as: :boolean, :id => "remember_me", :name => "remember_me", :inline_label => t('user.login.remember_me.placeholder') %>
+    </div>
+  </div>
 
   <div class="form-actions">
     <div class="pull-right">
