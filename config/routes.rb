@@ -1,11 +1,4 @@
 VirtusKnowledge::Application.routes.draw do
-  get "profiles/new"
-
-  get "profiles/create"
-
-  get "profiles/edit"
-
-  get "profiles/update"
 
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
