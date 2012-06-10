@@ -1,4 +1,5 @@
 class EntriesController < ApplicationController
+  before_filter :require_login, :only => [:new, :edit, :create, :update, :destroy]
   # GET /entries
   # GET /entries.json
   def index
