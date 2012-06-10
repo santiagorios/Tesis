@@ -29,6 +29,8 @@ en:
     not_published: "Not published"
     create: "Create entry"
   user:
+    account: "Account"
+    profile: "Profile"
     update_success: "User updated"
     signup: "Signed up!"
     login:
