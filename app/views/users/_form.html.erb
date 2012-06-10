@@ -6,7 +6,7 @@
   </div>
   <% end %>
 
-  <%= f.input :email, :placeholder => t("user.email.placeholder") %>
+  <%= f.input :email, :placeholder => t("user.email.placeholder"), :disabled => params[:action] == 'edit' ? true: false %>
   <%= f.input :password %>
   <%= f.input :password_confirmation %>
 
