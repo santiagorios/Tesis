@@ -16,4 +16,12 @@ class User < ActiveRecord::Base
   has_one :profile
   accepts_nested_attributes_for :profile
   attr_accessible :profile_attributes
+
+  def header_name
+    if profile.name.present?
+      profile.name
+    else
+      email
+    end
+  end
 end
