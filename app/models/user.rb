@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :profile
   attr_accessible :profile_attributes
 
+  has_many :entries
+
   def header_name
     if profile.name.present?
       profile.name
