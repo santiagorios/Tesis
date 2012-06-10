@@ -1,0 +1,17 @@
+<%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+<%= f.simple_fields_for :profile do |profile_form| %>
+    <%= profile_form.input :name %>
+    <%= profile_form.input :birthday %>
+    <%= profile_form.input :department %>
+    <%= profile_form.input :phone %>
+    <%= profile_form.input :about_me %>
+  <% end %>
+
+  <div class="form-actions">
+    <div class="pull-right">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  root_path, :class => 'btn' %>
+    </div>
+  </div>
+<% end %>
