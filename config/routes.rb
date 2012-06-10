@@ -1,4 +1,5 @@
 VirtusKnowledge::Application.routes.draw do
+  get "myaccount" => 'users#edit', :as => "myaccount"
 
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
