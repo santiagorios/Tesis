@@ -11,4 +11,6 @@ class User < ActiveRecord::Base
 
   validates_length_of :password, :minimum => 6
 
+
+  has_one :profile
 end
