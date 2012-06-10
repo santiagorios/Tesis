@@ -35,13 +35,13 @@ class EntriesController < ApplicationController
 
   # GET /entries/1/edit
   def edit
-    @entry = Entry.find(params[:id])
+    @entry = current_user.entries.find(params[:id])
   end
 
   # POST /entries
   # POST /entries.json
   def create
-    @entry = Entry.new(params[:entry])
+    @entry = current_user.entries.new(params[:entry])
 
     respond_to do |format|
       if @entry.save
@@ -57,7 +57,7 @@ class EntriesController < ApplicationController
   # PUT /entries/1
   # PUT /entries/1.json
   def update
-    @entry = Entry.find(params[:id])
+    @entry = current_user.entries.find(params[:id])
 
     respond_to do |format|
       if @entry.update_attributes(params[:entry])
@@ -73,7 +73,7 @@ class EntriesController < ApplicationController
   # DELETE /entries/1
   # DELETE /entries/1.json
   def destroy
-    @entry = Entry.find(params[:id])
+    @entry = current_user.entries.find(params[:id])
     @entry.destroy
 
     respond_to do |format|
