@@ -10,6 +10,8 @@ VirtusKnowledge::Application.routes.draw do
   resources :sessions
   resources :entries
 
+  get "myentries" => "entries#myentries", :as => "myentries"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

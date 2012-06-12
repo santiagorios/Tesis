@@ -1,9 +1,19 @@
 class EntriesController < ApplicationController
-  before_filter :require_login, :only => [:new, :edit, :create, :update, :destroy]
+  before_filter :require_login, :only => [:new, :edit, :create, :update, :destroy, :myentries]
+  
+  def myentries
+    @entries = current_user.entries.paginate(:page => params[:page]).order('date DESC')
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @entries }
+    end
+  end
+
   # GET /entries
   # GET /entries.json
   def index
-    @entries = Entry.paginate(:page => params[:page])
+    @entries = Entry.where(:published => true).paginate(:page => params[:page]).order('date DESC')
 
     respond_to do |format|
       format.html # index.html.erb
