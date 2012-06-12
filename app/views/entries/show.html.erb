@@ -4,7 +4,7 @@
     <h1><%= @entry.title %></h1>
     <div class="entry-actions">
       <%= link_to t('.back', :default => t("helpers.links.back")),
-                  entries_path, :class => 'btn btn-mini'  %>
+                  just_created ? myentries_path : :back, :class => 'btn btn-mini'  %>
       <%= link_to edit_entry_path(@entry), :class => 'btn btn-mini btn-success' do %>
         <i class="icon-pencil icon-white"></i> <%= t('.edit', :default => t("helpers.links.edit")) %>
       <% end %>
