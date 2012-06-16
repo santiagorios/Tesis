@@ -1,5 +1,5 @@
 <%= tinymce_assets %>
-<%= simple_form_for @entry, :validate => true, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_nested_form_for @entry, :validate => true, :html => { :class => 'form-horizontal' } do |f| %>
   <% if @entry.errors.any? %>
   <div class="alert">
     <button class="close" data-dismiss="alert">x</button>
@@ -10,6 +10,14 @@
   <%= f.input :title, :input_html => { :class => 'span7' } %>
   <%= f.input :date, :as => :string, :input_html => { :class => 'span7' } %>
   <%= f.input :published %>
+
+  <%= f.fields_for :images do |image_form| %>
+    <%= image_form.input :title %>
+    <%= image_form.input :image %>
+    <%= image_form.link_to_remove "Remove this image" %>
+  <% end %>
+  <%= f.link_to_add "Add an image", :images, :class => "add-image-link" %>
+
   <%= f.input :body, :input_html => { :class => 'tinymce span7' } %>
   <%= tinymce %>
 
