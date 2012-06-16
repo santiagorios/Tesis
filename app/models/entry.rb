@@ -3,6 +3,8 @@ class Entry < ActiveRecord::Base
 	validates :title, :presence => true
 	self.per_page = 5
 	after_initialize :default_values
+
+	has_many :images
 	
 	def owned_by?(owner)
 		return false unless owner.is_a? User
