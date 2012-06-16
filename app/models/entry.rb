@@ -4,9 +4,9 @@ class Entry < ActiveRecord::Base
 	self.per_page = 5
 	after_initialize :default_values
 
-	has_many :images
-	accepts_nested_attributes_for :images
-	attr_accessible :images_attributes
+	has_many :images, :dependent => :destroy
+	accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:image].blank? }, :allow_destroy => true
+	attr_accessible :images_attributes, :title, :body, :date, :published
 	
 	def owned_by?(owner)
 		return false unless owner.is_a? User
