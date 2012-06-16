@@ -11,4 +11,5 @@
 //= require twitter/bootstrap
 //= require tinymce
 //= require rails.validations
+//= require jquery_nested_form
 //= require_tree .
