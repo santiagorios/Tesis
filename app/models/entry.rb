@@ -5,6 +5,8 @@ class Entry < ActiveRecord::Base
 	after_initialize :default_values
 
 	has_many :images
+	accepts_nested_attributes_for :images
+	attr_accessible :images_attributes
 	
 	def owned_by?(owner)
 		return false unless owner.is_a? User
