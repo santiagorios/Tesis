@@ -20,10 +20,10 @@
   
   <ul class="thumbnails">
     <% for image in @entry.images %>
-      <li class="span2">
-        <a href="<%= image.image_url(:modal) if image.image? %>" class="thumbnail fancybox" rel="group" title="<%= image.title %>">
+      <li class="<%= (@entry.images.index(image)==0 || @entry.images.index(image)==0) ? 'span4' : 'span2'  %>">
+        <%= link_to image.image_url(:modal), :class => "thumbnail fancybox", :rel => "group", :title => image.title do %>
           <%= image_tag image.image_url(:medium) if image.image? %>
-        </a>
+        <% end %>
       </li>
     <% end %>
   </ul>
