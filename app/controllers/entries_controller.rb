@@ -36,6 +36,7 @@ class EntriesController < ApplicationController
   # GET /entries/new.json
   def new
     @entry = Entry.new
+    @entry.images.build
 
     respond_to do |format|
       format.html # new.html.erb
