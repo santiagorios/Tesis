@@ -12,4 +12,5 @@
 //= require tinymce
 //= require rails.validations
 //= require jquery_nested_form
+//= require prettyphoto-rails
 //= require_tree .
