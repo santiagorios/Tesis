@@ -4,3 +4,6 @@
 
 jQuery ->
 	$("#entry_date").datepicker({ format: 'yyyy-mm-dd' });
+	
+jQuery ->
+ 	$("a[rel^='prettyPhoto']").prettyPhoto();
