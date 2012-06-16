@@ -3,4 +3,4 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
-	$("#user_profile_attributes_birthday").datepicker({ dateFormat: "yy-mm-dd", changeYear: true, changeMonth: true });
+	$("#user_profile_attributes_birthday").datepicker({ format: 'yyyy-mm-dd' });
