@@ -11,12 +11,21 @@
   <%= f.input :date, :as => :string, :input_html => { :class => 'span7' } %>
   <%= f.input :published %>
 
-  <%= f.fields_for :images do |image_form| %>
-    <%= image_form.input :title %>
-    <%= image_form.input :image %>
-    <%= image_form.link_to_remove "Remove this image" %>
-  <% end %>
-  <%= f.link_to_add "Add an image", :images, :class => "add-image-link" %>
+  <div class="entry-images controls span7">
+    <%= f.fields_for :images do |image_form| %>
+      <div class="well">
+        <h4>Image</h4>
+        <%= image_form.input :title %>
+        <%= image_form.input :image %>
+        <div class="control-group">
+          <div class="controls">
+            <%= image_form.link_to_remove "Remove this image" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= f.link_to_add "Add an image", :images, :class => "add-image-link" %>
+  </div>
 
   <%= f.input :body, :input_html => { :class => 'tinymce span7' } %>
   <%= tinymce %>
