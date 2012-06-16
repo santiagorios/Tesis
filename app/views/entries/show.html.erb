@@ -16,17 +16,17 @@
       <% end %>
     </div>
   </div>
-  <h2> <small><%= l @entry.date, :format => :long %></small></h2>
   
   <ul class="thumbnails">
     <% for image in @entry.images %>
       <li class="<%= (@entry.images.index(image)==0 || @entry.images.index(image)==0) ? 'span4' : 'span2'  %>">
-        <%= link_to image.image_url(:modal), :class => "thumbnail fancybox", :rel => "group", :title => image.title do %>
-          <%= image_tag image.image_url(:medium) if image.image? %>
+        <%= link_to image.image_url(), :class => "thumbnail", :rel => "prettyPhoto[pp_gal]" do %>
+          <%= image_tag image.image_url(:medium), :alt => image.title if image.image? %>
         <% end %>
       </li>
     <% end %>
   </ul>
+  <h2><%= @entry.author%> <small><%= l @entry.date, :format => :long %></small></h2>
 
   <div class="content">
     <%= sanitize @entry.body.html_safe %>

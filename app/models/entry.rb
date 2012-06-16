@@ -13,6 +13,10 @@ class Entry < ActiveRecord::Base
 		user == owner
 	end
 
+	def author
+		user.profile.name
+	end
+
 	private
 		def default_values
 			self.date ||= Time.now.strftime("%Y-%m-%d")
