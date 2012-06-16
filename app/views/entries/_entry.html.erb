@@ -1,11 +1,14 @@
 <%= content_tag_for(:li, entry, :class => "entry") do %>
   <div class="row">
     <div class="span2">
-      <% if entry.owned_by? current_user %>
-      <span class="label label-<%= entry.published ? 'info' : 'warning' %>"><%= entry.published ? t('entry.published') : t('entry.not_published') %></span>
-      <% end %>
-      <%= link_to entry_path(entry), :class => 'thumbnail' do %>
-        <img src="http://placehold.it/140x135" alt="">
+      <% if entry.images.count > 0 %>
+        <% if entry.owned_by? current_user %>
+        <span class="label label-<%= entry.published ? 'info' : 'warning' %>"><%= entry.published ? t('entry.published') : t('entry.not_published') %></span>
+        <% end %>
+
+        <%= link_to entry_path(entry), :class => 'thumbnail' do %>
+          <%= image_tag entry.images.first.image_url(:thumb) if entry.images.count > 0 && entry.images.first.image? %>
+        <% end %>
       <% end %>
     </div>
     <div class="span6">

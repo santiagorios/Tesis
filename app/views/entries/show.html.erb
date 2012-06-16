@@ -17,6 +17,17 @@
     </div>
   </div>
   <h2> <small><%= l @entry.date, :format => :long %></small></h2>
+  
+  <ul class="thumbnails">
+    <% for image in @entry.images %>
+      <li class="span2">
+        <a href="<%= image.image_url(:modal) if image.image? %>" class="thumbnail fancybox" rel="group" title="<%= image.title %>">
+          <%= image_tag image.image_url(:medium) if image.image? %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+
   <div class="content">
     <%= sanitize @entry.body.html_safe %>
   </div>
