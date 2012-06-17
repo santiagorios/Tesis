@@ -29,7 +29,7 @@
       <% end %>
       </div>
       <% end %>
-      <h3><small><%= l entry.date, :format => :long %></small></h3>
+      <h3><%= entry.author %> <small><%= l entry.date, :format => :long %></small></h3>
       <%= truncate_html(sanitize(entry.body.html_safe), :length => 250) %>
     </div>
   </div>
