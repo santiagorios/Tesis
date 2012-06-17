@@ -16,7 +16,26 @@
       <div class="well">
         <h4>Image</h4>
         <%= image_form.input :title %>
-        <%= image_form.input :image %>
+        
+        <div class="control-group">
+          <div class="controls">
+            <div class="fileupload fileupload-new" data-fileupload="image"><input type="hidden">
+              <div class="fileupload-new thumbnail" style="max-width: 200px; max-height: 150px;">
+                <img src="<%= (image_form.object.image_url.present?)? image_form.object.image_url : "http://www.placehold.it/200x150/EFEFEF/&text=no+image"  %>">
+              </div>
+              <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 0px; "></div>
+              <div>
+                <span class="btn btn-file">
+                  <span class="fileupload-new">Select image</span>
+                  <span class="fileupload-exists">Change</span>
+                  <%= image_form.input_field :image %>
+                </span>
+                <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
         <div class="control-group">
           <div class="controls">
             <%= image_form.link_to_remove "Remove this image" %>
