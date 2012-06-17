@@ -14,7 +14,9 @@ class Entry < ActiveRecord::Base
 	end
 
 	def author
-		user.profile.name
+		if user.present? && user.profile.present? && user.profile.name.present?
+			user.profile.name
+		end
 	end
 
 	private
