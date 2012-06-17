@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   has_many :entries
 
   def header_name
-    if profile.name.present?
+    if profile.present? && profile.name.present?
       profile.name
     else
       email
