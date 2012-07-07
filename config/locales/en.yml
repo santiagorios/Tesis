@@ -21,6 +21,7 @@ en:
     help: "Help"
     about: "About"
     signin: "Sign in"
+    join: "Don't have an account? Join now!"
   entry:
     could_not_create: 
         one: "Due to an error the entry wasn't created. Please check the form."
