@@ -20,6 +20,8 @@ en:
     explore: "Explore"
     help: "Help"
     about: "About"
+    help_text: "This should be a very long text"
+    about_text: "This should be another long text"
     signin: "Sign in"
     join: "Don't have an account? Join now!"
   entry:
