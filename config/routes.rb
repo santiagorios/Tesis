@@ -1,4 +1,8 @@
 VirtusKnowledge::Application.routes.draw do
+  get "help" => "static_pages#help", :as => "help"
+
+  get "about" => "static_pages#about", :as => "about"
+
   get "myaccount" => 'users#myaccount', :as => "myaccount"
 
   get "logout" => "sessions#destroy", :as => "logout"
