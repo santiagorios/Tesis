@@ -30,6 +30,8 @@ en:
     not_published: "Not published"
     create: "Create entry"
   user:
+    myentries: "My entries"
+    my_account: "My account"
     account: "Account"
     profile: "Profile"
     update_success: "User updated"
