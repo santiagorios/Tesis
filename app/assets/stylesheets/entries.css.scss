@@ -86,3 +86,9 @@
 	position: relative;
 }
 
+@media (max-width: 767px) {
+  ul.entries li.entry {
+  	float: none;
+  }
+}
+
