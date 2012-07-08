@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
-  attr_accessible :email, :password, :password_confirmation
+  attr_accessible :email, :password, :password_confirmation, :department_name
 
   validates_confirmation_of :password
   validates_presence_of :password, :on => :create
@@ -25,5 +25,15 @@ class User < ActiveRecord::Base
     else
       email
     end
+  end
+
+  belongs_to :department
+
+  def department_name
+    department.try(:name)
+  end
+
+  def department_name=(name)
+    self.department = Department.find_or_create_by_name(name) if name.present?
   end
 end

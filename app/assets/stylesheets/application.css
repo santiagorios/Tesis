@@ -6,4 +6,5 @@
  *= require bootstrap-datepicker
  *= require prettyphoto-rails 
  *= require_tree . 
+ *= require jquery-ui/twitter/jquery-ui-1.8.16.custom.css
 */
