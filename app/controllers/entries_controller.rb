@@ -5,7 +5,7 @@ class EntriesController < ApplicationController
     @entries = current_user.entries.paginate(:page => params[:page]).order('date DESC')
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html { render :template => 'entries/index' }
       format.json { render json: @entries }
     end
   end
