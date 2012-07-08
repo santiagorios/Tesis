@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120707205740) do
+ActiveRecord::Schema.define(:version => 20120708002501) do
 
   create_table "departments", :force => true do |t|
     t.string   "name"
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(:version => 20120707205740) do
     t.text     "about_me"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "department_id"
   end
 
   create_table "users", :force => true do |t|
@@ -59,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20120707205740) do
     t.integer  "failed_logins_count",          :default => 0
     t.datetime "lock_expires_at"
     t.string   "unlock_token"
+    t.integer  "department_id"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
