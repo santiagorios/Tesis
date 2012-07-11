@@ -13,4 +13,5 @@
 //= require rails.validations
 //= require jquery_nested_form
 //= require prettyphoto-rails
+//= require tag-it
 //= require_tree .

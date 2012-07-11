@@ -7,4 +7,5 @@
  *= require prettyphoto-rails 
  *= require_tree . 
  *= require jquery-ui/twitter/jquery-ui-1.8.16.custom.css
+ *= require jquery-ui/tag-it/jquery.tagit.css
 */
