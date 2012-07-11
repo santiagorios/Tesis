@@ -86,9 +86,33 @@
 	position: relative;
 }
 
+.control-group .controls .tagit {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+ul.span7.tagit{
+	width: 528px;
+}
+
+@media (min-width: 1200px) {
+	ul.span7.tagit{
+		width: 658px;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 979px) {
+	ul.span7.tagit{
+		width: 402px;
+	}
+}
+
 @media (max-width: 767px) {
   ul.entries li.entry {
   	float: none;
   }
+  ul.span7.tagit{
+	width: inherit;
+}
 }
 

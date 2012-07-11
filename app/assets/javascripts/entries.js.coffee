@@ -7,3 +7,10 @@ jQuery ->
 	
 jQuery ->
  	$("a[rel^='prettyPhoto']").prettyPhoto();
+
+jQuery ->
+ 	$('#research-lines').tagit({
+ 		itemName: "entry",
+ 		fieldName: "research_line_names"
+ 		availableTags: $("#research-lines").data('autocomplete-source')
+ 	});
