@@ -8,6 +8,20 @@ class Entry < ActiveRecord::Base
 	accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:image].blank? }, :allow_destroy => true
 	attr_accessible :images_attributes, :title, :body, :date, :published
 	
+	has_and_belongs_to_many :research_lines
+
+	attr_reader :research_line_names
+	attr_accessible :research_line_names
+
+  def research_line_names=(names)
+  	research_lines = Array.new
+  	for name in names 
+  		research_line = ResearchLine.find_or_create_by_name(name)
+  		research_lines.push(research_line)
+  	end
+    self.research_lines = research_lines
+  end
+
 	def owned_by?(owner)
 		return false unless owner.is_a? User
 		user == owner
