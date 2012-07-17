@@ -32,4 +32,21 @@ class UsersController < ApplicationController
       render :action => 'edit'
     end
   end
+
+  # GET /users/1
+  # GET /users/1.json
+  def show
+    @user = User.find(params[:id])
+    if @user == current_user
+      @entries = @user.entries.paginate(:page => params[:page]).order('date DESC')
+    else
+      @entries = @user.entries.where(:published => true).paginate(:page => params[:page]).order('date DESC')
+    end
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @entry }
+      format.js { render :template => 'entries/index' }
+    end
+  end
 end

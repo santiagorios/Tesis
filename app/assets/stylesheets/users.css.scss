@@ -1,3 +1,41 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.collapsed {
+	display: none;
+}
+
+#user .page-header h1{
+	padding-bottom: 15px;
+}
+
+#user .page-header #info {
+	cursor: pointer;
+}
+
+#user .page-header #info #help-text{
+	position: absolute;
+	right: 0;
+	bottom: -25px;
+	color: transparent;
+	background-color: transparent;
+	text-shadow: 0 0 0 transparent;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+	-webkit-transition: all 0.5s ease-out;
+    -moz-transition: all 0.5s ease-out;
+    -o-transition: all 0.5s ease-out;
+}
+
+#user .page-header #info:hover #help-text{
+	display: block;
+	bottom: -35px;
+	color: #ffffff;
+	background-color: #3a87ad;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+#user .page-header .row {
+	position: relative;
+}
