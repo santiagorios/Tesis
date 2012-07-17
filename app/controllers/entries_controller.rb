@@ -7,6 +7,7 @@ class EntriesController < ApplicationController
     respond_to do |format|
       format.html { render :template => 'entries/index' }
       format.json { render json: @entries }
+      format.js { render :template => 'entries/index' }
     end
   end
 
@@ -18,6 +19,7 @@ class EntriesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @entries }
+      format.js
     end
   end
 
