@@ -95,6 +95,11 @@ ul.span7.tagit{
 	width: 528px;
 }
 
+.tagit input[type="text"]{
+	box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px inset;
+}
+
+
 @media (min-width: 1200px) {
 	ul.span7.tagit{
 		width: 658px;
