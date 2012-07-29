@@ -26,10 +26,14 @@ class UsersController < ApplicationController
   
   def update
     @user = User.find(params[:id])
-    if @user.update_attributes(params[:user])
-      redirect_to entries_path, :notice => t('user.update_success')
-    else
-      render :action => 'edit'
+    respond_to do |format|
+      if @user.update_attributes(params[:user])
+        format.html { redirect_to entries_path, :notice => t('user.update_success') }
+        format.json { respond_with_bip @user }
+      else
+        format.html { render :action => 'edit' }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 

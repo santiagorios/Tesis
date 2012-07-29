@@ -19,4 +19,5 @@ jQuery ->
 				extra.slideUp();
 				extra.addClass('collapsed');
 				$("#help-text").text('Click to show more');
-			
+jQuery ->
+	$('.best_in_place').best_in_place()

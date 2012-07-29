@@ -14,4 +14,5 @@
 //= require jquery_nested_form
 //= require prettyphoto-rails
 //= require tag-it
+//= require best_in_place
 //= require_tree .
