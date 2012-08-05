@@ -1,5 +1,9 @@
 VirtusKnowledge::Application.routes.draw do
 
+  get "departments/show"
+
+  get "departments/index"
+
   get "help" => "pages#help", :as => "help"
 
   get "about" => "pages#about", :as => "about"
@@ -14,6 +18,8 @@ VirtusKnowledge::Application.routes.draw do
   resources :users
   resources :sessions
   resources :entries
+  resources :research_lines
+  resources :departments
 
   get "myentries" => "entries#myentries", :as => "myentries"
 

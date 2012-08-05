@@ -18,7 +18,8 @@
       <% end %>
     </div>
   </div>
-  
+
+  <%= render_navigation(:renderer => :breadcrumbs, :join_with => " <span class=\"divider\">/</span>", :context => :entry) %>
   <ul class="thumbnails">
     <% for image in @entry.images %>
       <li class="<%= (@entry.images.index(image)==0 || @entry.images.index(image)==0) ? 'span4' : 'span2'  %>">
@@ -29,9 +30,13 @@
       </li>
     <% end %>
   </ul>
-  <h2><%= @entry.author%> <small><%= l @entry.date, :format => :long %></small></h2>
+  <h2><%= link_to @entry.author, user_path(@entry.user_id) %> <small><%= l @entry.date, :format => :long %></small></h2>
 
   <div class="content">
     <%= sanitize @entry.body.html_safe %>
   </div>
+</div>
+
+<div class="span4">
+    <%= render 'sidebar' %>
 </div>

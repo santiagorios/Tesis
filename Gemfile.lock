@@ -1,18 +1,18 @@
 GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
-  revision: 047cfa271660b1ce9c2a08a64b41012174892228
+  revision: 908e150800610138e2b48738f842afb85b3a832e
   specs:
-    twitter-bootstrap-rails (2.1.0)
+    twitter-bootstrap-rails (2.1.1)
       actionpack (>= 3.1)
-      less-rails (~> 2.2.2)
+      less-rails (~> 2.2.3)
       railties (>= 3.1)
-      therubyracer (~> 0.10.1)
+      therubyracer (= 0.10.1)
 
 GIT
   remote: https://github.com/bcardarella/client_side_validations.git
-  revision: f74b9c301850ff66cf563bfe0845364d1823eb99
+  revision: efef76fc27838ccbdcdfb1b07a8a66b3cae978f3
   specs:
-    client_side_validations (3.2.0.beta.3)
+    client_side_validations (3.2.0.beta.6)
 
 GEM
   remote: http://rubygems.org/
@@ -45,13 +45,13 @@ GEM
       activesupport (= 3.1.3)
     activesupport (3.1.3)
       multi_json (~> 1.0)
-    ansi (1.4.2)
+    ansi (1.4.3)
     arel (2.2.3)
     bcrypt-ruby (3.0.1)
     best_in_place (1.1.2)
       jquery-rails
       rails (~> 3.1)
-    bootstrap-datepicker-rails (0.6.14)
+    bootstrap-datepicker-rails (0.6.16)
       railties (>= 3.0)
     builder (3.0.0)
     carrierwave (0.5.8)
@@ -70,11 +70,12 @@ GEM
     faraday (0.8.1)
       multipart-post (~> 1.1)
     hike (1.2.1)
+    httpauth (0.1)
     i18n (0.6.0)
     jquery-rails (1.0.19)
       railties (~> 3.0)
       thor (~> 0.14)
-    json (1.7.3)
+    json (1.7.4)
     less (2.2.1)
       commonjs (~> 0.2.6)
     less-rails (2.2.3)
@@ -85,14 +86,15 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.18)
+    mime-types (1.19)
     multi_json (1.3.6)
     multipart-post (1.1.5)
-    nested_form (0.2.1)
+    nested_form (0.2.2)
     oauth (0.4.6)
-    oauth2 (0.5.2)
+    oauth2 (0.6.1)
       faraday (~> 0.7)
-      multi_json (~> 1.0)
+      httpauth (~> 0.1)
+      multi_json (~> 1.3)
     polyglot (0.3.3)
     prettyphoto-rails (0.1.1)
       jquery-rails
@@ -129,19 +131,23 @@ GEM
     rdoc (3.12)
       json (~> 1.4)
     rmagick (2.13.1)
-    sass (3.1.19)
+    sass (3.1.20)
     sass-rails (3.1.6)
       actionpack (~> 3.1.0)
       railties (~> 3.1.0)
       sass (>= 3.1.10)
       tilt (~> 1.3.2)
+    simple-navigation (3.7.0)
+      activesupport (>= 2.3.2)
+    simple-navigation-bootstrap (0.0.3)
+      simple-navigation (>= 3.7.0)
     simple_form (2.0.2)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
-    sorcery (0.7.12)
+    sorcery (0.7.13)
       bcrypt-ruby (~> 3.0.0)
       oauth (~> 0.4.4)
-      oauth2 (~> 0.5.1)
+      oauth2 (~> 0.6.0)
     sprockets (2.0.4)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -151,7 +157,7 @@ GEM
       libv8 (~> 3.3.10)
     thor (0.14.6)
     tilt (1.3.3)
-    tinymce-rails (3.5.2)
+    tinymce-rails (3.5.6)
       railties (>= 3.1.1)
     treetop (1.4.10)
       polyglot
@@ -160,9 +166,9 @@ GEM
     turn (0.8.2)
       ansi (>= 1.2.2)
     tzinfo (0.3.33)
-    uglifier (1.2.4)
+    uglifier (1.2.7)
       execjs (>= 0.3.0)
-      multi_json (>= 1.0.2)
+      multi_json (~> 1.3)
     will_paginate (3.0.3)
     will_paginate-bootstrap (0.2.1)
       will_paginate (>= 3.0.3)
@@ -174,7 +180,7 @@ DEPENDENCIES
   best_in_place
   bootstrap-datepicker-rails
   carrierwave
-  client_side_validations (= 3.2.0.beta.3)!
+  client_side_validations (= 3.2.0.beta.6)!
   coffee-rails (~> 3.1.1)
   jquery-rails
   nested_form
@@ -183,6 +189,8 @@ DEPENDENCIES
   rails_bootstrap_navbar
   rmagick
   sass-rails (~> 3.1.5)
+  simple-navigation
+  simple-navigation-bootstrap
   simple_form
   sorcery
   sqlite3

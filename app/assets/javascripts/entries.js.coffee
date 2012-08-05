@@ -24,3 +24,19 @@ jQuery ->
 				$.getScript(url)
 		$(window).scroll()
 
+jQuery ->
+  if $('.openable > a').length
+    $('.openable > a').click (event) ->
+      li = $(this).closest('.openable');
+      if $(li).children('.accordion').is(':hidden')
+        $(li).siblings().removeClass('selected').children('.accordion').slideUp()
+        $(li).siblings().find('i').removeClass('icon-minus')
+        $(li).siblings().find('i').addClass('icon-plus')
+        $(li).toggleClass('selected').children('.accordion').slideDown()
+        $(li).find('i').removeClass('icon-plus')
+        $(li).find('i').addClass('icon-minus')
+      else
+        $(li).removeClass('selected').children('.accordion').slideUp()
+        $(li).find('i').removeClass('icon-minus')
+        $(li).find('i').addClass('icon-plus')
+      event.preventDefault()
