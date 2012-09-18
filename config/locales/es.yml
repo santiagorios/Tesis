@@ -1,0 +1,57 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+es:
+  date:
+    formats:
+      long: "%B %e, %Y"
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              invalid: "por favor ingrese su email @espe.edu.ec"
+              blank: "no puede estar vacio"
+            password:
+              too_short: "es muy corto (el mínimo son %{count} caracteres)"
+              blank: "no puede estar vacio"
+  hello: "Hello world"
+  application:
+    warning: "Advertencia"
+    home: "Inicio"
+    explore: "Explorar"
+    help: "Ayuda"
+    about: "Acerca de"
+    help_text: "This should be a very long text"
+    about_text: "This should be another long text"
+    signin: "Iniciar Sesion"
+    join: "No tiene una cuenta? Únase ahora!"
+    empty_app_title: "No hay nada todavía"
+    empty_app_text: "Por favor ingrese/registrese para agregar contenido"
+  entry:
+    could_not_create: 
+        one: "Debido a un error, la actividad no ha sido creada. Por favor verifique el formulario."
+        other: "Debido a %{count} errores la actividad no ha sido creada. Por favor verifique el formulario."
+    published: "Publicada"
+    not_published: "No publicada"
+    create: "Agregar actividad"
+  user:
+    signout: "Cerrar Sesión"
+    myentries: "Mis actividades"
+    my_account: "Mi cuenta"
+    account: "Cuenta"
+    profile: "Perfil"
+    update_success: "Información actualizada!"
+    signup: "Registrado!"
+    login:
+      email:
+        placeholder: "Email"
+      password:
+        placeholder: "Password"
+      remember_me:
+        placeholder: "Recuerdame"
+    email:
+      placeholder: "usuario@espe.edu.ec"
+  session:
+    login: "Iniciar sesión"
