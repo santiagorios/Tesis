@@ -16,11 +16,18 @@ class EntriesController < ApplicationController
   def index
     @entries = Entry.where(:published => true).paginate(:page => params[:page]).order('date DESC')
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @entries }
-      format.js
+    if @entries.empty?
+      respond_to do |format|
+        format.html { render :template => 'pages/empty' }
+      end
+    else
+      respond_to do |format|
+        format.html # index.html.erb
+        format.json { render json: @entries }
+        format.js
+      end
     end
+
   end
 
   # GET /entries/1
