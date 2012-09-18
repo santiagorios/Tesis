@@ -4,4 +4,4 @@
 
 jQuery ->
   if window.innerHeight > $('body > .container').height()
-    $('.footer-container').addClass('navbar-fixed-bottom');
+    $('.footer-container').addClass('sticky-bottom');
