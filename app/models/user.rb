@@ -36,4 +36,6 @@ class User < ActiveRecord::Base
   def department_name=(name)
     self.department = Department.find_or_create_by_name(name) if name.present?
   end
+
+  scope :top, find(:all, :order => "count(entries.id) desc", :joins => :entries, :group => 'user_id')
 end
