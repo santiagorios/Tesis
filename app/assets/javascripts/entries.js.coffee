@@ -10,10 +10,10 @@ jQuery ->
 
 jQuery ->
 	$('#research-lines').tagit({
-		itemName: "entry",
-		fieldName: "research_line_names",
-    allowSpaces: true,
-		availableTags: $("#research-lines").data('autocomplete-source')
+  itemName: "entry",
+  fieldName: "research_line_names",
+  allowSpaces: true,
+  availableTags: $("#research-lines").data('autocomplete-source')
 	});
 
 jQuery ->
