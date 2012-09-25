@@ -65,5 +65,5 @@ class User < ActiveRecord::Base
     end
   end
 
-  validate :validate_knowledge_area_and_department
+  validate :validate_knowledge_area_and_department, :on => :update
 end
