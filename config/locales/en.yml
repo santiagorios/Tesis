@@ -24,6 +24,8 @@ en:
     about_text: "This should be another long text"
     signin: "Sign in"
     join: "Don't have an account? Join now!"
+    empty_app_title: "There's nothing here yet"
+    empty_app_text: "Please login/register to add some new content"
   entry:
     could_not_create: 
         one: "Due to an error the entry wasn't created. Please check the form."

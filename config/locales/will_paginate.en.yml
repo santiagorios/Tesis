@@ -1,0 +1,4 @@
+en:
+  will_paginate:
+    previous_label: "&#8592; go back"
+    next_label: "go forward &#8594;"

@@ -5,19 +5,19 @@
 	                                 :default => "Edit #{model_class.model_name.human}") %></h1>
 	</div>
 	<ul id="userTab" class="nav nav-tabs">
-    <li class="active"><a href="#account" data-toggle="tab">Cuenta</a></li>
-    <li class=""><a href="#profile" data-toggle="tab">Inf. Personal</a></li>
+    <li class="active"><a href="#profile" data-toggle="tab"><%= t('user.profile')%></a></li>
+    <li class=""><a href="#account" data-toggle="tab"><%= t('user.account')%></a></li>
   </ul>
   <div id="userTabContent" class="tab-content">
-    <div class="tab-pane fade active in" id="account">
+    <div class="tab-pane fade active in" id="profile">
+      <%= render :partial => 'form_profile' %>
+    </div>
+    <div class="tab-pane fade " id="account">
       <div class="row">
         <div class="span6">
           <%= render :partial => 'form' %>
         </div>
       </div>
-    </div>
-    <div class="tab-pane fade" id="profile">
-      <%= render :partial => 'form_profile' %>
     </div>
   </div>
 </div>

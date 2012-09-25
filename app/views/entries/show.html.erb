@@ -3,8 +3,9 @@
   <div class="page-header">
     <h1><%= @entry.title %></h1>
     <div class="entry-actions">
-      <%= link_to t('.back', :default => t("helpers.links.back")),
-                  just_created_or_updated ? myentries_path : :back, :class => 'btn btn-mini'  %>
+      <%= link_to just_created_or_updated ? myentries_path : :back, :class => 'btn btn-mini' do %>
+        <i class="icon-white icon-arrow-left"></i> <%= t('.back', :default => t("helpers.links.back")) %>
+      <% end %>
       <% if @entry.owned_by? current_user %>
         <%= link_to edit_entry_path(@entry), :class => 'btn btn-mini btn-success' do %>
           <i class="icon-pencil icon-white"></i> <%= t('.edit', :default => t("helpers.links.edit")) %>
@@ -23,7 +24,7 @@
   <ul class="thumbnails">
     <% for image in @entry.images %>
       <li class="<%= (@entry.images.index(image)==0 || @entry.images.index(image)==0) ? 'span4' : 'span2'  %>">
-        <%= link_to image.image_url(), :class => "thumbnail", :rel => "prettyPhoto[pp_gal]" do %>
+        <%= link_to image.image_url(:modal), :class => "thumbnail", :rel => "prettyPhoto[pp_gal]" do %>
           <span class="overlay"></span>
           <%= image_tag image.image_url(:medium), :alt => image.title if image.image? %>
         <% end %>
@@ -39,4 +40,24 @@
 
 <div class="span4">
     <%= render 'sidebar' %>
+    <%= render 'similar_sidebar' %>
+</div>
+
+
+<div class="span8">
+  <div id="disqus_thread"></div>
+  <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'tesisespe'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
 </div>

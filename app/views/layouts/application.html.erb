@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>VirtusKnowledge</title>
+  <title><%= yield(:title)  %>Sistema de Difusión de Gestión de Conocimiento ESPE</title>
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
   <![endif]-->
@@ -14,7 +14,7 @@
 	<%= nav_bar :fixed => :top, :brand => "ESPE", :responsive => true do %>
 		<%= menu_group do %>
 			<%= menu_item '<i class="icon-home icon-white"></i> '.html_safe + t("application.home"), root_path %>
-			<%= menu_item '<i class="icon-globe icon-white"></i> '.html_safe + t("application.explore"), entries_path %>
+			<%= menu_item '<i class="icon-globe icon-white"></i> '.html_safe + t("application.explore"), explore_path %>
 			<%= menu_item '<i class="icon-question-sign icon-white"></i> '.html_safe + t('application.help'), help_path %>
 			<%= menu_item '<i class="icon-info-sign icon-white"></i> '.html_safe + t('application.about'), about_path %>
 		<% end %>

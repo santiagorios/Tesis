@@ -1,0 +1,23 @@
+<!-- BEGIN Timeline Embed -->
+<div class="span12">
+  <div class="page-header">
+    <h1><%= @knowledge_area.name %></h1>
+  </div>
+  <div id="timeline-embed"></div>
+</div>
+<script type="text/javascript">
+
+  var timeline_config = {
+    width: "100%",
+    height: window.innerHeight - 120,
+    source: "<%= url_for(:action => "timeline") + ".json" %>",
+    lang: 'es',
+    start_zoom_adjust: "-5",
+    hash_bookmark: true
+  }
+
+</script>
+
+<script src="/assets/timeline/js/storyjs-embed.js?body=1" type="text/javascript"></script>
+
+<!-- END Timeline Embed-->

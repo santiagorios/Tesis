@@ -7,8 +7,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
-  # storage :fog
+  #storage :file
+  storage :fog
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -30,11 +30,11 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process :resize_to_fill => [140, 135]
+    process :resize_to_fill => [160, 155]
   end
 
   version :modal do
-    process :resize_to_fill => [600, 300]
+    process :resize_to_fill => [600, 500]
   end
 
   version :slide do
@@ -42,7 +42,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   version :medium do
-    process :resize_to_fill => [300, 210]
+    process :resize_to_fill => [360, 250]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

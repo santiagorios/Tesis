@@ -16,6 +16,13 @@ jQuery ->
 	});
 
 jQuery ->
+  $('#knowledge-areas').tagit({
+  itemName: "entry",
+  fieldName: "knowledge_area_names"
+  availableTags: $("#knowledge-areas").data('autocomplete-source')
+  });
+
+jQuery ->
 	if $('.pagination').length
 		$(window).scroll ->
 			url = $('.pagination a[rel="next"]').attr('href')

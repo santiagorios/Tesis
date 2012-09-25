@@ -3,39 +3,95 @@
 
 es:
   date:
+    month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
     formats:
-      long: "%B %e, %Y"
+      long: "%B %d, %Y"
+      timeline: "%Y,%m,%d"
   activerecord:
+    models:
+      user:
+        one: "Usuario"
+        other: "Usuarios"
+      entry:
+        one: "Actividad"
+        other: "Actividades"
+      department:
+        one: "Departamento"
+        other: "Departamentos"
+      research_line:
+        one: "Línea de Investigación"
+        other: "Líneas de Investigación"
+      knowledge_area:
+        one: "Área de Conocimiento"
+        other: "Áreas de Conocimiento"
+    attributes:
+      entry:
+        title: "Título"
+        date: "Fecha"
+        published: "Publicado?"
+        body: "Descripción"
+      image:
+        title: "Título"
+      user:
+        name: "Email"
+        password: "Contraseña"
+        password_confirmation: "Confirmar Contraseña"
+        department_name: "Departamento"
+        knowledge_area_name: "Área de Conocimiento"
+      profile:
+        name: "Nombre"
+        birthday: "Fecha de nacimiento"
+        phone: "Telefono"
+        about_me: "Acerca de"
     errors:
       models:
+        entry:
+          attributes:
+            title:
+              blank: "El título no puede estar vacio"
         user:
           attributes:
             email:
               invalid: "por favor ingrese su email @espe.edu.ec"
               blank: "no puede estar vacio"
+              taken: "este email ya fue usado"
             password:
               too_short: "es muy corto (el mínimo son %{count} caracteres)"
               blank: "no puede estar vacio"
+              confirmation: "la confirmación no coincide"
   hello: "Hello world"
   application:
+    sidebar_title_users: "Usuarios"
+    keep_reading: "Seguir leyendo »"
+    welcome_title: "Sistema de Difusión de Gestión de Conocimiento de la ESPE"
+    welcome_subtitle: ""
     warning: "Advertencia"
     home: "Inicio"
     explore: "Explorar"
     help: "Ayuda"
     about: "Acerca de"
     help_text: "This should be a very long text"
-    about_text: "This should be another long text"
+    about_text: "El Sistema de Difusión de la Gestión del Conocimiento de la ESPE, permitirá el registro, la administración y seguimiento de las diferentes actividades que realiza el cuerpo docente, investigadores y tesistas, de Pregrado y Postgrado, el mismo que proveerá una interfaz de uso fácil e intuitivo, que será accesible a través del Internet, por los distintos estamentos de la organización y la comunidad."
     signin: "Iniciar Sesion"
     join: "No tiene una cuenta? Únase ahora!"
     empty_app_title: "No hay nada todavía"
     empty_app_text: "Por favor ingrese/registrese para agregar contenido"
+    logged_in: "Sesión iniciada éxitosamente!"
+    logged_out: "Sesión finalizada"
+    sidebar_title: "Explorar"
+    sidebar_similar_title: "Actividades Similares"
   entry:
+    read_more: "Seguir leyendo"
+    errors:
+      knowledge_area_department: "%{knowledge_area} es parte de %{department}, por favor revise esta información"
     could_not_create: 
         one: "Debido a un error, la actividad no ha sido creada. Por favor verifique el formulario."
         other: "Debido a %{count} errores la actividad no ha sido creada. Por favor verifique el formulario."
     published: "Publicada"
     not_published: "No publicada"
     create: "Agregar actividad"
+    research_lines: "Líneas de Investigación"
+    knowledge_areas: "Áreas de Conocimiento"
   user:
     signout: "Cerrar Sesión"
     myentries: "Mis actividades"
@@ -55,3 +111,19 @@ es:
       placeholder: "usuario@espe.edu.ec"
   session:
     login: "Iniciar sesión"
+  images:
+    select_image: "Seleccionar imagen"
+    change_image: "Cambiar"
+    remove_image: "Quitar esta imagen"
+    add_image: "Agregar una imagen"
+    image: "Imagen"
+  helpers:
+    links:
+      cancel: "Cancelar"
+      edit: "Editar"
+      destroy: "Borrar"
+      back: "Regresar"
+    submit:
+      create: "Crear %{model}"
+      update: "Actualizar %{model}"
+

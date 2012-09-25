@@ -71,8 +71,18 @@ SimpleNavigation::Configuration.run do |navigation|
     # You can turn off auto highlighting for a specific level
     # primary.auto_highlight = false
     primary.item :home, t('application.home'), root_path do |sub_nav|
-      sub_nav.item :department, @entry.user.department.try(:name), url_for(@entry.user.department) do |dep_nav|
-        dep_nav.item :entry, @entry.try(:title), url_for(@entry)
+      if !@entry.user.department.nil?
+        sub_nav.item :department, @entry.user.department.try(:name), url_for(@entry.user.department) do |dep_nav|
+          if @entry.knowledge_areas.count > 0
+            dep_nav.item :knowledge_area, @entry.knowledge_areas.first.try(:name), url_for(@entry.knowledge_areas.first) do |deeper_nav|
+              deeper_nav.item :entry, @entry.try(:title), url_for(@entry)
+            end
+          else
+            dep_nav.item :entry, @entry.try(:title), url_for(@entry)
+          end
+        end
+      else
+        sub_nav.item :entry, @entry.try(:title), url_for(@entry)
       end
     end
     primary.dom_class = 'breadcrumb'

@@ -1,114 +1,54 @@
 <div class="span12">
-  <h1><%= t('application.welcome_title') %>
-    <small><%= t('application.welcome_subtitle') %></small>
-  </h1>
+  <div class="page-header">
+    <h1><%= t('application.welcome_title') %>
+      <small><%= t('application.welcome_subtitle') %></small>
+    </h1>
+  </div>
+
+  <div id="timeline-embed"></div>
 </div>
 
-<div class="span8">
-  <section id="home-carousel">
-    <div id="myCarousel" class="carousel slide">
-      <div class="carousel-inner">
-        <% if !@entries_carousel.blank? %>
-          <% for entry in @entries_carousel %>
-            <%= div_for(entry, :class => (entry==@entries_carousel.first) ? 'item active': 'item'  ) do %>
-              <%= link_to entry_path(entry.id) do %>
-                <%= image_tag entry.images.first.image_url(:slide)  %>
-              <% end %>
-              <%= content_tag  :div, :class => 'carousel-caption' do %>
-                <%= link_to entry_path(entry.id) do %>
-                  <%= content_tag :h3, entry.title %>
-                <% end %>
-                <%= content_tag :h4 do %>
-                  <%= entry.author %>
-                  <%= content_tag :small do %>
-                    <%= l entry.date, :format => :long %>
-                  <% end %>
-                <% end %>
-                <%= content_tag :p do %>
-                  <%= truncate_html(sanitize(entry.body.html_safe), :length => 150) %>
-                <% end %>
-              <% end %>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
-      </div>
-    </section>
-  </div>
-  <div class="span4" id="right-sidebar">
-    <%= content_tag :h2, t('application.users.highlighted') %>
-    <% if !@departments.blank? %>
-      <% for department in @departments %>
-        <% user = department.users.top.first %>
-        <%= content_tag :div, :class => "well" do %>
-          <%= content_tag :div, :class => "row" do %>
-            <%= content_tag :div, :class => "span1" do %>
-              <%= link_to user_path(user.id), :class => "thumbnail" do %>
-                <%= image_tag user.profile.image_url(:thumb)  %>
-              <% end %>
-            <% end %>
-            <%= content_tag :div, :class => "span2" do %>
-              <% if !user.department.blank? %>
-                <%= link_to department_path(user.department.id) do %>
-                  <%= content_tag :h3, user.department.name  %>
-                <% end %>
-              <% end %>
-              <%= content_tag :h4, user.header_name  %>
-            <% end %>
-          <% end %>
-        <% end %>
-      <% end %>
-    <% end %>
-  </div>
+<script type="text/javascript">
 
-<div class="span12">
+  var timeline_config = {
+    width: "100%",
+    height: window.innerHeight - 120,
+    source: "<%= url_for(:action => "timeline") + ".json" %>",
+    lang: 'es',
+    start_zoom_adjust: "-5",
+    hash_bookmark: true
+  }
+
+</script>
+
+<script src="/assets/timeline/js/storyjs-embed.js?body=1" type="text/javascript"></script>
+
+
+<div class="span12 second-row">
   <ul class="thumbnails" id="home-thumbnails">
-    <li class="span4">
-      <div class="thumbnail">
-        <a href="#"><h2 class="title">Título de la Entrada</h2></a>
-        <div class="content">
-          <a href="#"><img src="http://placehold.it/300x210" alt=""></a>
-          <a href="#"><h3>Autor</h3></a>
-          <h4><small>14/May/2012</small></h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p>
-          <div class="row">
-            <a class="btn pull-right" href="#">Seguir leyendo &raquo;</a>
+    <% for entry in @entries %>
+      <li class="span4">
+        <div class="thumbnail">
+          <%= link_to url_for(entry) do %>
+            <h2 class="title"><%= entry.title %></h2>
+          <% end %>
+          <div class="content">
+            <%= link_to url_for(entry) do %>
+              <%= image_tag entry.images.first.image_url(:slide) %>
+            <% end %>
+            <%= link_to url_for(entry.user) do %>
+              <h3><%= entry.author %></h3>
+            <% end %>
+            <h4><small><%= l entry.date, :format => :long %></small></h4>
+            <%= content_tag :p do %>
+              <%= truncate_html(sanitize(entry.body.html_safe), :length => 150) %>
+            <% end %>
+            <div class="row">
+              <%= link_to t("application.keep_reading"), url_for(entry), :class => "btn pull-right" %>
+            </div>
           </div>
         </div>
-      </div>
-    </li>
-    <li class="span4">
-      <div class="thumbnail">
-        <a href="#"><h2 class="title">Título de la Entrada</h2></a>
-        <div class="content">
-          <a href="#"><img src="http://placehold.it/300x210" alt=""></a>
-          <a href="#"><h3>Autor</h3></a>
-          <h4><small>14/May/2012</small></h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p>
-          <div class="row">
-            <a class="btn pull-right" href="#">Seguir leyendo &raquo;</a>
-          </div>
-        </div>
-      </div>
-    </li>
-    <li class="span4">
-      <div class="thumbnail">
-        <a href="#"><h2 class="title">Título de la Entrada</h2></a>
-        <div class="content">
-          <a href="#"><img src="http://placehold.it/300x210" alt=""></a>
-          <a href="#"><h3>Autor</h3></a>
-          <h4><small>14/May/2012</small></h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p>
-          <div class="row">
-            <a class="btn pull-right" href="#">Seguir leyendo &raquo;</a>
-          </div>
-        </div>
-      </div>
-    </li>
+      </li>
+    <% end %>
   </ul>
 </div>

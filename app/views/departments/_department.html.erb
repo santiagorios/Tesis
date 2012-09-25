@@ -1,0 +1,15 @@
+<%= content_tag_for(:li, department, :class => "entry") do %>
+  <div class="row">
+    <div class="span2">
+      <%= link_to department_path(department), :class => 'thumbnail' do %>
+        <img src="http://www.placehold.it/160x155/EFEFEF/AAAAAA&amp;text=no+image">
+      <% end %>
+    </div>
+    <div class="span6">
+      <%= link_to department_path(department) do %>
+        <h2><%= department.name %></h2>
+      <% end %>
+      <% truncate_html(sanitize(department.name.html_safe), :length => 250) %>
+    </div>
+  </div>
+<% end %>

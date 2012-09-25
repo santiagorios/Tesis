@@ -8,7 +8,7 @@
   });
 }).call(this);
 
-ClientSideValidations.formBuilders['SimpleForm::FormBuilder'] = {
+clientSideValidations.formBuilders['SimpleForm::FormBuilder'] = {
   add: function(element, settings, message) {
     var errorElement, wrapper;
 

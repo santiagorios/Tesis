@@ -22,14 +22,31 @@ class Entry < ActiveRecord::Base
     self.research_lines = research_lines
   end
 
+
+  has_and_belongs_to_many :knowledge_areas
+
+  attr_reader :knowledge_area_names
+  attr_accessible :knowledge_area_names
+
+  def knowledge_area_names=(names)
+    knowledge_areas = Array.new
+    for name in names
+      knowledge_area = KnowledgeArea.find_or_create_by_name(name)
+      knowledge_areas.push(knowledge_area)
+    end
+    self.knowledge_areas = knowledge_areas
+  end
+
 	def owned_by?(owner)
 		return false unless owner.is_a? User
 		user == owner
 	end
 
 	def author
-		if user.present? && user.profile.present? && user.profile.name.present?
-			user.profile.name
+		if user.profile.name.nil? or user.profile.name.empty?
+      user.email
+    else
+      user.profile.name
 		end
 	end
 

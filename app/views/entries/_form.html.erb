@@ -21,12 +21,23 @@
     </div>
   </div>
 
+  <div class="control-group">
+    <label class="control-label"><%= t('entry.knowledge_areas') %></label>
+    <div class="controls">
+      <%= content_tag :ul, :class => "span7", :id => "knowledge-areas", data: {autocomplete_source: KnowledgeArea.order(:name).map(&:name)}  do %>
+          <% for knowledge_area in @entry.knowledge_areas %>
+              <li><%= knowledge_area.name %></li>
+          <% end %>
+      <% end %>
+    </div>
+  </div>
+
   <%= f.input :published %>
 
   <div class="entry-images controls span7">
     <%= f.fields_for :images do |image_form| %>
       <div class="well">
-        <h4>Image</h4>
+        <h4><%= t("images.image") %></h4>
         <%= image_form.input :title %>
         
         <div class="control-group">
@@ -38,8 +49,8 @@
               <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 0px; "></div>
               <div>
                 <span class="btn btn-file">
-                  <span class="fileupload-new">Select image</span>
-                  <span class="fileupload-exists">Change</span>
+                  <span class="fileupload-new"><%= t('images.select_image') %></span>
+                  <span class="fileupload-exists"><%= t('images.change_image') %></span>
                   <%= image_form.input_field :image %>
                 </span>
                 <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
@@ -50,12 +61,12 @@
         
         <div class="control-group">
           <div class="controls">
-            <%= image_form.link_to_remove "Remove this image" %>
+            <%= image_form.link_to_remove t("images.remove_image") %>
           </div>
         </div>
       </div>
     <% end %>
-    <%= f.link_to_add "Add an image", :images, :class => "add-image-link" %>
+    <%= f.link_to_add t("images.add_image"), :images, :class => "add-image-link" %>
   </div>
 
   <%= f.input :body, :input_html => { :class => 'tinymce span7' } %>

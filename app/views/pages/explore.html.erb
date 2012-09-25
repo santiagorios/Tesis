@@ -1,0 +1,17 @@
+<div class="span8">
+  <% if !@entries.empty? and !@entries.nil? %>
+    <%= render :partial => 'section', :locals => { :collection => @entries }  %>
+  <% end %>
+  <% if !@departments.nil? and !@departments.empty? %>
+    <%= render :partial => 'section', :locals => { :collection => @departments }  %>
+  <% end %>
+  <% if !@research_lines.nil? and !@research_lines.empty? %>
+    <%= render :partial => 'section', :locals => { :collection => @research_lines }  %>
+  <% end %>
+  <% if !@knowledge_areas.nil? and !@knowledge_areas.empty? %>
+    <%= render :partial => 'section', :locals => { :collection => @knowledge_areas }  %>
+  <% end %>
+</div>
+<div class="span4">
+  <%= render "users_sidebar" %>
+</div>

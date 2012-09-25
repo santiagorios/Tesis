@@ -71,21 +71,36 @@ SimpleNavigation::Configuration.run do |navigation|
     # You can turn off auto highlighting for a specific level
     # primary.auto_highlight = false
     primary.item :title, t('application.sidebar_title'), :class => 'nav-header'
-    primary.item :departments, t('application.departments') + '<i class="icon-plus pull-right"></i>'.html_safe, departments_path, :class => "openable" do |sub_nav|
-      departments = Department.all
-      for department in departments do
-        sub_nav.item :department, department.try(:name), url_for(department)
+    departments = Department.all
+    if !departments.empty?
+      primary.item :departments, t('activerecord.models.department.other') + '<i class="icon-plus pull-right"></i>'.html_safe, departments_path, :class => "openable nav-sub-header" do |sub_nav|
+        for department in departments do
+          sub_nav.item :department, department.try(:name), url_for(department)
+        end
+        sub_nav.dom_class = 'nav nav-list accordion'
       end
-      sub_nav.dom_class = 'nav nav-list accordion'
     end
 
-    primary.item :research_lines, t('application.research_lines') + '<i class="icon-plus pull-right"></i>'.html_safe, research_lines_path, :class => "openable" do |sub_nav|
-      research_lines = ResearchLine.all
-      for research_line in research_lines do
-        sub_nav.item :research_line, research_line.try(:name), url_for(research_line)
+    research_lines = ResearchLine.all
+    if !research_lines.empty?
+      primary.item :research_lines, t('activerecord.models.research_line.other') + '<i class="icon-plus pull-right"></i>'.html_safe, research_lines_path, :class => "openable nav-sub-header" do |sub_nav|
+        for research_line in research_lines do
+          sub_nav.item :research_line, research_line.try(:name), url_for(research_line)
+        end
+        sub_nav.dom_class = 'nav nav-list accordion'
       end
-      sub_nav.dom_class = 'nav nav-list accordion'
     end
+
+    knowledge_areas = KnowledgeArea.all
+    if !knowledge_areas.empty?
+      primary.item :research_lines, t('activerecord.models.knowledge_area.other') + '<i class="icon-plus pull-right"></i>'.html_safe, knowledge_areas_path, :class => "openable nav-sub-header" do |sub_nav|
+        for knowledge_area in knowledge_areas do
+          sub_nav.item :knowledge_area, knowledge_area.try(:name), url_for(knowledge_area)
+        end
+        sub_nav.dom_class = 'nav nav-list accordion'
+      end
+    end
+
 
     primary.dom_class = 'nav nav-list'
 

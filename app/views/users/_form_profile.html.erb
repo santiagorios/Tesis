@@ -1,3 +1,12 @@
+<% if @user.errors.any? %>
+  <div class="alert">
+    <button class="close" data-dismiss="alert">x</button>
+    <% for error in @user.errors.full_messages do %>
+      <strong><%= error %></strong>
+    <% end %>
+  </div>
+<% end %>
+
 <%= tinymce_assets %>
 <%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.simple_fields_for :profile do |profile_form| %>  
@@ -11,8 +20,8 @@
             <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 320px; max-height: 210px; line-height: 0px; "></div>
             <div>
               <span class="btn btn-file">
-                <span class="fileupload-new">Select image</span>
-                <span class="fileupload-exists">Change</span>
+                <span class="fileupload-new"><%= t "images.select_image" %></span>
+                <span class="fileupload-exists"><%= t "images.change_image" %></span>
                 <%= profile_form.input_field :image %>
               </span>
               <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
@@ -25,6 +34,7 @@
         <%= profile_form.input :birthday, :as => :string, :input_html => { :class => 'span6' } %>
   <% end %>
         <%= f.input :department_name, :input_html => { :class => 'span6', data: {autocomplete_source: Department.order(:name).map(&:name)} } %>
+        <%= f.input :knowledge_area_name, :input_html => { :class => 'span6', data: {autocomplete_source: KnowledgeArea.order(:name).map(&:name)} } %>
         <%= f.simple_fields_for :profile do |profile_form| %>
           <%= profile_form.input :phone, :input_html => { :class => 'span6' } %>
           <%= profile_form.input :about_me, :input_html => { :class => 'tinymce span6' } %>

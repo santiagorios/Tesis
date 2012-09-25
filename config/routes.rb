@@ -1,5 +1,15 @@
 VirtusKnowledge::Application.routes.draw do
 
+  match "/departments/:id/timeline" => "departments#timeline"
+
+  match "/knowledge_areas/:id/timeline" => "knowledge_areas#timeline"
+
+  match "/users/:id/timeline" => "users#timeline"
+  match "/users/:id" => "users#timeline"
+  match "/users/:id/all" => "users#show"
+
+  get "timeline" => "pages#timeline", :as => "timeline"
+
   get "departments/show"
 
   get "departments/index"
@@ -7,6 +17,8 @@ VirtusKnowledge::Application.routes.draw do
   get "help" => "pages#help", :as => "help"
 
   get "about" => "pages#about", :as => "about"
+
+  get "explore" => "pages#explore", :as => "explore"
 
   get "myaccount" => 'users#myaccount', :as => "myaccount"
 
@@ -19,6 +31,7 @@ VirtusKnowledge::Application.routes.draw do
   resources :sessions
   resources :entries
   resources :research_lines
+  resources :knowledge_areas
   resources :departments
 
   get "myentries" => "entries#myentries", :as => "myentries"

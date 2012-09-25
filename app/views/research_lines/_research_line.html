@@ -1,0 +1,15 @@
+<%= content_tag_for(:li, research_line, :class => "entry") do %>
+<div class="row">
+    <div class="span2">
+        <%= link_to research_line_path(research_line), :class => 'thumbnail' do %>
+        <img src="http://www.placehold.it/160x155/EFEFEF/AAAAAA&amp;text=no+image">
+        <% end %>
+    </div>
+    <div class="span6">
+        <%= link_to research_line_path(research_line) do %>
+        <h2><%= research_line.name %></h2>
+        <% end %>
+        <% truncate_html(sanitize(research_line.name.html_safe), :length => 250) %>
+    </div>
+</div>
+<% end %>

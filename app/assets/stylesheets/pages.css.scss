@@ -7,3 +7,20 @@
   bottom: 0;
   width: 100%;
 }
+
+
+.second-row {
+  padding-top: 30px;
+}
+
+li.nav-sub-header > span, li.nav-sub-header > a > span, li.nav-sub-header > a  {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  color: #ababab;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.section-title h1 {
+  color: #5b5b5b;
+}
