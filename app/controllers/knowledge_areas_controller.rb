@@ -15,7 +15,7 @@ class KnowledgeAreasController < ApplicationController
 
   def timeline
     @knowledge_area = KnowledgeArea.find(params[:id])
-    @entries = @knowledge_area.entries.all(:order => 'date DESC')
+    @entries = @knowledge_area.entries.where(:published => true).all(:order => 'date DESC')
     respond_to do |format|
       format.json
     end

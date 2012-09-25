@@ -1,5 +1,5 @@
 json.timeline do |json|
-  json.headline @knowledge_area.name
+  json.headline @research_line.name
   json.type 'default'
   #json.text "REEMPLAZAR ESTO!"
   json.startDate l(@entries.last.date, :format => :timeline)

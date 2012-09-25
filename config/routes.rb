@@ -4,6 +4,8 @@ VirtusKnowledge::Application.routes.draw do
 
   match "/knowledge_areas/:id/timeline" => "knowledge_areas#timeline"
 
+  match "/research_lines/:id/timeline" => "research_lines#timeline"
+
   match "/users/:id/timeline" => "users#timeline"
   get "/users/:id" => "users#timeline"
   match "/users/:id/all" => "users#show"
