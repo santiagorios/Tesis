@@ -7,6 +7,6 @@
 <ul class="thumbnails entries">
   <%= render collection, :partial => model_class.table_name.to_s + '/' + model_class.name.underscore %>
 </ul>
-<% if collection.count > 5 %>
+<% if collection.first.class.all.count > 5 %>
   <%= link_to url_for(:controller => model_class.table_name.to_s, :action => "index") %>
 <% end %>
