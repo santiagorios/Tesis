@@ -30,7 +30,7 @@
       </div>
       <% end %>
       <h3><%= link_to entry.author, user_path(entry.user.id) %> <small><%= l entry.date, :format => :long %></small></h3>
-      <%= truncate_html(sanitize(entry.body.html_safe), :length => 250) %>
+      <%= strip_tags truncate_html(sanitize(entry.body.html_safe), :length => 250) %>
     </div>
   </div>
 <% end %>
