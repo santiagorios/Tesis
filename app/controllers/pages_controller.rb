@@ -22,7 +22,7 @@ class PagesController < ApplicationController
     @departments = Department.order("rand()").joins(:entries).all(:limit => 5, :group => :id)
     @knowledge_areas = KnowledgeArea.order("rand()").joins(:entries).all(:limit => 5, :group => :id)
     @research_lines = ResearchLine.order("rand()").joins(:entries).all(:limit => 5, :group => :id)
-    if @entries.empty? && @users.empty? && @departments.empty?
+    if @entries.empty?
       respond_to do |format|
         format.html { render :template => 'pages/empty' }
       end
