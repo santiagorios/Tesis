@@ -1,13 +1,13 @@
 json.timeline do |json|
   json.headline @user.header_name
   json.type 'default'
-  unless @user.department.name.nil?
+  unless @user.department.name.nil? or @user.department.name.nil?
     department_name = @user.department.name
   else
     department_name = ""
   end
 
-  unless @user.knowledge_area.name.nil?
+  unless @user.knowledge_area or @user.knowledge_area.name.nil?
     knowledge_area_name = @user.knowledge_area.name
   else
     knowledge_area_name = ""
