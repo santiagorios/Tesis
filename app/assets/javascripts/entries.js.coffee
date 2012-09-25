@@ -11,14 +11,16 @@ jQuery ->
 jQuery ->
 	$('#research-lines').tagit({
 		itemName: "entry",
-		fieldName: "research_line_names"
+		fieldName: "research_line_names",
+    allowSpaces: true,
 		availableTags: $("#research-lines").data('autocomplete-source')
 	});
 
 jQuery ->
   $('#knowledge-areas').tagit({
   itemName: "entry",
-  fieldName: "knowledge_area_names"
+  fieldName: "knowledge_area_names",
+  allowSpaces: true,
   availableTags: $("#knowledge-areas").data('autocomplete-source')
   });
 
