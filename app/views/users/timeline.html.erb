@@ -3,8 +3,16 @@
   <div class="page-header">
     <h1><%= @user.header_name  %></h1>
   </div>
+  <% unless @entries.empty? %>
   <div id="timeline-embed"></div>
+  <% else %>
+  <div class="content">
+    <%= t("application.user_no_entries") %>
+  </div>
+  <% end %>
 </div>
+
+<% unless @entries.empty? %>
 <script type="text/javascript">
 
   var timeline_config = {
@@ -19,6 +27,7 @@
 </script>
 
 <script src="/assets/timeline/js/storyjs-embed.js?body=1" type="text/javascript"></script>
+<%end %>
 
 <!-- END Timeline Embed-->
 

@@ -61,6 +61,7 @@ es:
               confirmation: "la confirmación no coincide"
   hello: "Hello world"
   application:
+    user_no_entries: "El usuario no tiene actividades aún"
     sidebar_title_users: "Usuarios"
     keep_reading: "Seguir leyendo »"
     welcome_title: "Sistema de Difusión de Gestión de Conocimiento de la ESPE"
