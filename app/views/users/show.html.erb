@@ -6,7 +6,7 @@
           <h1><%= @user.header_name %></h1>
           <h3>Email: <small><%= best_in_place @user, :email %></small></h3>
           <h3>Deparment: <small><%= best_in_place @user, :department_name %></small></h3>
-          <h3>Phone: <small><%= best_in_place @user, :phone_number, :path => user_path(@user.id), :display_as => :"phone" %></small></h3>
+          <h3>Phone: <small><%= best_in_place @user, :phone_number, :path => user_path(@user.id), :display_as => :"phone_number" %></small></h3>
         </div>
         <div class="span6 pull-right">
           <% if @user.profile.image? %>
