@@ -57,11 +57,13 @@ class User < ActiveRecord::Base
   scope :top, find(:all, :order => "count(entries.id) desc", :joins => :entries, :group => 'user_id')
 
   def validate_knowledge_area_and_department
-    if !self.knowledge_area.department.nil? and !self.department.nil? and self.knowledge_area.department != self.department
-      errors.add(:knowledge_area, I18n.translate('entry.errors.knowledge_area_department', :knowledge_area => self.knowledge_area.name, :department => self.knowledge_area.department.name))
-    else
-      self.knowledge_area.department = self.department
-      self.knowledge_area.save
+    unless self.knowledge_area.nil? or self.department.nil?
+      if !self.knowledge_area.department.nil? and !self.department.nil? and self.knowledge_area.department != self.department
+        errors.add(:knowledge_area, I18n.translate('entry.errors.knowledge_area_department', :knowledge_area => self.knowledge_area.name, :department => self.knowledge_area.department.name))
+      else
+        self.knowledge_area.department = self.department
+        self.knowledge_area.save
+      end
     end
   end
 
