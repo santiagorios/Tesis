@@ -53,5 +53,6 @@ class Entry < ActiveRecord::Base
 	private
 		def default_values
 			self.date ||= Time.now.strftime("%Y-%m-%d")
+      self.published = true
 		end
 end

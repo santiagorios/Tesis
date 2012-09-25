@@ -61,6 +61,7 @@ es:
               confirmation: "la confirmación no coincide"
   hello: "Hello world"
   application:
+    more: "Mas"
     user_no_entries: "El usuario no tiene actividades aún"
     sidebar_title_users: "Usuarios"
     keep_reading: "Seguir leyendo »"
