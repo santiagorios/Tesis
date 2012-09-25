@@ -8,6 +8,6 @@ json.timeline do |json|
     json.thumbnail "http://www.ipgh.gob.ec/imagenes/logos/ESPE.gif"
   end
   json.date @entries do |json, entry|
-    json.partial! "users/entry", entry: entry
+    json.partial! "entry", entry: entry
   end
 end
