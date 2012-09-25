@@ -10,7 +10,7 @@ class ResearchLinesController < ApplicationController
   end
 
   def index
-    @knowledge_areas = KnowledgeArea.all
+    @research_lines= ResearchLine.paginate(:page => params[:page])
   end
 
   def timeline

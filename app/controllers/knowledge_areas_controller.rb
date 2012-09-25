@@ -10,7 +10,7 @@ class KnowledgeAreasController < ApplicationController
   end
 
   def index
-    @knowledge_areas = KnowledgeArea.all
+    @knowledge_areas = KnowledgeArea.paginate(:page => params[:page])
   end
 
   def timeline

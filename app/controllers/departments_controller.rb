@@ -10,6 +10,7 @@ class DepartmentsController < ApplicationController
   end
 
   def index
+    @departments = Department.paginate(:page => params[:page])
   end
 
   def timeline
