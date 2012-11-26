@@ -65,9 +65,6 @@
                 <%= link_to url_for(program) do %>
                   <h3><%= program.title %></h3>
                 <% end %>
-                <% unless program.description.blank? %>
-                  <%= strip_tags truncate_html(sanitize(program.description.html_safe), :length => 80) %>
-                <% end %>
               <% end %>
             </div>
           <% end %>
@@ -126,7 +123,7 @@
             </div>
           <% end %>
           <div class="row home-more-link">
-            <%= link_to t("application.keep_reading_research_lines"), entries_path, :class => "btn pull-right" %>
+            <%= link_to t("application.keep_reading_research_lines"), research_lines_path, :class => "btn pull-right" %>
           </div>
         </div>
       </div>

@@ -72,7 +72,7 @@ SimpleNavigation::Configuration.run do |navigation|
     # primary.auto_highlight = false
     primary.item :title, t('application.sidebar_title'), :class => 'nav-header'
 
-    programs = Program.order('random()').all(:limit => 5)
+    programs = Program.order('rand()').all(:limit => 5)
     if !programs.empty?
       primary.item :programs, t('activerecord.models.program.other') + '<i class="icon-plus pull-right"></i>'.html_safe, programs_path, :class => "openable nav-sub-header" do |sub_nav|
         for program in programs do
@@ -82,7 +82,7 @@ SimpleNavigation::Configuration.run do |navigation|
       end
     end
 
-    groups = ResearchGroup.order('random()').all(:limit => 5)
+    groups = ResearchGroup.order('rand()').all(:limit => 5)
     if !groups.empty?
       primary.item :groups, t('activerecord.models.research_group.other') + '<i class="icon-plus pull-right"></i>'.html_safe, research_groups_path, :class => "openable nav-sub-header" do |sub_nav|
         for group in groups do
@@ -92,7 +92,7 @@ SimpleNavigation::Configuration.run do |navigation|
       end
     end
 
-    departments = Department.order('random()').all(:limit => 5)
+    departments = Department.order('rand()').all(:limit => 5)
     if !departments.empty?
       primary.item :departments, t('activerecord.models.department.other') + '<i class="icon-plus pull-right"></i>'.html_safe, departments_path, :class => "openable nav-sub-header" do |sub_nav|
         for department in departments do
@@ -102,7 +102,7 @@ SimpleNavigation::Configuration.run do |navigation|
       end
     end
 
-    research_lines = ResearchLine.order('random()').all(:limit => 5)
+    research_lines = ResearchLine.order('rand()').all(:limit => 5)
     if !research_lines.empty?
       primary.item :research_lines, t('activerecord.models.research_line.other') + '<i class="icon-plus pull-right"></i>'.html_safe, research_lines_path, :class => "openable nav-sub-header" do |sub_nav|
         for research_line in research_lines do
