@@ -31,6 +31,7 @@
     <%= menu_group :pull => :right do %>
       <% if current_user %>
         <%= drop_down '<i class="icon-user icon-white"></i> '.html_safe + current_user.header_name do %>
+          <div class="group-container">
           <div class="group group-left">
           <li class="nav-header"><%= t 'activerecord.models.program.other' %></li>
           <%= menu_item '<i class="icon-folder-open icon-white"></i> '.html_safe + t('user.myprograms'), myprograms_path %>
@@ -56,6 +57,7 @@
           <%= drop_down_divider %>
           <%= menu_item '<i class="icon-edit icon-white"></i> '.html_safe + t('user.my_account'), myaccount_path %>
           <%= menu_item '<i class="icon-signout icon-white"></i> '.html_safe + t('user.signout'), logout_path %>
+          </div>
           </div>
         <% end %>
       <% else %>
