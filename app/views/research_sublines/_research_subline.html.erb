@@ -1,0 +1,15 @@
+<%= content_tag_for(:li, research_subline, :class => "entry") do %>
+  <div class="row">
+    <div class="span2">
+      <%= link_to research_line_path(research_subline), :class => 'thumbnail' do %>
+        <img src="http://www.placehold.it/160x155/EFEFEF/AAAAAA&amp;text=Sl.+Investigación">
+      <% end %>
+    </div>
+    <div class="span6">
+      <%= link_to research_subline_path(research_subline) do %>
+        <h2><%= research_subline.name %></h2>
+      <% end %>
+      <%= link_to research_subline.research_line.name, research_line_url(research_subline.research_line) %>
+    </div>
+  </div>
+<% end %>

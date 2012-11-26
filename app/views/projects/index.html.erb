@@ -1,0 +1,17 @@
+<%- model_class = Project.new.class -%>
+<div class="span8">
+  <div class="well">
+  <div class="page-header">
+    <h1><%=t '.title', :default => model_class.model_name.human(:count => @projects.count )%></h1>
+  </div>
+  <ul class="thumbnails entries">
+    <%= render @projects %>
+  </ul>
+  <div class="pull-right">
+    <%= will_paginate @projects, :renderer => BootstrapPagination::Rails %>
+  </div>
+  </div>
+</div>
+<div class="span4">
+  <%= render "entries/sidebar" %>
+</div>

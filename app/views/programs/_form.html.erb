@@ -1,0 +1,65 @@
+<%= tinymce_assets %>
+<%= simple_nested_form_for @program, :validate => true, :html => { :class => 'form-horizontal' } do |f| %>
+  <% if @program.errors.any? %>
+    <div class="alert">
+      <button class="close" data-dismiss="alert">x</button>
+      <strong><%= t('application.warning') %></strong> <%= t('entry.could_not_create', :count => @program.errors.count) %>
+    </div>
+  <% end %>
+
+  <%= f.input :title, :input_html => { :class => 'span7' } %>
+  <%= f.association :program_type, :collection => @types ,:input_html => { :class => 'span7' } %>
+  <%= f.association :research_group, :collection => @groups , :input_html => { :class => 'span7' } %>
+
+  <div class="control-group">
+    <label class="control-label"><%= t('entry.research_sublines') %></label>
+    <div class="controls">
+      <%= content_tag :ul, :class => "span7", :id => "research-sublines", data: {autocomplete_source: ResearchSubline.order(:name).map(&:name)}  do %>
+        <% for research_subline in @program.research_sublines %>
+          <li><%= research_subline.name %></li>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label"><%= t('entry.knowledge_areas') %></label>
+    <div class="controls">
+      <%= content_tag :ul, :class => "span7", :id => "knowledge-areas", data: {autocomplete_source: KnowledgeArea.order(:name).map(&:name)}  do %>
+        <% for knowledge_area in @program.knowledge_areas %>
+          <li><%= knowledge_area.name %></li>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <%= f.input :published %>
+
+  <div class="entry-images controls span7">
+    <%= f.fields_for :indicators do |indicator_form| %>
+      <div class="well">
+        <h4><%= t("activerecord.models.indicator.other") %></h4>
+        <%= indicator_form.input :name, :input_html => {:class => "span5"} %>
+        <%= indicator_form.input :description, :input_html => {:class => "span5", :rows => "8"} %>
+        <div class="control-group">
+          <div class="controls">
+            <%= indicator_form.link_to_remove t("program.remove_indicator") %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= f.link_to_add t("program.add_indicator"), :indicators, :class => "add-image-link" %>
+  </div>
+
+
+  <%= f.input :description, :input_html => { :class => 'tinymce span7' } %>
+  <%= tinymce %>
+
+  <div class="form-actions">
+    <div class="pull-right">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  entries_path, :class => 'btn' %>
+    </div>
+  </div>
+<% end %>

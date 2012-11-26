@@ -9,15 +9,15 @@ jQuery ->
 	$("a[rel^='prettyPhoto']").prettyPhoto();
 
 jQuery ->
-	$('#research-lines').tagit({
+	$('#entry-form #research-sublines').tagit({
   itemName: "entry",
-  fieldName: "research_line_names",
+  fieldName: "research_subline_names",
   allowSpaces: true,
-  availableTags: $("#research-lines").data('autocomplete-source')
+  availableTags: $("#research-sublines").data('autocomplete-source')
 	});
 
 jQuery ->
-  $('#knowledge-areas').tagit({
+  $('#entry-form #knowledge-areas').tagit({
   itemName: "entry",
   fieldName: "knowledge_area_names",
   allowSpaces: true,
@@ -29,7 +29,7 @@ jQuery ->
 		$(window).scroll ->
 			url = $('.pagination a[rel="next"]').attr('href')
 			if url && $(window).scrollTop() > $(document).height() - $(window).height() - 180
-				$('.pagination').text("Fetching more entries...")
+				$('.pagination').text("Cargando más...")
 				$.getScript(url)
 		$(window).scroll()
 

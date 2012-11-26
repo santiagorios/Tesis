@@ -51,14 +51,29 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @object = @user
     if @user == current_user
-      @entries = @user.entries.paginate(:page => params[:page]).order('date DESC')
+      @entries = @user.entries.all(:limit => 5)
+
+      @user_programs = @user.programs.all(:limit => 3)
+      @group_programs = @user.groups_programs.all(:limit => 2)
+      @programs = @user_programs + @group_programs
+      @programs.sort_by(&:created_at)
+
+      @projects = @user.projects.all(:limit => 5)
     else
-      @entries = @user.entries.where(:published => true).paginate(:page => params[:page]).order('date DESC')
+      @entries = @user.entries.where(:published => true).all(:limit => 5)
+
+      @user_programs = @user.programs.where(:published => true).all(:limit => 3)
+      @group_programs = @user.groups_programs.where(:published => true).all(:limit => 2)
+      @programs = @user_programs + @group_programs
+      @programs.sort_by(&:created_at)
+
+      @projects = @user.projects.where(:published => true).all(:limit => 5)
     end
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # timeline.html.erb
       format.json { render json: @entries }
       format.js { render :template => 'entries/index' }
     end
@@ -71,6 +86,64 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html
       format.json
+    end
+  end
+
+  def program_type
+    @object = User.find(params[:object_id])
+    @type = ProgramType.find(params[:type_id])
+
+    @user_programs = @object.programs.where(:program_type_id => @type, :published => true)
+    @group_programs = @object.groups_programs.where(:program_type_id => @type, :published => true)
+
+    @programs = @user_programs + @group_programs
+
+    @programs.sort_by(&:created_at)
+    @programs = @programs.paginate(:page => params[:page])
+
+    respond_to do |format|
+      format.html { render :template => 'pages/programs' }
+    end
+  end
+
+  def programs
+    @object = User.find(params[:id])
+    @programs = @object.programs.where(:published => true).all(:order => 'id DESC', :group => :id).paginate(:page => params[:page])
+    respond_to do |format|
+      format.html { render :template => 'pages/programs' }
+    end
+  end
+
+  def projects
+    @object = User.find(params[:id])
+    @projects = @object.projects.where(:published => true).all(:order => 'id DESC', :group => :id).paginate(:page => params[:page])
+    respond_to do |format|
+      format.html { render :template => 'pages/projects' }
+    end
+  end
+
+  def results
+    @object = User.find(params[:id])
+    @results = @object.results.where(:published => true).all(:order => 'id DESC', :group => :id).paginate(:page => params[:page])
+    respond_to do |format|
+      format.html { render :template => 'pages/results' }
+    end
+  end
+
+  def entries
+    @object = User.find(params[:id])
+    @entries = @object.entries.where(:published => true).all(:order => 'id DESC', :group => :id).paginate(:page => params[:page])
+    respond_to do |format|
+      format.html { render :template => 'pages/entries' }
+    end
+  end
+
+  def search
+    @users = User.search(params[:search]).paginate(:page => params[:page])
+    @collection = @users
+    respond_to do |format|
+      format.html { render :template => 'pages/search' }
+      format.js { render :template => 'pages/search' }
     end
   end
 end

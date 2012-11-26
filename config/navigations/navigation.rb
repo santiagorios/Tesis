@@ -71,7 +71,28 @@ SimpleNavigation::Configuration.run do |navigation|
     # You can turn off auto highlighting for a specific level
     # primary.auto_highlight = false
     primary.item :title, t('application.sidebar_title'), :class => 'nav-header'
-    departments = Department.all
+
+    programs = Program.order('random()').all(:limit => 5)
+    if !programs.empty?
+      primary.item :programs, t('activerecord.models.program.other') + '<i class="icon-plus pull-right"></i>'.html_safe, programs_path, :class => "openable nav-sub-header" do |sub_nav|
+        for program in programs do
+          sub_nav.item :program, program.try(:title), url_for(program)
+        end
+        sub_nav.dom_class = 'nav nav-list accordion'
+      end
+    end
+
+    groups = ResearchGroup.order('random()').all(:limit => 5)
+    if !groups.empty?
+      primary.item :groups, t('activerecord.models.research_group.other') + '<i class="icon-plus pull-right"></i>'.html_safe, research_groups_path, :class => "openable nav-sub-header" do |sub_nav|
+        for group in groups do
+          sub_nav.item :group, group.try(:name), url_for(group)
+        end
+        sub_nav.dom_class = 'nav nav-list accordion'
+      end
+    end
+
+    departments = Department.order('random()').all(:limit => 5)
     if !departments.empty?
       primary.item :departments, t('activerecord.models.department.other') + '<i class="icon-plus pull-right"></i>'.html_safe, departments_path, :class => "openable nav-sub-header" do |sub_nav|
         for department in departments do
@@ -81,7 +102,7 @@ SimpleNavigation::Configuration.run do |navigation|
       end
     end
 
-    research_lines = ResearchLine.all
+    research_lines = ResearchLine.order('random()').all(:limit => 5)
     if !research_lines.empty?
       primary.item :research_lines, t('activerecord.models.research_line.other') + '<i class="icon-plus pull-right"></i>'.html_safe, research_lines_path, :class => "openable nav-sub-header" do |sub_nav|
         for research_line in research_lines do
@@ -91,15 +112,15 @@ SimpleNavigation::Configuration.run do |navigation|
       end
     end
 
-    knowledge_areas = KnowledgeArea.all
-    if !knowledge_areas.empty?
-      primary.item :research_lines, t('activerecord.models.knowledge_area.other') + '<i class="icon-plus pull-right"></i>'.html_safe, knowledge_areas_path, :class => "openable nav-sub-header" do |sub_nav|
-        for knowledge_area in knowledge_areas do
-          sub_nav.item :knowledge_area, knowledge_area.try(:name), url_for(knowledge_area)
-        end
-        sub_nav.dom_class = 'nav nav-list accordion'
-      end
-    end
+    #knowledge_areas = KnowledgeArea.all
+    #if !knowledge_areas.empty?
+    #  primary.item :research_lines, t('activerecord.models.knowledge_area.other') + '<i class="icon-plus pull-right"></i>'.html_safe, knowledge_areas_path, :class => "openable nav-sub-header" do |sub_nav|
+    #    for knowledge_area in knowledge_areas do
+    #      sub_nav.item :knowledge_area, knowledge_area.try(:name), url_for(knowledge_area)
+    #    end
+    #    sub_nav.dom_class = 'nav nav-list accordion'
+    #  end
+    #end
 
 
     primary.dom_class = 'nav nav-list'

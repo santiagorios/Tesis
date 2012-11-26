@@ -2,30 +2,171 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 es:
+  number:
+    currency:
+      format:
+        delimiter: .
+        format: ! '%n %u'
+        precision: 2
+        separator: ! ','
+        significant: false
+        strip_insignificant_zeros: false
+        unit: €
+    format:
+      delimiter: .
+      precision: 3
+      separator: ! ','
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: ! '%n %u'
+        units:
+          billion: mil millones
+          million: millón
+          quadrillion: mil billones
+          thousand: mil
+          trillion: billón
+          unit: ''
+      format:
+        delimiter: ''
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: ! '%n %u'
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: ''
+    precision:
+      format:
+        delimiter: ''
+  support:
+    array:
+      last_word_connector: ! ', y '
+      two_words_connector: ! ' y '
+      words_connector: ! ', '
+  time:
+      am: am
+      formats:
+        default: ! '%A, %d de %B de %Y %H:%M:%S %z'
+        long: ! '%d de %B de %Y %H:%M'
+        short: ! '%d de %b %H:%M'
+      pm: pm
+
   date:
+    abbr_day_names:
+        - dom
+        - lun
+        - mar
+        - mié
+        - jue
+        - vie
+        - sáb
+    abbr_month_names:
+        -
+        - ene
+        - feb
+        - mar
+        - abr
+        - may
+        - jun
+        - jul
+        - ago
+        - sep
+        - oct
+        - nov
+        - dic
+    day_names:
+        - domingo
+        - lunes
+        - martes
+        - miércoles
+        - jueves
+        - viernes
+        - sábado
     month_names: [~, Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre]
     formats:
+      default: ! '%d/%m/%Y'
       long: "%B %d, %Y"
       timeline: "%Y,%m,%d"
+      short: ! '%d de %b'
+    order:
+        - :day
+        - :month
+        - :year
   activerecord:
     models:
+      program_type:
+        one: "Tipo de programa"
+        other: "Tipos de programa"
       user:
         one: "Usuario"
         other: "Usuarios"
       entry:
         one: "Actividad"
         other: "Actividades"
+      program:
+        one: "Programa"
+        other: "Programas"
+      project:
+        one: "Proyecto"
+        other: "Proyectos"
+      result:
+        one: "Resultado"
+        other: "Resultados"
       department:
         one: "Departamento"
         other: "Departamentos"
       research_line:
         one: "Línea de Investigación"
         other: "Líneas de Investigación"
+        abb: "L. Investigación"
+      research_group:
+        one: "Grupos de Gestión"
+        other: "Grupos de Gestión"
+      research_subline:
+        one: "Sub-línea de Investigación"
+        other: "Sub-líneas de Investigación"
       knowledge_area:
         one: "Área de Conocimiento"
         other: "Áreas de Conocimiento"
+      indicator:
+        one: "Indicador"
+        other: "Indicadores"
     attributes:
+      indicator:
+        name: "Nombre"
+        description: "Descripción"
+      program:
+        title: "Título"
+        program_type: "Tipo de programa"
+        research_group: "Grupo de gestión"
+        published: "Publicado?"
+        description: "Descripción"
+      project:
+        title: "Título"
+        published: "Publicado?"
+        description: "Descripción"
+        start_date: "Fecha de inicio"
+        duration: "Duración"
+        program: "Programa"
+        state: "Estado"
+      result:
+        title: "Título"
+        published: "Publicado?"
+        description: "Descripción"
+        file: "Archivo"
       entry:
+        file: "Archivo"
         title: "Título"
         date: "Fecha"
         published: "Publicado?"
@@ -43,6 +184,24 @@ es:
         birthday: "Fecha de nacimiento"
         phone: "Telefono"
         about_me: "Acerca de"
+      department:
+        name: "Nombre"
+        created_at: "Creado"
+        updated_at: "Actualizado"
+      knowledge_area:
+        name: "Nombre"
+        department: "Departamento"
+        created_at: "Creado"
+        updated_at: "Actualizado"
+      research_line:
+        name: "Nombre"
+        created_at: "Creado"
+        updated_at: "Actualizado"
+      research_subline:
+        name: "Nombre"
+        research_line: "Línea de investigación"
+        created_at: "Creado"
+        updated_at: "Actualizado"
     errors:
       models:
         entry:
@@ -61,10 +220,48 @@ es:
               confirmation: "la confirmación no coincide"
   hello: "Hello world"
   application:
+    researchline:
+      empty_title: "Línea de investigación vacía"
+      empty_text: "Aún no existen programas o proyectos en esta Línea de investigación"
+      empty_title_type: "Linea de investigación vacía - %{type}"
+      empty_text_type: "Aún no existen programas de %{type} en la Línea de investigación %{object_name}"
+    researchsubline:
+      empty_title: "Sub-línea de investigación vacía"
+      empty_text: "Aún no existen programas o proyectos en esta Sub-línea de investigación"
+      empty_title_type: "Sub-Línea de investigación vacía - %{type}"
+      empty_text_type: "Aún no existen programas de %{type} en la Súb-línea de investigación %{object_name}"
+    knowledgearea:
+      empty_title: "Área de conocimiento vacía"
+      empty_text: "Aún no existen programas o proyectos en esta Área de conocimiento"
+      empty_title_type: "Área de conocimiento vacía - %{type}"
+      empty_text_type: "Aún no existen programas de %{type} en el Área de conocimiento %{object_name}"
+    department:
+      empty_title: "Departamento vacío"
+      empty_text: "Aún no existen programas o proyectos en esta Departamento"
+      empty_title_type: "Departamento vacío - %{type}"
+      empty_text_type: "Aún no existen programas de %{type} en el Departamento de %{object_name}"
+    researchgroup:
+      empty_title: "Grupo de gestión vacío"
+      empty_text: "Aún no existen programas o proyectos creados por este Grupo de gestión"
+      empty_title_type: "Grupo de gestión vacío - %{type}"
+      empty_text_type: "Aún no existen programas de %{type} en el grupo %{object_name}"
+    type_sidebar_title: "Tipos"
+    download_file: "Descargar archivo adjunto"
+    search: "Búsqueda"
+    description: "Descripción"
+    research_lines_inc: "Líneas de Investigación incluídas"
+    projects_comp: "Proyectos componentes"
+    departments_part: "Departamentos participantes"
+    done_by: "Propuesto por"
     more: "Mas"
     user_no_entries: "El usuario no tiene actividades aún"
     sidebar_title_users: "Usuarios"
-    keep_reading: "Seguir leyendo »"
+    keep_reading_programs: "Más Programas »"
+    keep_reading_projects: "Más Proyectos »"
+    keep_reading_entries: "Más Actividades »"
+    keep_reading_groups: "Más Grupos »"
+    keep_reading_departments: "Más Departamentos »"
+    keep_reading_research_lines: "Más Líneas de Investigación »"
     welcome_title: "Sistema de Difusión de Gestión de Conocimiento de la ESPE"
     welcome_subtitle: ""
     warning: "Advertencia"
@@ -83,20 +280,31 @@ es:
     sidebar_title: "Explorar"
     sidebar_similar_title: "Actividades Similares"
   entry:
+    author: "Autor"
     read_more: "Seguir leyendo"
     errors:
       knowledge_area_department: "%{knowledge_area} es parte de %{department}, por favor revise esta información"
     could_not_create: 
-        one: "Debido a un error, la actividad no ha sido creada. Por favor verifique el formulario."
-        other: "Debido a %{count} errores la actividad no ha sido creada. Por favor verifique el formulario."
+      one: "Debido a un error no se ha podido guardar. Por favor verifique el formulario."
+      other: "Debido a %{count} errores la no se ha podido guardar. Por favor verifique el formulario."
     published: "Publicada"
     not_published: "No publicada"
     create: "Agregar actividad"
     research_lines: "Líneas de Investigación"
+    research_sublines: "Sub-líneas de Investigación"
     knowledge_areas: "Áreas de Conocimiento"
   user:
+    create_entry: "Crear actividad"
+    create_project: "Crear proyecto"
+    create_program: "Crear programa"
+    create_result: "Crear resultado"
+    create_research_group: "Crear grupo de gestión"
     signout: "Cerrar Sesión"
     myentries: "Mis actividades"
+    myprograms: "Mis programas"
+    myprojects: "Mis proyectos"
+    myresults: "Mis resultados"
+    myresearch_groups: "Mis grupos"
     my_account: "Mi cuenta"
     account: "Cuenta"
     profile: "Perfil"
@@ -120,6 +328,8 @@ es:
     add_image: "Agregar una imagen"
     image: "Imagen"
   helpers:
+    select:
+      prompt: Por favor seleccione
     links:
       cancel: "Cancelar"
       edit: "Editar"
@@ -128,4 +338,67 @@ es:
     submit:
       create: "Crear %{model}"
       update: "Actualizar %{model}"
+      submit: Guardar %{model}
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: alrededor de 1 hora
+        other: alrededor de %{count} horas
+      about_x_months:
+        one: alrededor de 1 mes
+        other: alrededor de %{count} meses
+      about_x_years:
+        one: alrededor de 1 año
+        other: alrededor de %{count} años
+      almost_x_years:
+        one: casi 1 año
+        other: casi %{count} años
+      half_a_minute: medio minuto
+      less_than_x_minutes:
+        one: menos de 1 minuto
+        other: menos de %{count} minutos
+      less_than_x_seconds:
+        one: menos de 1 segundo
+        other: menos de %{count} segundos
+      over_x_years:
+        one: más de 1 año
+        other: más de %{count} años
+      x_days:
+        one: 1 día
+        other: ! '%{count} días'
+      x_minutes:
+        one: 1 minuto
+        other: ! '%{count} minutos'
+      x_months:
+        one: 1 mes
+        other: ! '%{count} meses'
+      x_seconds:
+        one: 1 segundo
+        other: ! '%{count} segundos'
+    prompts:
+      day: Día
+      hour: Hora
+      minute: Minutos
+      month: Mes
+      second: Segundos
+      year: Año
+  program:
+    create: "Programa creado exitosamente!"
+    update: "Programa actualizado satisfactoriamente!"
+    pending: "Pendiente"
+    in_progress: "En ejecución"
+    finished: "Ejecutado"
+    remove_indicator: "Eliminar indicador"
+    add_indicator: "Agregar indicador"
+  project:
+    create: "Proyecto creado exitosamente!"
+    update: "Proyecto actualizado satisfactoriamente!"
+    pending: "Pendiente"
+    in_progress: "En ejecución"
+    finished: "Ejecutado"
+  result:
+    create: "Resultado creado exitosamente!"
+    update: "Resultado actualizado satisfactoriamente!"
+
+
 

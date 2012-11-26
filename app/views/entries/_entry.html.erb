@@ -8,7 +8,7 @@
         <% if entry.images.count > 0 %>
           <%= image_tag entry.images.first.image_url(:thumb) if entry.images.count > 0 && entry.images.first.image? %>
         <% else %>
-          <img src="http://www.placehold.it/140x135/EFEFEF/AAAAAA&amp;text=no+image">
+          <img src="http://www.placehold.it/160x155/EFEFEF/AAAAAA&amp;text=no+image">
         <% end %>
       <% end %>
     </div>
@@ -30,7 +30,9 @@
       </div>
       <% end %>
       <h3><%= link_to entry.author, user_path(entry.user.id) %> <small><%= l entry.date, :format => :long %></small></h3>
-      <%= strip_tags truncate_html(sanitize(entry.body.html_safe), :length => 250) %>
+      <% unless entry.body.blank? %>
+        <%= truncate_html strip_tags(entry.body).gsub("&nbsp;", ""), :length => 250 %>
+      <% end %>
     </div>
   </div>
 <% end %>

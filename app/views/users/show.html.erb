@@ -1,21 +1,23 @@
 <div class="span12" id="user">
+  <div class="well">
   <div class="page-header">
     <div class="row">
       <div id="info">
         <div class="span6 pull-left">
           <h1><%= @user.header_name %></h1>
-          <h3>Email: <small><%= best_in_place @user, :email %></small></h3>
-          <h3>Deparment: <small><%= best_in_place @user, :department_name %></small></h3>
-          <h3>Phone: <small><%= best_in_place @user, :phone_number, :path => user_path(@user.id), :display_as => :"phone_number" %></small></h3>
-        </div>
-        <div class="span6 pull-right">
-          <% if @user.profile.image? %>
-            <%= image_tag @user.profile.image_url(:thumb), :class => 'pull-right' %>
-          <% else %>
-            <img class="pull-right" src="http://www.placehold.it/140x135/EFEFEF/AAAAAA&amp;text=no+image">
+          <h3>Email: <small><%= @user.email %></small></h3>
+          <% unless @user.profile.nil? or @user.profile.phone.blank? %>
+            <h3>Phone: <small><%= @user.profile.phone%></small></h3>
           <% end %>
         </div>
-        <% if !@user.profile.about_me.nil? and !@user.profile.about_me.empty? %>
+        <div class="span6 pull-right">
+          <% if !@user.profile.nil? and @user.profile.image? %>
+            <%= image_tag @user.profile.image_url(:thumb), :class => 'pull-right' %>
+          <% else %>
+            <img class="pull-right" src="http://www.placehold.it/160x155/EFEFEF/AAAAAA&amp;text=no+image">
+          <% end %>
+        </div>
+        <% if !@user.profile.nil? and !@user.profile.about_me.nil? and !@user.profile.about_me.empty? %>
           <div class="span12 collapsed" id="extra">
             <h3>Bio: <small><%= sanitize @user.profile.about_me.html_safe %></small></h3>
           </div>
@@ -27,15 +29,24 @@
     </div>
     
   </div>
+  </div>
 
   <div class="row">
     <div class="span8">
-      <ul class="thumbnails entries">
-        <%= render @entries %>
-      </ul>
-      <div class="pull-right">
-        <%= will_paginate @entries, :renderer => BootstrapPagination::Rails %>
-      </div>
+      <div class="well">
+        <% if !@programs.empty? and !@programs.nil? %>
+          <%= render :partial => 'pages/section_object', :locals => { :collection => @programs }  %>
+        <% end %>
+        <% if !@projects.empty? and !@projects.nil? %>
+          <%= render :partial => 'pages/section_object', :locals => { :collection => @projects }  %>
+        <% end %>
+        <% if !@entries.empty? and !@entries.nil? %>
+          <%= render :partial => 'pages/section_object', :locals => { :collection => @entries }  %>
+        <% end %>
+        </div>
+    </div>
+    <div class="span4">
+      <%= render 'pages/sidebar' %>
     </div>
   </div>
 </div>

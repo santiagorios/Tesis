@@ -1,0 +1,17 @@
+<%- model_class = ResearchSubline.new.class -%>
+<div class="span8">
+  <div class="well">
+  <div class="page-header">
+    <h1><%=t '.title', :default => model_class.model_name.human(:count => @research_sublines.count )%></h1>
+  </div>
+  <ul class="thumbnails entries">
+    <%= render @research_sublines %>
+  </ul>
+  <div class="pull-right">
+    <%= will_paginate @research_sublines, :renderer => BootstrapPagination::Rails %>
+  </div>
+  </div>
+</div>
+<div class="span4">
+  <%= render "entries/sidebar" %>
+</div>

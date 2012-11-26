@@ -1,0 +1,24 @@
+<div class="span12">
+  <div class="well">
+    <div class="page-header">
+      <h1><%= @research_group.name %></h1>
+    </div>
+  </div>
+</div>
+<div class="span8">
+  <div class="well">
+    <% if !@programs.nil? and !@programs.empty? %>
+      <%= render :partial => 'pages/section_object', :locals => { :collection => @programs }  %>
+    <% end %>
+    <% if !@projects.nil? and !@projects.empty? %>
+      <%= render :partial => 'pages/section_object', :locals => { :collection => @projects }  %>
+    <% end %>
+    <% if !@results.nil? and !@results.empty? %>
+      <%= render :partial => 'pages/section_object', :locals => { :collection => @results }  %>
+    <% end %>
+  </div>
+</div>
+
+<div class="span4">
+  <%= render "pages/sidebar" %>
+</div>

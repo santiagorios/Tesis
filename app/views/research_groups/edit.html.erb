@@ -1,0 +1,10 @@
+<div class="span9" id="research-group-form">
+  <div class="well">
+    <%- model_class = @research_group.class -%>
+    <div class="page-header">
+      <h1><%=t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human,
+                                       :default => "Editar #{model_class.model_name.human}") %></h1>
+    </div>
+    <%= render :partial => 'form' %>
+  </div>
+</div>

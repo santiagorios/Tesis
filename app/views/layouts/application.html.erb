@@ -8,10 +8,15 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= render "layouts/google_analytics" %>
+  <%= render "layouts/mixpanel" %>
+  <%= render "layouts/inspectlet" %>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<%= nav_bar :fixed => :top, :brand => "ESPE", :responsive => true do %>
+	<%= nav_bar :fixed => "top", :brand => "ESPE", :responsive => true do %>
+    <h2>Vicerrectorado de Investigación y Vinculación con la Colectividad</h2>
 		<%= menu_group do %>
 			<%= menu_item '<i class="icon-home icon-white"></i> '.html_safe + t("application.home"), root_path %>
 			<%= menu_item '<i class="icon-globe icon-white"></i> '.html_safe + t("application.explore"), explore_path %>
@@ -19,18 +24,39 @@
 			<%= menu_item '<i class="icon-info-sign icon-white"></i> '.html_safe + t('application.about'), about_path %>
 		<% end %>
 		<%= menu_group :pull => :right do %>
-      <form class="navbar-search pull-right form-search" action="">
-        <input type="text" class="search-query span2" placeholder="Buscar">
-      </form>
+      <%= form_tag search_general_path, :class => "form-search navbar-search", method: :get do %>
+        <%= text_field_tag :search, params[:search], :placeholder => t("application.search") %>
+      <% end %>
     <% end %>
     <%= menu_group :pull => :right do %>
       <% if current_user %>
         <%= drop_down '<i class="icon-user icon-white"></i> '.html_safe + current_user.header_name do %>
-          <%= menu_item '<i class="icon-plus icon-white"></i> '.html_safe + t('entry.create'), new_entry_path %>
-          <%= menu_item '<i class="icon-copy icon-white"></i> '.html_safe + t('user.myentries'), myentries_path %>
-          <%= menu_item '<i class="icon-edit icon-white"></i> '.html_safe + t('user.my_account'), myaccount_path %>
+          <div class="group group-left">
+          <li class="nav-header"><%= t 'activerecord.models.program.other' %></li>
+          <%= menu_item '<i class="icon-folder-open icon-white"></i> '.html_safe + t('user.myprograms'), myprograms_path %>
+          <%= menu_item '<i class="icon-plus icon-white"></i> '.html_safe + t('user.create_program'), new_program_path %>
           <%= drop_down_divider %>
+          <li class="nav-header"><%= t 'activerecord.models.project.other' %></li>
+          <%= menu_item '<i class="icon-book icon-white"></i> '.html_safe + t('user.myprojects'), myprojects_path %>
+          <%= menu_item '<i class="icon-plus icon-white"></i> '.html_safe + t('user.create_project'), new_project_path %>
+          <%= drop_down_divider %>
+          <li class="nav-header"><%= t 'activerecord.models.result.other' %></li>
+          <%= menu_item '<i class="icon-bar-chart icon-white"></i> '.html_safe + t('user.myresults'), myresults_path %>
+          <%= menu_item '<i class="icon-plus icon-white"></i> '.html_safe + t('user.create_result'), new_result_path %>
+          <%= drop_down_divider %>
+          </div>
+          <div class="group">
+          <li class="nav-header"><%= t 'activerecord.models.entry.other' %></li>
+          <%= menu_item '<i class="icon-copy icon-white"></i> '.html_safe + t('user.myentries'), myentries_path %>
+          <%= menu_item '<i class="icon-plus icon-white"></i> '.html_safe + t('user.create_entry'), new_entry_path %>
+            <%= drop_down_divider %>
+          <li class="nav-header"><%= t 'activerecord.models.research_group.other' %></li>
+          <%= menu_item '<i class="icon-group icon-white"></i> '.html_safe + t('user.myresearch_groups'), myentries_path %>
+          <%= menu_item '<i class="icon-plus icon-white"></i> '.html_safe + t('user.create_research_group'), new_research_group_path %>
+          <%= drop_down_divider %>
+          <%= menu_item '<i class="icon-edit icon-white"></i> '.html_safe + t('user.my_account'), myaccount_path %>
           <%= menu_item '<i class="icon-signout icon-white"></i> '.html_safe + t('user.signout'), logout_path %>
+          </div>
         <% end %>
       <% else %>
         <%= drop_down '<i class="icon-signin icon-white"></i> '.html_safe + t("application.signin") do %>
@@ -47,7 +73,7 @@
 	        <%= msg %>
 	      </div>
 	    <% end %>
-		<div class="row">
+		<div class="row main-content">
 			<%= yield %>
 		</div>
 	</div>

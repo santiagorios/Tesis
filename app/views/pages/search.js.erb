@@ -1,0 +1,7 @@
+<%- model_class = @collection.first.class.new.class -%>
+$('.entries').append('<%= j render(@collection, :partial => model_class.table_name.to_s + '/' + model_class.name.underscore) %>');
+<% if @collection.next_page %>
+$('.pagination').replaceWith('<%= j will_paginate(@collection, :renderer => BootstrapPagination::Rails) %>');
+<% else %>
+$('.pagination').remove();
+<% end %>

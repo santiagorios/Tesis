@@ -1,0 +1,8 @@
+<div class="span12">
+  <div class="page-header">
+    <%= link_to url_for(@object) do %>
+      <h1><%= @object.name %></h1>
+    <% end %>
+  </div>
+</div>
+<%= render :template => "entries/index" %>

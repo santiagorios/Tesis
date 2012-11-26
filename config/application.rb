@@ -46,5 +46,7 @@ module VirtusKnowledge
     config.assets.version = '1.0'
 
     config.action_view.sanitized_allowed_attributes = 'id', 'class', 'style'
+
+    config.assets.initialize_on_precompile = false
   end
 end

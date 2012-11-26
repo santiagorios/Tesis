@@ -1,5 +1,6 @@
 <%- model_class = @entry.class -%>
 <div class="span8 entry">
+  <div class="well">
   <div class="page-header">
     <h1><%= @entry.title %></h1>
     <div class="entry-actions">
@@ -19,8 +20,7 @@
       <% end %>
     </div>
   </div>
-
-  <%= render_navigation(:renderer => :breadcrumbs, :join_with => " <span class=\"divider\">/</span>", :context => :entry) %>
+  <% unless @entry.images.empty? %>
   <ul class="thumbnails">
     <% for image in @entry.images %>
       <li class="<%= (@entry.images.index(image)==0 || @entry.images.index(image)==0) ? 'span4' : 'span2'  %>">
@@ -31,16 +31,74 @@
       </li>
     <% end %>
   </ul>
-  <h2><%= link_to @entry.author, user_path(@entry.user_id) %> <small><%= l @entry.date, :format => :long %></small></h2>
+      <hr>
+  <% end %>
 
-  <div class="content">
-    <%= sanitize @entry.body.html_safe %>
+    <div class="page-header">
+      <div>
+        <h3 class="author"><%= t("entry.author") %>:</h3>
+        <h4 class="author"><%= link_to @entry.author, user_path(@entry.user) %></h4>
+      </div>
+      <% unless @entry.date.nil? %>
+        <div>
+          <h3 class="author"><%= t('activerecord.attributes.entry.date') %>:</h3>
+          <h4 class="author"><%= @entry.date %></h4>
+        </div>
+      <% end %>
+
+      <% unless @entry.knowledge_areas.empty? %>
+        <h3><%= t("activerecord.models.department.other") %>:</h3>
+        <h4>
+          <ul>
+            <% for knowledge_area in @entry.knowledge_areas %>
+              <li>
+                <%= link_to knowledge_area.department.name, department_path(knowledge_area.department.id) %> <small>(<%= link_to knowledge_area.name, knowledge_area_path(knowledge_area.id) %>)</small>
+              </li>
+            <% end %>
+          </ul>
+        </h4>
+      <% end %>
+
+      <% unless @entry.research_sublines.empty? %>
+        <h3><%= t("activerecord.models.research_line.other") %>:</h3>
+        <h4>
+          <ul>
+            <% for research_subline in @entry.research_sublines %>
+              <li>
+                <%= link_to research_subline.research_line.name, research_line_path(research_subline.research_line) %> <small>(<%= link_to research_subline.name, url_for(research_subline) %>)</small>
+              </li>
+            <% end %>
+          </ul>
+        </h4>
+      <% end %>
+
+
+      <% unless @entry.file.nil? or @entry.file.blank? %>
+        <div>
+          <span class="download"></span>
+          <h3 class="author"><%= link_to t('application.download_file'), @entry.file_url  %></h3>
+        </div>
+      <% end %>
+    </div>
+
+
+
+    <% unless @entry.body.blank? %>
+      <div class="page-header">
+        <h3><%= t "application.description" %>: </h3>
+      </div>
+
+      <div class="content">
+        <%= @entry.body.html_safe %>
+      </div>
+      <hr>
+    <% end %>
   </div>
 </div>
 
 <div class="span4">
     <%= render 'sidebar' %>
-    <%= render 'similar_sidebar' %>
+
 </div>
 
 

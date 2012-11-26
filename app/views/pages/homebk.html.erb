@@ -1,0 +1,136 @@
+<%- program_class = Program.new.class -%>
+<%- project_class = Project.new.class -%>
+<div class="span12">
+  <div class="page-header">
+    <h1><%= t('application.welcome_title') %>
+      <small><%= t('application.welcome_subtitle') %></small>
+    </h1>
+  </div>
+
+
+</div>
+
+<div class="span12">
+  <div>
+  A continuación, se presenta una matriz que indica como cada departamento está aportando a cada línea de investigación:
+  </div>
+  <br>
+  <table class="table table-striped table-bordered table-home">
+    <thead>
+      <th></th>
+      <% for research_line in @research_lines %>
+        <th><%= link_to research_line.name, research_line_path(research_line) %></th>
+      <% end %>
+    </thead>
+    <tbody>
+      <% for department in @departments %>
+        <tr>
+          <th>
+            <%= link_to department.name, department_path(department) %>
+          </th>
+        <% for research_line in @research_lines %>
+          <td>
+            <% if count_programs_drl(department, research_line) > 0  %>
+              <div>
+                <a href="#" rel="tooltip"
+                   title="El departamento <%= department.name %> ha desarrollado
+                   <%= count_programs_drl(department, research_line) %>
+                   <%= t '.title',
+                         :default => program_class.model_name.human(:count => count_programs_drl(department, research_line))   %>
+                         en la línea de investigación <%= research_line.name %>">
+                  <span class="badge badge-success"><%= count_programs_drl(department, research_line) %></span>
+                </a>
+              </div>
+            <% end %>
+            <% if count_projects_drl(department, research_line) > 0  %>
+              <div>
+                <a href="#" rel="tooltip"
+                   title="El departamento <%= department.name %> ha desarrollado
+                   <%= count_projects_drl(department, research_line) %>
+                   <%= t '.title',
+                         :default => project_class.model_name.human(:count => count_projects_drl(department, research_line))   %>
+                         en la línea de investigación <%= research_line.name %>">
+                  <span class="badge badge-info"><%= count_projects_drl(department, research_line) %></span>
+                </a>
+              </div>
+            <% end%>
+          </td>
+        <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+
+
+<div class="span12 second-row">
+  <ul class="thumbnails" id="home-thumbnails">
+    <li class="span4">
+      <div class="thumbnail">
+        <%= link_to programs_path do %>
+          <h2 class="title"><%= t "activerecord.models.program.other" %></h2>
+        <% end %>
+        <div class="content">
+          <% for program in @programs %>
+            <div class="entry">
+              <%= link_to url_for(program) do %>
+                <h3><%= program.title %></h3>
+              <% end %>
+              <% unless program.description.blank? %>
+                <%= strip_tags truncate_html(sanitize(program.description.html_safe), :length => 150) %>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="row">
+            <%= link_to t("application.keep_reading_programs"), programs_path, :class => "btn pull-right" %>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="span4">
+      <div class="thumbnail">
+        <%= link_to projects_path do %>
+          <h2 class="title"><%= t "activerecord.models.project.other" %></h2>
+        <% end %>
+        <div class="content">
+          <% for project in @projects %>
+            <div class="entry">
+              <%= link_to url_for(project) do %>
+                <h3><%= project.title %></h3>
+              <% end %>
+              <% unless project.description.blank? %>
+                <%= strip_tags truncate_html(sanitize(project.description.html_safe), :length => 150) %>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="row">
+            <%= link_to t("application.keep_reading_projects"), projects_path, :class => "btn pull-right" %>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="span4">
+      <div class="thumbnail">
+        <%= link_to entries_path do %>
+          <h2 class="title"><%= t "activerecord.models.entry.other" %></h2>
+        <% end %>
+        <div class="content">
+          <% for entry in @entries %>
+            <div class="entry">
+              <%= link_to url_for(entry) do %>
+                <h3><%= entry.title %></h3>
+              <% end %>
+              <% unless entry.body.blank? %>
+                <%= strip_tags truncate_html(sanitize(entry.body.html_safe), :length => 150) %>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="row">
+            <%= link_to t("application.keep_reading_entries"), entries_path, :class => "btn pull-right" %>
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>

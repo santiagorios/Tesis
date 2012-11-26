@@ -60,3 +60,7 @@ gem 'simple-navigation'
 gem 'simple-navigation-bootstrap'
 gem 'jbuilder'
 gem "fog", "~> 1.3.1"
+gem "activeadmin"
+gem 'chronic'
+gem 'chronic_duration'
+gem "squeel"

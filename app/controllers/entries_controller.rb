@@ -36,7 +36,7 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # timeline.html.erb
       format.json { render json: @entry }
     end
   end
@@ -99,6 +99,15 @@ class EntriesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to entries_url }
       format.json { head :ok }
+    end
+  end
+
+  def search
+    @entries = Entry.search(params[:search]).paginate(:page => params[:page])
+    @collection = @entries
+    respond_to do |format|
+      format.html { render :template => 'pages/search' }
+      format.js { render :template => 'pages/search' }
     end
   end
 end

@@ -8,19 +8,22 @@ class Entry < ActiveRecord::Base
 	accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:image].blank? }, :allow_destroy => true
 	attr_accessible :images_attributes, :title, :body, :date, :published
 	
-	has_and_belongs_to_many :research_lines
+	has_and_belongs_to_many :research_sublines
 
-	attr_reader :research_line_names
-	attr_accessible :research_line_names
+	attr_reader :research_subline_names
+	attr_accessible :research_subline_names
 
-  def research_line_names=(names)
-  	research_lines = Array.new
+  def research_subline_names=(names)
+  	research_sublines = Array.new
   	for name in names 
-  		research_line = ResearchLine.find_or_create_by_name(name)
-  		research_lines.push(research_line)
+  		research_subline = ResearchSubline.find_by_name(name)
+  		research_sublines.push(research_subline)
   	end
-    self.research_lines = research_lines
+    self.research_sublines = research_sublines
   end
+
+  attr_accessible :file, :remote_file_url
+  mount_uploader :file, FileUploader
 
 
   has_and_belongs_to_many :knowledge_areas
@@ -31,7 +34,7 @@ class Entry < ActiveRecord::Base
   def knowledge_area_names=(names)
     knowledge_areas = Array.new
     for name in names
-      knowledge_area = KnowledgeArea.find_or_create_by_name(name)
+      knowledge_area = KnowledgeArea.find_by_name(name)
       knowledge_areas.push(knowledge_area)
     end
     self.knowledge_areas = knowledge_areas
@@ -43,12 +46,14 @@ class Entry < ActiveRecord::Base
 	end
 
 	def author
-		if user.profile.name.nil? or user.profile.name.empty?
-      user.email
-    else
-      user.profile.name
-		end
-	end
+		user.name
+  end
+
+  def self.search(query)
+    where do
+      (title =~ "%#{query}%") | (body =~ "%#{query}%")
+    end
+  end
 
 	private
 		def default_values

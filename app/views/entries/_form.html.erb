@@ -9,13 +9,14 @@
 
   <%= f.input :title, :input_html => { :class => 'span7' } %>
   <%= f.input :date, :as => :string, :input_html => { :class => 'span7' } %>
+  <%= f.input :file %>
 
   <div class="control-group">
-    <label class="control-label"><%= t('entry.research_lines') %></label>
+    <label class="control-label"><%= t('entry.research_sublines') %></label>
     <div class="controls">
-      <%= content_tag :ul, :class => "span7", :id => "research-lines", data: {autocomplete_source: ResearchLine.order(:name).map(&:name)}  do %>
-        <% for research_line in @entry.research_lines %>
-          <li><%= research_line.name %></li>
+      <%= content_tag :ul, :class => "span7", :id => "research-sublines", data: {autocomplete_source: ResearchSubline.order(:name).map(&:name)}  do %>
+        <% for research_subline in @entry.research_sublines %>
+          <li><%= research_subline.name %></li>
         <% end %>
       <% end %>
     </div>

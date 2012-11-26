@@ -1,4 +1,18 @@
+<div class="span12">
+  <div class="well">
+    <div class="page-header">
+      <h1><%= t('application.explore') %></h1>
+    </div>
+  </div>
+</div>
 <div class="span8">
+  <div class="well">
+  <% if !@programs.empty? and !@programs.nil? %>
+    <%= render :partial => 'section', :locals => { :collection => @programs }  %>
+  <% end %>
+  <% if !@projects.empty? and !@projects.nil? %>
+    <%= render :partial => 'section', :locals => { :collection => @projects }  %>
+  <% end %>
   <% if !@entries.empty? and !@entries.nil? %>
     <%= render :partial => 'section', :locals => { :collection => @entries }  %>
   <% end %>
@@ -8,10 +22,8 @@
   <% if !@research_lines.nil? and !@research_lines.empty? %>
     <%= render :partial => 'section', :locals => { :collection => @research_lines }  %>
   <% end %>
-  <% if !@knowledge_areas.nil? and !@knowledge_areas.empty? %>
-    <%= render :partial => 'section', :locals => { :collection => @knowledge_areas }  %>
-  <% end %>
+  </div>
 </div>
 <div class="span4">
-  <%= render "users_sidebar" %>
+  <%= render "sidebar" %>
 </div>

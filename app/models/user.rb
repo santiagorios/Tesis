@@ -1,4 +1,10 @@
 class User < ActiveRecord::Base
+  has_and_belongs_to_many :research_groups
+  has_many :groups_programs, :through => :research_groups, :source => :programs
+  has_many :programs
+  has_many :projects
+  has_many :results
+
   authenticates_with_sorcery!
 
   attr_accessible :email, :password, :password_confirmation, :department_name, :knowledge_area_name
@@ -25,6 +31,10 @@ class User < ActiveRecord::Base
     else
       email
     end
+  end
+
+  def name
+    header_name
   end
 
   belongs_to :department
@@ -64,6 +74,12 @@ class User < ActiveRecord::Base
         self.knowledge_area.department = self.department
         self.knowledge_area.save
       end
+    end
+  end
+
+  def self.search(query)
+    User.joins{profile.outer}.where do
+      (~users.profiles.name =~ "%#{query}%") | (email =~ "%#{query}%")
     end
   end
 

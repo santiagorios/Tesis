@@ -1,0 +1,63 @@
+<%= tinymce_assets %>
+<%= simple_nested_form_for @result, :validate => true, :html => { :class => 'form-horizontal' } do |f| %>
+  <% if @result.errors.any? %>
+    <div class="alert">
+      <button class="close" data-dismiss="alert">x</button>
+      <strong><%= t('application.warning') %></strong> <%= t('entry.could_not_create', :count => @result.errors.count) %>
+    </div>
+  <% end %>
+
+  <%= f.input :title, :input_html => { :class => 'span7' } %>
+
+  <%= f.association :project, :collection => @projects, :input_html => { :class => 'span7' } %>
+
+  <%= f.input :published %>
+
+  <%= f.input :file %>
+
+  <div class="entry-images controls span7">
+    <%= f.fields_for :images do |image_form| %>
+      <div class="well">
+        <h4><%= t("images.image") %></h4>
+        <%= image_form.input :title %>
+
+        <div class="control-group">
+          <div class="controls">
+            <div class="fileupload fileupload-new" data-fileupload="image"><input type="hidden">
+              <div class="fileupload-new thumbnail" style="max-width: 200px; max-height: 150px;">
+                <img src="<%= (image_form.object.image_url.present?)? image_form.object.image_url : "http://www.placehold.it/200x150/EFEFEF/&text=no+image"  %>">
+              </div>
+              <div class="fileupload-preview fileupload-exists thumbnail" style="max-width: 200px; max-height: 150px; line-height: 0px; "></div>
+              <div>
+                <span class="btn btn-file">
+                  <span class="fileupload-new"><%= t('images.select_image') %></span>
+                  <span class="fileupload-exists"><%= t('images.change_image') %></span>
+                  <%= image_form.input_field :image %>
+                </span>
+                <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="controls">
+            <%= image_form.link_to_remove t("images.remove_image") %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= f.link_to_add t("images.add_image"), :images, :class => "add-image-link" %>
+  </div>
+
+  <%= f.input :description, :input_html => { :class => 'tinymce span7' } %>
+  <%= tinymce %>
+
+  <div class="form-actions">
+    <div class="pull-right">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  entries_path, :class => 'btn' %>
+    </div>
+  </div>
+<% end %>

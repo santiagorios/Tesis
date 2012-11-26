@@ -1,54 +1,162 @@
-<div class="span12">
+<%- program_class = Program.new.class -%>
+<%- project_class = Project.new.class -%>
+<div class="span12 home">
   <div class="page-header">
     <h1><%= t('application.welcome_title') %>
       <small><%= t('application.welcome_subtitle') %></small>
     </h1>
   </div>
 
-  <div id="timeline-embed"></div>
+
 </div>
 
-<script type="text/javascript">
-
-  var timeline_config = {
-    width: "100%",
-    height: window.innerHeight - 120,
-    source: "<%= url_for(:action => "timeline") + ".json" %>",
-    lang: 'es',
-    start_zoom_adjust: "-5",
-    hash_bookmark: true
-  }
-
-</script>
-
-<script src="/assets/timeline/js/storyjs-embed.js?body=1" type="text/javascript"></script>
+<div class="span8 offset2">
+  <section id="home-carousel">
+    <div id="myCarousel" class="carousel slide">
+      <div class="carousel-inner">
+        <% if !@entries_carousel.blank? %>
+          <% for entry in @entries_carousel %>
+            <%= div_for(entry, :class => (entry==@entries_carousel.first) ? 'item active': 'item'  ) do %>
+              <%= link_to entry_path(entry.id) do %>
+                <%= image_tag entry.images.first.image_url(:slide)  %>
+              <% end %>
+              <%= content_tag  :div, :class => 'carousel-caption' do %>
+                <%= link_to entry_path(entry.id) do %>
+                  <%= content_tag :h3, entry.title %>
+                <% end %>
+                <%= content_tag :h4 do %>
+                  <%= entry.author %>
+                  <%= content_tag :small do %>
+                    <%= l entry.date, :format => :long %>
+                  <% end %>
+                <% end %>
+                <%= content_tag :p do %>
+                  <%= truncate_html(sanitize(entry.body.html_safe), :length => 150) %>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+    </div>
+  </section>
+</div>
 
 
 <div class="span12 second-row">
   <ul class="thumbnails" id="home-thumbnails">
-    <% for entry in @entries %>
-      <li class="span4">
-        <div class="thumbnail">
-          <%= link_to url_for(entry) do %>
-            <h2 class="title"><%= entry.title %></h2>
-          <% end %>
-          <div class="content">
-            <%= link_to url_for(entry) do %>
-              <%= image_tag entry.images.first.image_url(:slide) %>
-            <% end %>
-            <%= link_to url_for(entry.user) do %>
-              <h3><%= entry.author %></h3>
-            <% end %>
-            <h4><small><%= l entry.date, :format => :long %></small></h4>
-            <%= content_tag :p do %>
-              <%= truncate_html(sanitize(entry.body.html_safe), :length => 150) %>
-            <% end %>
-            <div class="row">
-              <%= link_to t("application.keep_reading"), url_for(entry), :class => "btn pull-right" %>
+    <li class="span3">
+      <div class="thumbnail">
+        <%= link_to programs_path do %>
+          <h2 class="title"><%= t "activerecord.models.program.other" %></h2>
+        <% end %>
+        <div class="content">
+          <% @items.times do |i| %>
+            <% unless @programs.at(i).nil?
+                 program = @programs.at(i)
+               else
+                 program = Program.new
+               end
+            %>
+            <div class="entry">
+              <% unless program.title.nil? %>
+                <%= link_to url_for(program) do %>
+                  <h3><%= program.title %></h3>
+                <% end %>
+                <% unless program.description.blank? %>
+                  <%= strip_tags truncate_html(sanitize(program.description.html_safe), :length => 80) %>
+                <% end %>
+              <% end %>
             </div>
+          <% end %>
+          <div class="row home-more-link">
+            <%= link_to t("application.keep_reading_programs"), programs_path, :class => "btn pull-right" %>
           </div>
         </div>
-      </li>
-    <% end %>
+      </div>
+    </li>
+    <li class="span3">
+      <div class="thumbnail">
+        <%= link_to research_groups_path do %>
+          <h2 class="title"><%= t "activerecord.models.research_group.other" %></h2>
+        <% end %>
+        <div class="content">
+          <% @items.times do |i| %>
+            <% unless @groups.at(i).nil?
+                 group = @groups.at(i)
+               else
+                 group = ResearchGroup.new
+               end
+            %>
+            <div class="entry">
+              <% unless group.name.nil? %>
+                <%= link_to url_for(group) do %>
+                  <h3><%= group.name %></h3>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="row home-more-link">
+            <%= link_to t("application.keep_reading_groups"), research_groups_path, :class => "btn pull-right" %>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="span3">
+      <div class="thumbnail">
+        <%= link_to research_lines_path do %>
+          <h2 class="title"><%= t "activerecord.models.research_line.other" %></h2>
+        <% end %>
+        <div class="content">
+          <% @items.times do |i| %>
+            <% unless @research_lines.at(i).nil?
+                 research_line = @research_lines.at(i)
+               else
+                 research_line = ResearchLine.new
+               end
+            %>
+            <div class="entry">
+              <% unless research_line.name.nil? %>
+                <%= link_to url_for(research_line) do %>
+                  <h3><%= research_line.name %></h3>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="row home-more-link">
+            <%= link_to t("application.keep_reading_research_lines"), entries_path, :class => "btn pull-right" %>
+          </div>
+        </div>
+      </div>
+    </li>
+    <li class="span3">
+      <div class="thumbnail">
+        <%= link_to departments_path do %>
+          <h2 class="title"><%= t "activerecord.models.department.other" %></h2>
+        <% end %>
+        <div class="content">
+          <% @items.times do |i| %>
+            <% unless @departments.at(i).nil?
+                 department = @departments.at(i)
+               else
+                 department = Department.new
+               end
+            %>
+            <div class="entry">
+              <% unless department.name.nil? %>
+                <%= link_to url_for(department) do %>
+                  <h3><%= department.name %></h3>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="row home-more-link">
+            <%= link_to t("application.keep_reading_departments"), departments_path, :class => "btn pull-right" %>
+          </div>
+        </div>
+      </div>
+    </li>
   </ul>
 </div>

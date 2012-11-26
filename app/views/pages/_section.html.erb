@@ -1,12 +1,12 @@
 <%- model_class = collection.first.class.new.class -%>
 <div class="page-header">
   <%= link_to url_for(model_class), :class => "section-title" do %>
-    <h1><%=t '.title', :default => model_class.model_name.human(:count => collection.count )%></h1>
+    <h2><%=t '.title', :default => model_class.model_name.human(:count => collection.count )%></h2>
   <% end %>
 </div>
 <ul class="thumbnails entries">
   <%= render collection, :partial => model_class.table_name.to_s + '/' + model_class.name.underscore %>
 </ul>
 <% if collection.first.class.all.count > 5 %>
-  <%= link_to t("application.more") + " " + t('.title', :default => model_class.model_name.human(:count => collection.count )), url_for(:controller => model_class.table_name.to_s, :action => "index"), :class => "more-link pull-right btn btn-info" %>
+  <%= link_to t("application.more") + " " + t('.title', :default => model_class.model_name.human(:count => 2 )), url_for(:controller => model_class.table_name.to_s, :action => "index"), :class => "more-link pull-right btn btn-info" %>
 <% end %>

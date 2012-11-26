@@ -26,6 +26,75 @@ li.nav-sub-header > span, li.nav-sub-header > a > span, li.nav-sub-header > a  {
 }
 
 .more-link {
-  margin-left: 70%;
   margin-bottom: 15px;
+  float: none;
+  min-width: 190px;
+}
+
+.table-home td {
+  text-align: center;
+}
+
+.entry h2, .entry h3 {
+  white-space: nowrap;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+}
+
+#home-thumbnails h2.title {
+  background: linear-gradient(top, #2868A6  0%, #2868A6 50%);
+  background: -moz-linear-gradient(top, #2868A6  0%, #2868A6 50%);
+  background: -webkit-linear-gradient(top, #2868A6  0%, #2868A6 50%);
+  background: -ms-linear-gradient(top, #2868A6  0%, #2868A6 50%);
+  background: -o-linear-gradient(top, #2868A6  0%, #2868A6 50%);
+  color: #f8f8ff;
+  border-bottom: 2px solid #BBB;
+  padding: 5px 15px;
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#home-thumbnails .thumbnail {
+  overflow: hidden;
+  //border-width: 3px;
+  padding: 0px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+}
+
+#home-thumbnails .content {
+  position: relative;
+  padding: 7px;
+  min-height: 195px;
+  background-color: #f8f8ff;
+}
+
+#home-thumbnails .content .entry {
+  border-bottom: 1px solid #EEE;
+  min-height: 55px;
+}
+
+#home-thumbnails .content .entry * {
+  vertical-align: middle;
+}
+
+#home-thumbnails .home-more-link {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.home .page-header > h1 {
+  text-align: center;
+}
+
+a {
+  color: #444;
+}
+
+#home-thumbnails h3 {
+  font-weight: normal;
 }

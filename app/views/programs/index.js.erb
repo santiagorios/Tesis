@@ -1,0 +1,6 @@
+$('.entries').append('<%= j render(@programs) %>');
+<% if @programs.next_page %>
+$('.pagination').replaceWith('<%= j will_paginate(@programs, :renderer => BootstrapPagination::Rails) %>');
+<% else %>
+$('.pagination').remove();
+<% end %>
