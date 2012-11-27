@@ -245,7 +245,7 @@ es:
       empty_text: "Aún no existen programas o proyectos creados por este Grupo de gestión"
       empty_title_type: "Grupo de gestión vacío - %{type}"
       empty_text_type: "Aún no existen programas de %{type} en el grupo %{object_name}"
-    type_sidebar_title: "Tipos"
+    type_sidebar_title: "Tipos de programa"
     download_file: "Descargar archivo adjunto"
     search: "Búsqueda"
     description: "Descripción"

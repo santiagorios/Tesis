@@ -47,6 +47,7 @@
 
 <div class="span12 second-row">
   <ul class="thumbnails" id="home-thumbnails">
+    <% unless @programs.count == 0 %>
     <li class="span3">
       <div class="thumbnail">
         <%= link_to programs_path do %>
@@ -74,6 +75,8 @@
         </div>
       </div>
     </li>
+    <% end %>
+    <% unless @groups.count == 0 %>
     <li class="span3">
       <div class="thumbnail">
         <%= link_to research_groups_path do %>
@@ -101,6 +104,8 @@
         </div>
       </div>
     </li>
+    <% end %>
+    <% unless @research_lines.count == 0 %>
     <li class="span3">
       <div class="thumbnail">
         <%= link_to research_lines_path do %>
@@ -128,6 +133,8 @@
         </div>
       </div>
     </li>
+    <% end %>
+    <% unless @departments.count == 0 %>
     <li class="span3">
       <div class="thumbnail">
         <%= link_to departments_path do %>
@@ -155,5 +162,6 @@
         </div>
       </div>
     </li>
+    <% end %>
   </ul>
 </div>
