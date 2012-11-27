@@ -1,18 +1,5 @@
 VirtusKnowledge::Application.routes.draw do
 
-  get "research_groups/index"
-
-  get "research_groups/show"
-
-  get "research_groups/create"
-
-  get "research_groups/edit"
-
-  get "research_groups/update"
-
-  get "research_groups/destroy"
-
-  get "research_groups/new"
 
   get "indicators/show"
 
@@ -124,6 +111,7 @@ VirtusKnowledge::Application.routes.draw do
   get "myprograms" => "programs#myprograms", :as => "myprograms"
   get "myprojects" => "projects#myprojects", :as => "myprojects"
   get "myresults" => "results#myresults", :as => "myresults"
+  get "mygroups" => "research_groups#mygroups", :as => "mygroups"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

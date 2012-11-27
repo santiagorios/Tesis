@@ -1,4 +1,15 @@
 class ResearchGroupsController < ApplicationController
+
+  def mygroups
+    @research_groups = current_user.research_groups.paginate(:page => params[:page])
+
+    respond_to do |format|
+      format.html { render :template => 'research_groups/index' }
+      format.json { render json: @research_groups }
+      format.js { render :template => 'research_groups/index' }
+    end
+  end
+
   def show
     @research_group = ResearchGroup.find(params[:id])
     @object = @research_group
