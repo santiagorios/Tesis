@@ -47,8 +47,9 @@
 
 <div class="span12 second-row">
   <ul class="thumbnails" id="home-thumbnails">
-    <% unless @programs.count == 0 %>
+
     <li class="span3">
+      <% unless @programs.count == 0 %>
       <div class="thumbnail">
         <%= link_to programs_path do %>
           <h2 class="title"><%= t "activerecord.models.program.other" %></h2>
@@ -74,8 +75,8 @@
           </div>
         </div>
       </div>
+      <% end %>
     </li>
-    <% end %>
     <% unless @groups.count == 0 %>
     <li class="span3">
       <div class="thumbnail">
