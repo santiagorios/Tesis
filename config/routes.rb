@@ -81,6 +81,8 @@ VirtusKnowledge::Application.routes.draw do
   get "entries/search/:search" => "entries#search"
   get "users/search/:search" => "users#search"
 
+  get "bydepartment" => "pages#bydepartment"
+
 
   match "/users/:id/all" => "users#show"
 

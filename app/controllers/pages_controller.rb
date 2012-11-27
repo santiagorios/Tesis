@@ -61,4 +61,17 @@ class PagesController < ApplicationController
 
   end
 
+  def bydepartment
+
+    @entries_carousel = Entry.order("date desc").where(:published => true).joins(:images).all(:limit => 5, :group => :id)
+    @entries = Entry.order("rand()").where(:published => true).all(:limit => 3, :group => :id)
+    @programs = Program.order("rand()").where(:published => true).all(:limit => 3, :group => :id)
+    @projects = Project.order("rand()").where(:published => true).all(:limit => 3, :group => :id)
+    @users = User.order("rand()").joins(:entries).all(:limit => 3, :group => :id)
+    @groups = ResearchGroup.all(:limit => 3)
+
+    @departments = Department.order("rand()").all
+    @research_lines = ResearchLine.order("rand()").all(:limit => 10)
+  end
+
 end
