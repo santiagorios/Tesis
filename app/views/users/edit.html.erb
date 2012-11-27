@@ -1,9 +1,12 @@
 <div class="span12">
+  <div class="well">
 	<%- model_class = @user.class -%>
 	<div class="page-header">
 	  <h1><%=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human,
 	                                 :default => "Edit #{model_class.model_name.human}") %></h1>
 	</div>
+    </div>
+  <div class="well">
 	<ul id="userTab" class="nav nav-tabs">
     <li class="active"><a href="#profile" data-toggle="tab"><%= t('user.profile')%></a></li>
     <li class=""><a href="#account" data-toggle="tab"><%= t('user.account')%></a></li>
@@ -19,5 +22,6 @@
         </div>
       </div>
     </div>
+  </div>
   </div>
 </div>

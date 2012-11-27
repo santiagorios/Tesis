@@ -74,41 +74,41 @@ SimpleNavigation::Configuration.run do |navigation|
 
     programs = Program.order('rand()').all(:limit => 5)
     if !programs.empty?
-      primary.item :programs, t('activerecord.models.program.other') + '<i class="icon-plus pull-right"></i>'.html_safe, programs_path, :class => "openable nav-sub-header" do |sub_nav|
+      primary.item :programs, t('activerecord.models.program.other'), programs_path, :class => "nav-sub-header" do |sub_nav|
         for program in programs do
           sub_nav.item :program, program.try(:title), url_for(program)
         end
-        sub_nav.dom_class = 'nav nav-list accordion'
+        sub_nav.dom_class = 'nav nav-list'
       end
     end
 
     groups = ResearchGroup.order('rand()').all(:limit => 5)
     if !groups.empty?
-      primary.item :groups, t('activerecord.models.research_group.other') + '<i class="icon-plus pull-right"></i>'.html_safe, research_groups_path, :class => "openable nav-sub-header" do |sub_nav|
+      primary.item :groups, t('activerecord.models.research_group.other'), research_groups_path, :class => "nav-sub-header" do |sub_nav|
         for group in groups do
           sub_nav.item :group, group.try(:name), url_for(group)
         end
-        sub_nav.dom_class = 'nav nav-list accordion'
+        sub_nav.dom_class = 'nav nav-list'
       end
     end
 
     departments = Department.order('rand()').all(:limit => 5)
     if !departments.empty?
-      primary.item :departments, t('activerecord.models.department.other') + '<i class="icon-plus pull-right"></i>'.html_safe, departments_path, :class => "openable nav-sub-header" do |sub_nav|
+      primary.item :departments, t('activerecord.models.department.other'), departments_path, :class => "nav-sub-header" do |sub_nav|
         for department in departments do
           sub_nav.item :department, department.try(:name), url_for(department)
         end
-        sub_nav.dom_class = 'nav nav-list accordion'
+        sub_nav.dom_class = 'nav nav-list'
       end
     end
 
     research_lines = ResearchLine.order('rand()').all(:limit => 5)
     if !research_lines.empty?
-      primary.item :research_lines, t('activerecord.models.research_line.other') + '<i class="icon-plus pull-right"></i>'.html_safe, research_lines_path, :class => "openable nav-sub-header" do |sub_nav|
+      primary.item :research_lines, t('activerecord.models.research_line.other'), research_lines_path, :class => "nav-sub-header" do |sub_nav|
         for research_line in research_lines do
           sub_nav.item :research_line, research_line.try(:name), url_for(research_line)
         end
-        sub_nav.dom_class = 'nav nav-list accordion'
+        sub_nav.dom_class = 'nav nav-list'
       end
     end
 
