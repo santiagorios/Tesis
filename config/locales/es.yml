@@ -131,7 +131,7 @@ es:
         other: "Líneas de Investigación"
         abb: "L. Investigación"
       research_group:
-        one: "Grupos de Gestión"
+        one: "Grupo de Gestión"
         other: "Grupos de Gestión"
       research_subline:
         one: "Sub-línea de Investigación"
@@ -202,6 +202,9 @@ es:
         research_line: "Línea de investigación"
         created_at: "Creado"
         updated_at: "Actualizado"
+      research_group:
+        name: "Nombre"
+        users: "Usuarios"
     errors:
       models:
         entry:
