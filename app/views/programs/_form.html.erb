@@ -8,6 +8,15 @@
   <% end %>
 
   <%= f.input :title, :input_html => { :class => 'span7' } %>
+  <%= f.input :start_date, :as => :string, :input_html => { :class => 'span7' } %>
+
+  <div class="control-group string optional">
+    <%= f.label :duration %>
+    <div class="controls">
+      <%= f.input_field :duration_years, :collection => years_collection, :prompt => t('application.years') %>
+      <%= f.input_field :duration_months, :collection => months_collection, :prompt => t('application.months') %>
+    </div>
+  </div>
   <%= f.association :program_type, :collection => @types ,:input_html => { :class => 'span7' } %>
   <%= f.association :research_group, :collection => @groups , :input_html => { :class => 'span7' } %>
 
@@ -22,35 +31,10 @@
     </div>
   </div>
 
-  <div class="control-group">
-    <label class="control-label"><%= t('entry.knowledge_areas') %></label>
-    <div class="controls">
-      <%= content_tag :ul, :class => "span7", :id => "knowledge-areas", data: {autocomplete_source: KnowledgeArea.order(:name).map(&:name)}  do %>
-        <% for knowledge_area in @program.knowledge_areas %>
-          <li><%= knowledge_area.name %></li>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
+
 
   <%= f.input :published %>
-
-  <div class="entry-images controls span7">
-    <%= f.fields_for :indicators do |indicator_form| %>
-      <div class="well">
-        <h4><%= t("activerecord.models.indicator.other") %></h4>
-        <%= indicator_form.input :name, :input_html => {:class => "span5"} %>
-        <%= indicator_form.input :description, :input_html => {:class => "span5", :rows => "8"} %>
-        <div class="control-group">
-          <div class="controls">
-            <%= indicator_form.link_to_remove t("program.remove_indicator") %>
-          </div>
-        </div>
-      </div>
-    <% end %>
-    <%= f.link_to_add t("program.add_indicator"), :indicators, :class => "add-image-link" %>
-  </div>
-
+  <%= f.input :finished %>
 
   <%= f.input :description, :input_html => { :class => 'tinymce span7' } %>
   <%= tinymce %>

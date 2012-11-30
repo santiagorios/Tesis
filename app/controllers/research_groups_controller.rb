@@ -64,7 +64,7 @@ class ResearchGroupsController < ApplicationController
 
   def new
     @research_group = ResearchGroup.new
-
+    @knowledge_areas = KnowledgeArea.all
     respond_to do |format|
       format.html # new.html.erb
 
@@ -73,6 +73,7 @@ class ResearchGroupsController < ApplicationController
 
   def edit
     @research_group = current_user.research_groups.find(params[:id])
+    @knowledge_areas = KnowledgeArea.all
   end
 
   def create

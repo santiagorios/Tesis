@@ -21,6 +21,7 @@
     </div>
   </div>
   <div class="page-header">
+
     <% unless @program.research_group.nil? %>
       <div>
         <h3 class="author"><%= t("application.done_by") %>:</h3>
@@ -36,6 +37,18 @@
       <div>
         <h3 class="author"><%= t("activerecord.models.program_type.one") %>:</h3>
         <h4 class="author"><%= link_to @program.program_type.name, url_for(:id => @program.program_type.id, :action => "program_type") %></h4>
+      </div>
+    <% end %>
+    <% unless @program.start_date.nil? %>
+      <div>
+        <h3 class="author"><%= t('activerecord.attributes.project.start_date') %>:</h3>
+        <h4 class="author"><%= @program.start_date %></h4>
+      </div>
+    <% end %>
+    <% unless @program.duration.blank? %>
+      <div>
+        <h3 class="author"><%= t('activerecord.attributes.project.duration') %>:</h3>
+        <h4 class="author"><%= @program.duration %></h4>
       </div>
     <% end %>
     <% unless @program.state == 4 %>
@@ -91,20 +104,6 @@
         <% for project in @program.projects %>
           <li>
             <%= link_to project.title + " (" + t("program."+project.state) + ")", project_path(project.id) %>
-          </li>
-        <% end %>
-      </ul>
-    </h4>
-    <hr>
-  <% end %>
-
-  <% unless @program.indicators.empty? %>
-    <h3><%= t("application.indicators") %>:</h3>
-    <h4>
-      <ul>
-        <% for indicator in @program.indicators %>
-          <li>
-            <%= link_to indicator.name, program_indicator_path(@program, indicator) %>
           </li>
         <% end %>
       </ul>

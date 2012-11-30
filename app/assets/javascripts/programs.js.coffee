@@ -17,3 +17,6 @@ jQuery ->
   allowSpaces: true,
   availableTags: $("#knowledge-areas").data('autocomplete-source')
   });
+
+jQuery ->
+  $("#program_start_date").datepicker({ format: 'yyyy-mm-dd' });

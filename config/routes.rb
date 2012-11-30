@@ -47,6 +47,11 @@ VirtusKnowledge::Application.routes.draw do
   match "/users/:id/projects" => "users#projects"
   match "/users/:id/results" => "users#results"
   match "/users/:id/entries" => "users#entries"
+  match "/users/:id/groups_programs" => "users#groups_programs"
+  match "/users/:id/groups_projects" => "users#groups_projects"
+  match "/my_groups_programs" => "users#my_groups_programs", :as => "my_groups_programs"
+  match "/my_groups_projects" => "users#my_groups_projects", :as => "my_groups_projects"
+
 
   match "/programs/type/:id" => "programs#program_type"
 

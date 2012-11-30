@@ -45,6 +45,12 @@
           <h4 class="author"><%= @entry.date %></h4>
         </div>
       <% end %>
+      <% unless @entry.program.nil? %>
+        <div>
+          <h3 class="author"><%= t("activerecord.models.program.one") %>:</h3>
+          <h4 class="author"><%= link_to @entry.program.title, program_path(@entry.program) %></h4>
+        </div>
+      <% end %>
 
       <% unless @entry.knowledge_areas.empty? %>
         <h3><%= t("activerecord.models.department.other") %>:</h3>
@@ -73,10 +79,21 @@
       <% end %>
 
 
-      <% unless @entry.file.nil? or @entry.file.blank? %>
+      <% unless @entry.documents.nil? or @entry.documents.count == 0 %>
         <div>
-          <span class="download"></span>
-          <h3 class="author"><%= link_to t('application.download_file'), @entry.file_url  %></h3>
+          <% for document in @entry.documents %>
+            <div>
+              <span class="download"></span>
+              <%
+                 unless document.name.blank?
+                   download_name = t('application.download_file') + " - " + document.name
+                 else
+                   download_name = t('application.download_file')
+                 end
+              %>
+              <h3 class="author"><%= link_to download_name, document.file_url  %></h3>
+            </div>
+          <% end %>
         </div>
       <% end %>
     </div>

@@ -46,6 +46,8 @@ class EntriesController < ApplicationController
   def new
     @entry = Entry.new
     @entry.images.build
+    @entry.documents.build
+    @programs = current_user.programs
 
     respond_to do |format|
       format.html # new.html.erb
@@ -56,6 +58,7 @@ class EntriesController < ApplicationController
   # GET /entries/1/edit
   def edit
     @entry = current_user.entries.find(params[:id])
+    @programs = current_user.programs
   end
 
   # POST /entries

@@ -105,6 +105,12 @@ es:
         - :year
   activerecord:
     models:
+      result_type:
+        one: "Tipo de resultado"
+        other: "Tipos de resultado"
+      document:
+        one: "Archivo"
+        other: "Archivos"
       program_type:
         one: "Tipo de programa"
         other: "Tipos de programa"
@@ -131,8 +137,8 @@ es:
         other: "Líneas de Investigación"
         abb: "L. Investigación"
       research_group:
-        one: "Grupo de Gestión"
-        other: "Grupos de Gestión"
+        one: "Grupo de Investigación"
+        other: "Grupos de Investigación"
       research_subline:
         one: "Sub-línea de Investigación"
         other: "Sub-líneas de Investigación"
@@ -143,15 +149,22 @@ es:
         one: "Indicador"
         other: "Indicadores"
     attributes:
+      result_type:
+        name: "Nombre"
+      document:
+        name: "Nombre"
       indicator:
         name: "Nombre"
         description: "Descripción"
       program:
         title: "Título"
         program_type: "Tipo de programa"
-        research_group: "Grupo de gestión"
+        research_group: "Grupo de investigación"
         published: "Publicado?"
         description: "Descripción"
+        start_date: "Fecha de inicio"
+        duration: "Duración"
+        finished: "Finalizado?"
       project:
         title: "Título"
         published: "Publicado?"
@@ -160,12 +173,14 @@ es:
         duration: "Duración"
         program: "Programa"
         state: "Estado"
+        finished: "Finalizado?"
       result:
         title: "Título"
         published: "Publicado?"
         description: "Descripción"
         file: "Archivo"
       entry:
+        program: "Programa"
         file: "Archivo"
         title: "Título"
         date: "Fecha"
@@ -223,6 +238,14 @@ es:
               confirmation: "la confirmación no coincide"
   hello: "Hello world"
   application:
+    remove_document: "Quitar este archivo"
+    add_document: "Agregar archivo"
+    research_group_created: "Grupo de investigación creado"
+    presented_by: "Presentado por"
+    month: mes
+    months: meses
+    years: años
+    year: año
     researchline:
       empty_title: "Línea de investigación vacía"
       empty_text: "Aún no existen programas o proyectos en esta Línea de investigación"
@@ -244,9 +267,9 @@ es:
       empty_title_type: "Departamento vacío - %{type}"
       empty_text_type: "Aún no existen programas de %{type} en el Departamento de %{object_name}"
     researchgroup:
-      empty_title: "Grupo de gestión vacío"
-      empty_text: "Aún no existen programas o proyectos creados por este Grupo de gestión"
-      empty_title_type: "Grupo de gestión vacío - %{type}"
+      empty_title: "Grupo de investigación vacío"
+      empty_text: "Aún no existen programas o proyectos creados por este Grupo de investigación"
+      empty_title_type: "Grupo de investigación vacío - %{type}"
       empty_text_type: "Aún no existen programas de %{type} en el grupo %{object_name}"
     type_sidebar_title: "Tipos de programa"
     download_file: "Descargar archivo adjunto"
@@ -297,18 +320,22 @@ es:
     research_sublines: "Sub-líneas de Investigación"
     knowledge_areas: "Áreas de Conocimiento"
   user:
+    groups_programs: "Programas de los grupos"
+    groups_projects: "Proyectos de los grupos"
     create_entry: "Crear actividad"
     create_project: "Crear proyecto"
     create_program: "Crear programa"
     create_result: "Crear resultado"
-    create_research_group: "Crear grupo de gestión"
+    create_research_group: "Crear grupo de inv."
     signout: "Cerrar Sesión"
     myentries: "Mis actividades"
     myprograms: "Mis programas"
     myprojects: "Mis proyectos"
-    myresults: "Mis resultados"
+    myresults: "Mis resultados de inv."
     myresearch_groups: "Mis grupos"
     my_account: "Mi cuenta"
+    my_groups_programs: "Programas de mis grupos"
+    my_groups_projects: "Proyectos de mis grupos"
     account: "Cuenta"
     profile: "Perfil"
     update_success: "Información actualizada!"

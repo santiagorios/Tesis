@@ -8,12 +8,28 @@
   <% end %>
 
   <%= f.input :title, :input_html => { :class => 'span7' } %>
-
+  <%= f.association :result_type, :collection => @result_types ,:input_html => { :class => 'span7' } %>
   <%= f.association :project, :collection => @projects, :input_html => { :class => 'span7' } %>
 
   <%= f.input :published %>
 
-  <%= f.input :file %>
+  <div class="entry-images controls span7">
+    <%= f.fields_for :documents do |document_form| %>
+      <div class="well">
+        <h4><%= t("activerecord.models.document.one") %></h4>
+        <%= document_form.input :name %>
+        <%= document_form.input :file, :label => false %>
+
+        <div class="control-group">
+          <div class="controls">
+            <%= document_form.link_to_remove t("application.remove_document") %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= f.link_to_add t("application.add_document"), :documents, :class => "add-image-link" %>
+  </div>
+
 
   <div class="entry-images controls span7">
     <%= f.fields_for :images do |image_form| %>

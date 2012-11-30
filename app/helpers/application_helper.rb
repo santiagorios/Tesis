@@ -42,4 +42,29 @@ module ApplicationHelper
     end
     count_pj
   end
+
+  def months_collection
+    array = Array.new
+    12.times do |i|
+      if i == 1
+        array.push(i.to_s + " " + t("application.month"))
+      else
+        array.push(i.to_s + " " + t("application.months"))
+      end
+    end
+    array
+  end
+
+
+  def years_collection
+    array = Array.new
+    11.times do |i|
+      if i == 1
+        array.push(i.to_s + " " + t("application.year"))
+      else
+        array.push(i.to_s + " " + t("application.years"))
+      end
+    end
+    array
+  end
 end

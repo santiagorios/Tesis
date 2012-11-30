@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :programs
   has_many :projects
   has_many :results
+  has_many :groups_projects, :through => :research_groups, :source => :projects
 
   authenticates_with_sorcery!
 
@@ -35,16 +36,6 @@ class User < ActiveRecord::Base
 
   def name
     header_name
-  end
-
-  belongs_to :department
-
-  def department_name
-    department.try(:name)
-  end
-
-  def department_name=(name)
-    self.department = Department.find_or_create_by_name(name) if name.present?
   end
 
   belongs_to :knowledge_area

@@ -22,7 +22,7 @@
   </div>
   <div class="page-header">
     <div>
-      <h3 class="author"><%= t("application.done_by") %>:</h3>
+      <h3 class="author"><%= t("application.presented_by") %>:</h3>
       <h4 class="author"><%= link_to @result.author, user_path(@result.user) %></h4>
     </div>
     <% unless @result.project.nil? %>
@@ -31,10 +31,21 @@
         <h4 class="author"><%= link_to @result.project.title, project_path(@result.project) %></h4>
       </div>
     <% end %>
-    <% unless @result.file.nil? or @result.file.blank? %>
+    <% unless @result.documents.nil? or @result.documents.count == 0 %>
       <div>
-        <span class="download"></span>
-        <h3 class="author"><%= link_to t('application.download_file'), @result.file_url  %></h3>
+        <% for document in @result.documents %>
+          <div>
+            <span class="download"></span>
+            <%
+               unless document.name.blank?
+                 download_name = t('application.download_file') + " - " + document.name
+               else
+                 download_name = t('application.download_file')
+               end
+            %>
+            <h3 class="author"><%= link_to download_name, document.file_url  %></h3>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>

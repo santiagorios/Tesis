@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class IndicatorTest < ActiveSupport::TestCase
+class ResultTypeTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

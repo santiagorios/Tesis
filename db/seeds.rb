@@ -16,6 +16,12 @@ program_types = ProgramType.create([
                                        { name: "Iniciación Científica" }
                                    ])
 
+result_types = ResultType.create([
+                                       { name: "Paper científico"},
+                                       { name: "Póster" },
+                                       { name: "Capítulo de Libro" }
+                                   ])
+
 users = User.create!([
                          { :email => "srrios@espe.edu.ec", :password => 'password', :password_confirmation => 'password' }
                      ])

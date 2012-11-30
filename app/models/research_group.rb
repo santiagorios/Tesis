@@ -4,8 +4,9 @@ class ResearchGroup < ActiveRecord::Base
   has_many :programs
   has_many :projects, :through => :programs
   has_many :results, :through => :projects
+  belongs_to :knowledge_area
 
-  attr_accessible :name
+  attr_accessible :name, :knowledge_area_id
 
   def user_emails=(emails)
     users = Array.new

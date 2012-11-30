@@ -38,6 +38,8 @@ class ResultsController < ApplicationController
   def new
     @result = Result.new
     @result.images.build
+    @result.documents.build
+    @result_types = ResultType.all
     @projects = current_user.projects
 
     respond_to do |format|

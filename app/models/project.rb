@@ -11,7 +11,7 @@ class Project < ActiveRecord::Base
   belongs_to :program
   has_many :results
 
-  attr_accessible :title, :description, :published, :program_id, :start_date, :end_date
+  attr_accessible :title, :description, :published, :program_id, :start_date, :end_date, :finished
 
 
   def knowledge_area_names=(names)
@@ -33,13 +33,16 @@ class Project < ActiveRecord::Base
 
   def research_subline_names=(names)
     research_sublines = Array.new
+    knowledge_areas = Array.new
     for name in names
       research_subline = ResearchSubline.find_by_name(name)
       unless research_subline.nil?
         research_sublines.push(research_subline)
+        knowledge_areas.push(research_subline.knowledge_area)
       end
     end
     self.research_sublines = research_sublines
+    self.knowledge_areas = knowledge_areas
   end
 
   def owned_by?(owner)
@@ -55,12 +58,14 @@ class Project < ActiveRecord::Base
   def state
     unless start_date.nil? or end_date.nil?
       now = DateTime.now.to_date
-      if start_date < now and end_date > now # in progress
+      if finished #finished
+        "finished"
+      elsif start_date < now and end_date > now # in progress
         "in_progress"
       elsif now < start_date #  pending
         "pending"
-      elsif now > end_date  # finished
-        "finished"
+      elsif now > end_date and !finished # expired
+        "expired"
       else
         4 # unknown
       end
@@ -69,6 +74,37 @@ class Project < ActiveRecord::Base
     end
 
   end
+
+  attr_reader :duration_years
+  attr_accessible :duration_years
+
+  def duration_years=(string)
+    unless self.duration[/\d+\s+(months|month|meses|mes)/].nil?
+      self.duration = self.duration[/\d+\s+(months|month|meses|mes)/] + " " + string
+    else
+      self.duration = string
+    end
+  end
+
+  def duration_years
+    duration[/\d+\s+(years|year|años|año|anos|ano|anios|anio)/]
+  end
+
+  attr_reader :duration_months
+  attr_accessible :duration_months
+
+  def duration_months=(string)
+    unless self.duration[/\d+\s+(years|year|años|año|anos|ano|anios|anio)/].nil?
+      self.duration = self.duration[/\d+\s+(years|year|años|año|anos|ano|anios|anio)/] + " " + string
+    else
+      self.duration = string
+    end
+  end
+
+  def duration_months
+    duration[/\d+\s+(months|month|meses|mes)/]
+  end
+
 
   attr_reader :duration
   attr_accessible :duration

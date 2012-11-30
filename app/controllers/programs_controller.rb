@@ -51,7 +51,6 @@ class ProgramsController < ApplicationController
 
   def new
     @program = Program.new
-    @program.indicators.build
     @groups = current_user.research_groups
     @types = ProgramType.all
 

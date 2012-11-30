@@ -8,8 +8,26 @@
   <% end %>
 
   <%= f.input :title, :input_html => { :class => 'span7' } %>
+  <%= f.association :program, :collection => @programs, :input_html => { :class => 'span7' } %>
   <%= f.input :date, :as => :string, :input_html => { :class => 'span7' } %>
-  <%= f.input :file %>
+
+  <div class="entry-images controls span7">
+    <%= f.fields_for :documents do |document_form| %>
+      <div class="well">
+        <h4><%= t("activerecord.models.document.one") %></h4>
+        <%= document_form.input :name %>
+        <%= document_form.input :file, :label => false %>
+
+        <div class="control-group">
+          <div class="controls">
+            <%= document_form.link_to_remove t("application.remove_document") %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= f.link_to_add t("application.add_document"), :documents, :class => "add-image-link" %>
+  </div>
+
 
   <div class="control-group">
     <label class="control-label"><%= t('entry.research_sublines') %></label>
@@ -22,16 +40,6 @@
     </div>
   </div>
 
-  <div class="control-group">
-    <label class="control-label"><%= t('entry.knowledge_areas') %></label>
-    <div class="controls">
-      <%= content_tag :ul, :class => "span7", :id => "knowledge-areas", data: {autocomplete_source: KnowledgeArea.order(:name).map(&:name)}  do %>
-          <% for knowledge_area in @entry.knowledge_areas %>
-              <li><%= knowledge_area.name %></li>
-          <% end %>
-      <% end %>
-    </div>
-  </div>
 
   <%= f.input :published %>
 

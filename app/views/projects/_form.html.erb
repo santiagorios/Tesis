@@ -9,7 +9,15 @@
 
   <%= f.input :title, :input_html => { :class => 'span7' } %>
   <%= f.input :start_date, :as => :string, :input_html => { :class => 'span7' } %>
-  <%= f.input :duration, :as => :string, :input_html => { :class => 'span7' } %>
+
+  <div class="control-group string optional">
+    <%= f.label :duration %>
+    <div class="controls">
+      <%= f.input_field :duration_years, :collection => years_collection, :prompt => t('application.years') %>
+      <%= f.input_field :duration_months, :collection => months_collection, :prompt => t('application.months') %>
+    </div>
+  </div>
+
   <%= f.association :program, :collection => @programs, :input_html => { :class => 'span7' } %>
 
 
@@ -25,18 +33,10 @@
     </div>
   </div>
 
-  <div class="control-group">
-    <label class="control-label"><%= t('entry.knowledge_areas') %></label>
-    <div class="controls">
-      <%= content_tag :ul, :class => "span7", :id => "knowledge-areas", data: {autocomplete_source: KnowledgeArea.order(:name).map(&:name)}  do %>
-        <% for knowledge_area in @project.knowledge_areas %>
-          <li><%= knowledge_area.name %></li>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
 
   <%= f.input :published %>
+
+  <%= f.input :finished %>
 
 
 

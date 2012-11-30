@@ -55,10 +55,11 @@ class UsersController < ApplicationController
     if @user == current_user
       @entries = @user.entries.all(:limit => 5)
 
-      @user_programs = @user.programs.all(:limit => 3)
-      @group_programs = @user.groups_programs.all(:limit => 2)
-      @programs = @user_programs + @group_programs
-      @programs.sort_by(&:created_at)
+      @user_programs = @user.programs.all(:limit => 5)
+      #@group_programs = @user.groups_programs.all(:limit => 2)
+      #@programs = @user_programs + @group_programs
+      #@programs.sort_by(&:created_at)
+      @programs = @user_programs
 
       @projects = @user.projects.all(:limit => 5)
     else
@@ -146,4 +147,37 @@ class UsersController < ApplicationController
       format.js { render :template => 'pages/search' }
     end
   end
+
+  def groups_projects
+    @object = User.find(params[:id])
+    @projects = @object.groups_projects.where(:published => true).all(:order => 'id DESC', :group => :id).paginate(:page => params[:page])
+    respond_to do |format|
+      format.html { render :template => 'pages/projects' }
+    end
+  end
+
+  def groups_programs
+    @object = User.find(params[:id])
+    @programs = @object.groups_programs.where(:published => true).all(:order => 'id DESC', :group => :id).paginate(:page => params[:page])
+    respond_to do |format|
+      format.html { render :template => 'pages/programs' }
+    end
+  end
+
+  def my_groups_projects
+    @object = current_user
+    @projects = @object.groups_projects.all(:order => 'id DESC', :group => :id).paginate(:page => params[:page])
+    respond_to do |format|
+      format.html { render :template => 'pages/projects' }
+    end
+  end
+
+  def my_groups_programs
+    @object = current_user
+    @programs = @object.groups_programs.all(:order => 'id DESC', :group => :id).paginate(:page => params[:page])
+    respond_to do |format|
+      format.html { render :template => 'pages/programs' }
+    end
+  end
+
 end

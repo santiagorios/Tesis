@@ -96,7 +96,14 @@
       <ul>
         <% for result in @project.results %>
           <li>
-            <%= link_to result.title, result_path(result.id) %>
+            <%
+               unless result.result_name.nil?
+                 result_name = result.title + " (" + result.result_type.name + ")"
+               else
+                 result_name = result.title
+               end
+            %>
+            <%= link_to result_name, result_path(result.id) %>
           </li>
         <% end %>
       </ul>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121125223158) do
+ActiveRecord::Schema.define(:version => 20121130053316) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -52,6 +52,15 @@ ActiveRecord::Schema.define(:version => 20121125223158) do
     t.datetime "updated_at"
   end
 
+  create_table "documents", :force => true do |t|
+    t.string   "file"
+    t.integer  "result_id"
+    t.integer  "entry_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+  end
+
   create_table "entries", :force => true do |t|
     t.string   "title"
     t.date     "date"
@@ -60,7 +69,8 @@ ActiveRecord::Schema.define(:version => 20121125223158) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
-    t.string   "file"
+    t.integer  "program_id"
+    t.integer  "knowledge_area_id"
   end
 
   create_table "entries_knowledge_areas", :id => false, :force => true do |t|
@@ -80,14 +90,6 @@ ActiveRecord::Schema.define(:version => 20121125223158) do
     t.datetime "updated_at"
     t.integer  "entry_id"
     t.integer  "result_id"
-  end
-
-  create_table "indicators", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "program_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "knowledge_areas", :force => true do |t|
@@ -133,6 +135,10 @@ ActiveRecord::Schema.define(:version => 20121125223158) do
     t.boolean  "published"
     t.integer  "user_id"
     t.integer  "program_type_id"
+    t.boolean  "finished"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "knowledge_area_id"
   end
 
   create_table "programs_research_sublines", :id => false, :force => true do |t|
@@ -142,7 +148,7 @@ ActiveRecord::Schema.define(:version => 20121125223158) do
 
   create_table "projects", :force => true do |t|
     t.string   "title"
-    t.text     "description", :limit => 255
+    t.text     "description",       :limit => 255
     t.date     "start_date"
     t.date     "end_date"
     t.integer  "program_id"
@@ -150,6 +156,8 @@ ActiveRecord::Schema.define(:version => 20121125223158) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "published"
+    t.boolean  "finished"
+    t.integer  "knowledge_area_id"
   end
 
   create_table "projects_research_sublines", :id => false, :force => true do |t|
@@ -161,6 +169,7 @@ ActiveRecord::Schema.define(:version => 20121125223158) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "knowledge_area_id"
   end
 
   create_table "research_groups_users", :id => false, :force => true do |t|
@@ -179,17 +188,24 @@ ActiveRecord::Schema.define(:version => 20121125223158) do
     t.integer  "research_line_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "knowledge_area_id"
+  end
+
+  create_table "result_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "results", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "file"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "published"
     t.integer  "user_id"
+    t.integer  "result_type_id"
   end
 
   create_table "users", :force => true do |t|
@@ -203,7 +219,6 @@ ActiveRecord::Schema.define(:version => 20121125223158) do
     t.integer  "failed_logins_count",          :default => 0
     t.datetime "lock_expires_at"
     t.string   "unlock_token"
-    t.integer  "department_id"
     t.integer  "knowledge_area_id"
   end
 
