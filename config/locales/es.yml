@@ -220,6 +220,7 @@ es:
       research_group:
         name: "Nombre"
         users: "Usuarios"
+        knowledge_area: "Area de conocimiento"
     errors:
       models:
         entry:

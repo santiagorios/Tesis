@@ -97,7 +97,7 @@
         <% for result in @project.results %>
           <li>
             <%
-               unless result.result_name.nil?
+               unless result.result_type.nil?
                  result_name = result.title + " (" + result.result_type.name + ")"
                else
                  result_name = result.title
