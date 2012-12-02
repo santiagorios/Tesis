@@ -79,10 +79,12 @@ class Program < ActiveRecord::Base
   attr_accessible :duration_years
 
   def duration_years=(string)
-    unless self.duration[/\d+\s+(months|month|meses|mes)/].nil?
-      self.duration = self.duration[/\d+\s+(months|month|meses|mes)/] + " " + string
-    else
-      self.duration = string
+    unless string.blank?
+      unless self.duration.nil? or self.duration.blank? or self.duration[/\d+\s+(months|month|meses|mes)/].nil?
+        self.duration = self.duration[/\d+\s+(months|month|meses|mes)/] + " " + string
+      else
+        self.duration = string
+      end
     end
   end
 
@@ -94,10 +96,12 @@ class Program < ActiveRecord::Base
   attr_accessible :duration_months
 
   def duration_months=(string)
-    unless self.duration[/\d+\s+(years|year|años|año|anos|ano|anios|anio)/].nil?
-      self.duration = self.duration[/\d+\s+(years|year|años|año|anos|ano|anios|anio)/] + " " + string
-    else
-      self.duration = string
+    unless string.blank?
+      unless self.duration.nil? or self.duration.blank? or self.duration[/\d+\s+(years|year|años|año|anos|ano|anios|anio)/].nil?
+        self.duration = self.duration[/\d+\s+(years|year|años|año|anos|ano|anios|anio)/] + " " + string
+      else
+        self.duration = string
+      end
     end
   end
 
@@ -114,24 +118,25 @@ class Program < ActiveRecord::Base
     months_string = string[/\d+\s+(months|month|meses|mes)/]
     days_string = string[/\d+\s+(days|day|días|día|dias|dia)/]
 
-    unless years_string.blank?
+    unless years_string.blank? or years_string[/\d+/].nil?
       years = Integer(years_string[/\d+/])
     else
       years = 0
     end
-    unless months_string.blank?
+    unless months_string.blank? or months_string[/\d+/].nil?
       months = Integer(months_string[/\d+/])
     else
       months = 0
     end
-    unless days_string.blank?
+    unless days_string.blank? or days_string[/\d+/].nil?
       days = Integer(days_string[/\d+/])
     else
       days = 0
     end
 
-
-    self.end_date = start_date + years.years + months.months + days.days
+    unless self.start_date.nil? or self.start_date.blank?
+      self.end_date = start_date + years.years + months.months + days.days
+    end
   end
 
   def duration

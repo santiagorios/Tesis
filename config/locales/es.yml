@@ -179,6 +179,7 @@ es:
         published: "Publicado?"
         description: "Descripción"
         file: "Archivo"
+        result_type: "Tipo de resultado"
       entry:
         program: "Programa"
         file: "Archivo"

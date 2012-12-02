@@ -68,6 +68,7 @@ class EntriesController < ApplicationController
 
     respond_to do |format|
       if @entry.save
+        session[:mixpanel] = "mixpanel.track('crear actividad');"
         format.html { redirect_to @entry, notice: 'Entry was successfully created.' }
         format.json { render json: @entry, status: :created, location: @entry }
       else

@@ -58,6 +58,7 @@ class ResultsController < ApplicationController
 
     respond_to do |format|
       if @result.save
+        session[:mixpanel] = session[:mixpanel] + "mixpanel.track('crear resultado');"
         format.html { redirect_to @result, notice: t('result.create') }
         format.json { render json: @result, status: :created, location: @result }
       else

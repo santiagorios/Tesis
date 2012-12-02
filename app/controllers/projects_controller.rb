@@ -54,6 +54,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        session[:mixpanel] = "mixpanel.track('crear proyecto');"
         format.html { redirect_to @project, notice: t('project.create') }
         format.json { render json: @project, status: :created, location: @project }
       else

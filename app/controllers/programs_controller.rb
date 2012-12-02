@@ -72,6 +72,7 @@ class ProgramsController < ApplicationController
 
     respond_to do |format|
       if @program.save
+        session[:mixpanel] = "mixpanel.track('crear programa');"
         format.html { redirect_to @program, notice: t('program.create') }
         format.json { render json: @program, status: :created, location: @program }
       else

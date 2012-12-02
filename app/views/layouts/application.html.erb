@@ -11,7 +11,9 @@
   <%= render "layouts/google_analytics" %>
   <%= render "layouts/mixpanel" %>
   <%= render "layouts/inspectlet" %>
-
+  <script type="text/javascript">
+    <%= raw @mixpanel %>
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
