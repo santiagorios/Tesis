@@ -64,14 +64,14 @@ class UsersController < ApplicationController
 
       @myprojects = @user.my_projects.all(:limit => 2)
       @other_projects = @users.other_projects.all(:limit => 3)
-      @projects = @myprojects + @other_projects
+      @projects = @myprojects | @other_projects
       @projects.sort_by(&:created_at)
     else
       @entries = @user.entries.where(:published => true).all(:limit => 5)
 
       @user_programs = @user.programs.where(:published => true).all(:limit => 3)
       @group_programs = @user.groups_programs.where(:published => true).all(:limit => 2)
-      @programs = @user_programs + @group_programs
+      @programs = @user_programs | @group_programs
       @programs.sort_by(&:created_at)
 
       @myprojects = @user.my_projects.where(:published => true).all(:limit => 2)
