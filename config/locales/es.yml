@@ -257,18 +257,19 @@ es:
     years: años
     year: año
     project:
+      many: "proyectos"
       myempty_title_type: "Aún no has creado proyectos"
       myempty_text: "Para crear proyectos, debes acceder al Menú con tu nombre y seleccionar 'Crear Proyecto'"
     program:
+      many: "programas"
       myempty_title_type: "Aún no has creado programas"
       myempty_text: "Para crear proyectos, debes acceder al Menú con tu nombre y seleccionar 'Crear Programa'"
     entry:
+      many: "actividades"
       myempty_title_type: "Aún no has creado actividades"
       myempty_text: "Para crear actividades, debes acceder al Menú con tu nombre y seleccionar 'Crear Actividad'"
-    researchgroup:
-      myempty_title_type: "Aún no has creado grupos de investigación"
-      myempty_text: "Para crear proyectos, debes acceder al Menú con tu nombre y seleccionar 'Crear Grupo'"
     result:
+      many: "resultados"
       myempty_title_type: "Aún no has creado resultados"
       myempty_text: "Para crear proyectos, debes acceder al Menú con tu nombre y seleccionar 'Crear Resultado'"
     researchline:
@@ -292,6 +293,9 @@ es:
       empty_title_type: "Departamento vacío - %{type}"
       empty_text_type: "Aún no existen programas de %{type} en el Departamento de %{object_name}"
     researchgroup:
+      myempty_title_type: "Aún no has creado grupos de investigación"
+      myempty_text: "Para crear proyectos, debes acceder al Menú con tu nombre y seleccionar 'Crear Grupo'"
+      many: "grupos de investigación"
       empty_title: "Grupo de investigación vacío"
       empty_text: "Aún no existen programas o proyectos creados por este Grupo de investigación"
       empty_title_type: "Grupo de investigación vacío - %{type}"
