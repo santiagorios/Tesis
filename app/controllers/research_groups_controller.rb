@@ -3,10 +3,16 @@ class ResearchGroupsController < ApplicationController
   def mygroups
     @research_groups = current_user.research_groups.paginate(:page => params[:page])
 
-    respond_to do |format|
-      format.html { render :template => 'research_groups/index' }
-      format.json { render json: @research_groups }
-      format.js { render :template => 'research_groups/index' }
+    if @research_groups.empty?
+      respond_to do |format|
+        format.html { render :template => 'pages/myempty', :locals => { :model => ResearchGroup } }
+      end
+    else
+      respond_to do |format|
+        format.html { render :template => 'research_groups/index' }
+        format.json { render json: @research_groups }
+        format.js { render :template => 'research_groups/index' }
+      end
     end
   end
 

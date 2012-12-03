@@ -256,6 +256,21 @@ es:
     months: meses
     years: años
     year: año
+    project:
+      myempty_title_type: "Aún no has creado proyectos"
+      myempty_text: "Para crear proyectos, debes acceder al Menú con tu nombre y seleccionar 'Crear Proyecto'"
+    program:
+      myempty_title_type: "Aún no has creado programas"
+      myempty_text: "Para crear proyectos, debes acceder al Menú con tu nombre y seleccionar 'Crear Programa'"
+    entry:
+      myempty_title_type: "Aún no has creado actividades"
+      myempty_text: "Para crear actividades, debes acceder al Menú con tu nombre y seleccionar 'Crear Actividad'"
+    researchgroup:
+      myempty_title_type: "Aún no has creado grupos de investigación"
+      myempty_text: "Para crear proyectos, debes acceder al Menú con tu nombre y seleccionar 'Crear Grupo'"
+    result:
+      myempty_title_type: "Aún no has creado resultados"
+      myempty_text: "Para crear proyectos, debes acceder al Menú con tu nombre y seleccionar 'Crear Resultado'"
     researchline:
       empty_title: "Línea de investigación vacía"
       empty_text: "Aún no existen programas o proyectos en esta Línea de investigación"

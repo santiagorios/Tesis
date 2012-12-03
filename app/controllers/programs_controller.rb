@@ -9,10 +9,16 @@ class ProgramsController < ApplicationController
     @programs.sort_by(&:created_at)
     @programs = @programs.paginate(:page => params[:page])
 
-    respond_to do |format|
-      format.html { render :template => 'programs/index' }
-      format.json { render json: @programs }
-      format.js { render :template => 'programs/index' }
+    if @programs.empty?
+      respond_to do |format|
+        format.html { render :template => 'pages/myempty', :locals => { :model => Program } }
+      end
+    else
+      respond_to do |format|
+        format.html { render :template => 'programs/index' }
+        format.json { render json: @programs }
+        format.js { render :template => 'programs/index' }
+      end
     end
   end
 

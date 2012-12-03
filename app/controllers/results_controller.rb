@@ -3,11 +3,19 @@ class ResultsController < ApplicationController
   def myresults
     @results = current_user.results.paginate(:page => params[:page])
 
-    respond_to do |format|
-      format.html { render :template => 'results/index' }
-      format.json { render json: @results }
-      format.js { render :template => 'results/index' }
+
+    if @results.empty?
+      respond_to do |format|
+        format.html { render :template => 'pages/myempty', :locals => { :model => Result } }
+      end
+    else
+      respond_to do |format|
+        format.html { render :template => 'results/index' }
+        format.json { render json: @results }
+        format.js { render :template => 'results/index' }
+      end
     end
+
   end
 
   def index

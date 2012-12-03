@@ -4,10 +4,16 @@ class EntriesController < ApplicationController
   def myentries
     @entries = current_user.entries.paginate(:page => params[:page]).order('date DESC')
 
-    respond_to do |format|
-      format.html { render :template => 'entries/index' }
-      format.json { render json: @entries }
-      format.js { render :template => 'entries/index' }
+    if @entries.empty?
+      respond_to do |format|
+        format.html { render :template => 'pages/myempty', :locals => { :model => Entry } }
+      end
+    else
+      respond_to do |format|
+        format.html { render :template => 'entries/index' }
+        format.json { render json: @entries }
+        format.js { render :template => 'entries/index' }
+      end
     end
   end
 

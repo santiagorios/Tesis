@@ -10,10 +10,16 @@ class ProjectsController < ApplicationController
   def myprojects
     @projects = current_user.projects.paginate(:page => params[:page])
 
-    respond_to do |format|
-      format.html { render :template => 'projects/index' }
-      format.json { render json: @projects }
-      format.js { render :template => 'projects/index' }
+    if @projects.empty?
+      respond_to do |format|
+        format.html { render :template => 'pages/myempty', :locals => { :model => Project } }
+      end
+    else
+      respond_to do |format|
+        format.html { render :template => 'projects/index' }
+        format.json { render json: @projects }
+        format.js { render :template => 'projects/index' }
+      end
     end
   end
 
