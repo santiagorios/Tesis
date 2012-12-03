@@ -62,7 +62,10 @@ class UsersController < ApplicationController
       #@programs.sort_by(&:created_at)
       @programs = @user_programs
 
-      @projects = @user.projects.all(:limit => 5)
+      @myprojects = @user.my_projects.all(:limit => 2)
+      @other_projects = @users.other_projects.all(:limit => 3)
+      @projects = @myprojects + @other_projects
+      @projects.sort_by(&:created_at)
     else
       @entries = @user.entries.where(:published => true).all(:limit => 5)
 
@@ -71,7 +74,10 @@ class UsersController < ApplicationController
       @programs = @user_programs + @group_programs
       @programs.sort_by(&:created_at)
 
-      @projects = @user.projects.where(:published => true).all(:limit => 5)
+      @myprojects = @user.my_projects.where(:published => true).all(:limit => 2)
+      @other_projects = @users.other_projects.where(:published => true).all(:limit => 3)
+      @projects = @myprojects + @other_projects
+      @projects.sort_by(&:created_at)
     end
 
     respond_to do |format|
