@@ -13,6 +13,9 @@ class Project < ActiveRecord::Base
   belongs_to :program
   has_many :results
 
+  validates_presence_of :title
+  validates_presence_of :program_id
+
   attr_accessible :title, :description, :published, :program_id, :start_date, :end_date, :finished, :users_projects_associations_attributes
 
   accepts_nested_attributes_for :users_projects_associations, :reject_if => lambda { |a| a[:user_id].blank? }, :allow_destroy => true

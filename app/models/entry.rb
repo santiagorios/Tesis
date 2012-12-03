@@ -2,6 +2,8 @@ class Entry < ActiveRecord::Base
 	belongs_to :user
   belongs_to :program
 	validates :title, :presence => true
+  validates :program_id, :presence => true
+
 	self.per_page = 5
 	after_initialize :default_values
 

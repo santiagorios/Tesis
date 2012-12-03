@@ -15,6 +15,11 @@ class Result < ActiveRecord::Base
   accepts_nested_attributes_for :documents, :reject_if => lambda { |a| a[:file].blank? }, :allow_destroy => true
 
 
+  validates_presence_of :title
+  validates_presence_of :result_type_id
+  validates_presence_of :project_id
+
+
   def owned_by?(owner)
     return false unless owner.is_a? User
     user == owner

@@ -180,6 +180,7 @@ es:
         description: "Descripción"
         file: "Archivo"
         result_type: "Tipo de resultado"
+        project: "Proyecto"
       entry:
         program: "Programa"
         file: "Archivo"
@@ -244,6 +245,8 @@ es:
               confirmation: "la confirmación no coincide"
   hello: "Hello world"
   application:
+    remove_user: "Quitar este usuario"
+    add_user: "Agregar usuario"
     people_in_group: "Integrantes"
     remove_document: "Quitar este archivo"
     add_document: "Agregar archivo"

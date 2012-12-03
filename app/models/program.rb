@@ -12,6 +12,8 @@ class Program < ActiveRecord::Base
 
   attr_accessible :title, :description, :published, :research_group_id, :program_type_id, :finished, :start_date, :end_date
 
+  validates_presence_of :title
+  validates_presence_of :program_type
 
   def knowledge_area_names=(names)
     knowledge_areas = Array.new
