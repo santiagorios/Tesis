@@ -70,57 +70,15 @@ SimpleNavigation::Configuration.run do |navigation|
 
     # You can turn off auto highlighting for a specific level
     # primary.auto_highlight = false
-    primary.item :title, t('application.sidebar_title'), :class => 'nav-header'
+    primary.item :title, t('application.people_in_group'), :class => 'nav-header'
 
-    programs = Program.order('rand()').all(:limit => 5)
-    if !programs.empty?
-      primary.item :programs, t('activerecord.models.program.other'), programs_path, :class => "nav-sub-header" do |sub_nav|
-        for program in programs do
-          sub_nav.item :program, program.try(:title), url_for(program)
-        end
-        sub_nav.dom_class = 'nav nav-list'
+    users = @research_group.users
+    if !users.empty?
+      for user in users do
+        primary.item :user, user.try(:name), url_for(user)
       end
     end
 
-    groups = ResearchGroup.order('rand()').all(:limit => 5)
-    if !groups.empty?
-      primary.item :groups, t('activerecord.models.research_group.other'), research_groups_path, :class => "nav-sub-header" do |sub_nav|
-        for group in groups do
-          sub_nav.item :group, group.try(:name), url_for(group)
-        end
-        sub_nav.dom_class = 'nav nav-list'
-      end
-    end
-
-    departments = Department.order('rand()').all(:limit => 5)
-    if !departments.empty?
-      primary.item :departments, t('activerecord.models.department.other'), departments_path, :class => "nav-sub-header" do |sub_nav|
-        for department in departments do
-          sub_nav.item :department, department.try(:name), url_for(department)
-        end
-        sub_nav.dom_class = 'nav nav-list'
-      end
-    end
-
-    research_lines = ResearchLine.order('rand()').all(:limit => 5)
-    if !research_lines.empty?
-      primary.item :research_lines, t('activerecord.models.research_line.other'), research_lines_path, :class => "nav-sub-header" do |sub_nav|
-        for research_line in research_lines do
-          sub_nav.item :research_line, research_line.try(:name), url_for(research_line)
-        end
-        sub_nav.dom_class = 'nav nav-list'
-      end
-    end
-
-    #knowledge_areas = KnowledgeArea.all
-    #if !knowledge_areas.empty?
-    #  primary.item :research_lines, t('activerecord.models.knowledge_area.other') + '<i class="icon-plus pull-right"></i>'.html_safe, knowledge_areas_path, :class => "openable nav-sub-header" do |sub_nav|
-    #    for knowledge_area in knowledge_areas do
-    #      sub_nav.item :knowledge_area, knowledge_area.try(:name), url_for(knowledge_area)
-    #    end
-    #    sub_nav.dom_class = 'nav nav-list accordion'
-    #  end
-    #end
 
 
     primary.dom_class = 'nav nav-list'

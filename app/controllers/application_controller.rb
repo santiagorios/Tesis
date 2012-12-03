@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :check_current_user
 
   def check_current_user
-    unless current_user.nil?
+    if logged_in?
       unless @mixpanel.nil?
         @mixpanel = @mixpanel + 'mixpanel.people.identify("' + current_user.email + '"); mixpanel.name_tag("' + current_user.email + '"); '
       else

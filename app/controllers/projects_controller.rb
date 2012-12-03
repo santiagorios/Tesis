@@ -1,5 +1,12 @@
 class ProjectsController < ApplicationController
-
+  before_filter :require_login, :only => [:new, :edit, :create, :update, :destroy, :myprojects]
+  before_filter :is_owner?, :only => [:edit, :update, :destroy]
+  def is_owner?
+    project = Project.find(params[:id])
+    unless current_user.my_projects.include?(project) || current_user.other_projects.include?(project)
+      redirect_to root_path
+    end
+  end
   def myprojects
     @projects = current_user.projects.paginate(:page => params[:page])
 
@@ -45,12 +52,12 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = current_user.projects.find(params[:id])
+    @project = Project.find(params[:id])
     @programs = current_user.programs
   end
 
   def create
-    @project = current_user.projects.new(params[:project])
+    @project = current_user.my_projects.new(params[:project])
 
     respond_to do |format|
       if @project.save
@@ -65,7 +72,7 @@ class ProjectsController < ApplicationController
   end
 
   def update
-    @project = current_user.projects.find(params[:id])
+    @project = Project.find(params[:id])
 
     respond_to do |format|
       if @project.update_attributes(params[:project])

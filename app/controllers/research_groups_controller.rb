@@ -81,7 +81,7 @@ class ResearchGroupsController < ApplicationController
 
     respond_to do |format|
       if @research_group.save
-        @research_group.add_current_user(current_user)
+        #@research_group.add_current_user(current_user)
         format.html { redirect_to @research_group, notice: t('application.research_group_created') }
         format.json { render json: @research_group, status: :created, location: @research_group }
       else
@@ -95,8 +95,8 @@ class ResearchGroupsController < ApplicationController
     @research_group = current_user.research_groups.find(params[:id])
 
     respond_to do |format|
-      if @research_group.update_attributes(params[:@research_group])
-        @research_group.add_current_user(current_user)
+      if @research_group.update_attributes(params[:research_group])
+        #@research_group.add_current_user(current_user)
         format.html { redirect_to @research_group, notice: t('application.research_group_updated') }
         format.json { head :ok }
       else

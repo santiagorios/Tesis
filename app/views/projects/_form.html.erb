@@ -1,5 +1,5 @@
 <%= tinymce_assets %>
-<%= simple_form_for @project, :validate => true, :html => { :class => 'form-horizontal' } do |f| %>
+<%= simple_nested_form_for @project, :validate => true, :html => { :class => 'form-horizontal' } do |f| %>
   <% if @project.errors.any? %>
     <div class="alert">
       <button class="close" data-dismiss="alert">x</button>
@@ -38,7 +38,21 @@
 
   <%= f.input :finished %>
 
-
+  <div class="entry-images controls span7">
+    <%= f.fields_for :users_projects_associations do |user_form| %>
+      <div class="well">
+        <h4><%= t("activerecord.models.user.one") %></h4>
+        <%= user_form.association :user %>
+        <%= user_form.association :role %>
+        <div class="control-group">
+          <div class="controls">
+            <%= user_form.link_to_remove t("application.remove_user") %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= f.link_to_add t("application.add_user"), :users_projects_associations, :class => "add-image-link" %>
+  </div>
 
   <%= f.input :description, :input_html => { :class => 'tinymce span7' } %>
   <%= tinymce %>

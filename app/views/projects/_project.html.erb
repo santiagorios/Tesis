@@ -25,7 +25,11 @@
           <% end %>
         </div>
       <% end %>
-      <h3><%= link_to project.author, user_path(project.user) %></h3>
+      <% if project.users_projects_associations.nil? or project.users_projects_associations.count == 0 %>
+        <h3><%= link_to project.author, user_path(project.user) %></h3>
+      <% else %>
+        <h3>Varios autores</h3>
+      <% end %>
       <% unless project.description.blank? %>
         <%= truncate_html strip_tags(project.description).gsub("&nbsp;", ""), :length => 250 %>
       <% end %>

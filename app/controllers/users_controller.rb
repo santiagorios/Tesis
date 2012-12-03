@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(params[:user])
   	if @user.save
+      session[:mixpanel] = "mixpanel.track('crear usuario');"
       @user.create_profile
       login(params[:user][:email], params[:user][:password], false)
   		redirect_to root_url, :notice => t("user.signup")

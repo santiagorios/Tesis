@@ -1,5 +1,6 @@
 # encoding: utf-8
 class ProgramsController < ApplicationController
+  before_filter :require_login, :only => [:new, :edit, :create, :update, :destroy, :myprograms]
 
   def myprograms
     @user_programs = current_user.programs
@@ -62,7 +63,11 @@ class ProgramsController < ApplicationController
   end
 
   def edit
-    @program = Program.find(params[:id])
+    @program = current_user.programs.find(params[:id])
+    @program = current_user.programs.find(params[:id])
+    if @program.nil?
+      @program.current_user.groups_programs.find(params[:id])
+    end
     @groups = current_user.research_groups
     @types = ProgramType.all
   end

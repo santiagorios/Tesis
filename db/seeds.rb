@@ -10,6 +10,12 @@
 
 AdminUser.create!(:email => 'admin@espe.edu.ec', :password => 'password', :password_confirmation => 'password')
 
+roles = Role.create([
+                        { name: 'Director' },
+                        { name: 'Co-director' },
+                        { name: 'Otro' }
+                    ])
+
 program_types = ProgramType.create([
                                        { name: "Investigación"},
                                        { name: "Vinculación con la colectividad" },

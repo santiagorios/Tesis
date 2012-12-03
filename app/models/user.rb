@@ -1,8 +1,11 @@
 class User < ActiveRecord::Base
-  has_and_belongs_to_many :research_groups
+  has_many :users_groups_associations
+  has_many :research_groups, :through => :users_groups_associations
   has_many :groups_programs, :through => :research_groups, :source => :programs
   has_many :programs
-  has_many :projects
+  has_many :my_projects, :foreign_key => 'user_id', :class_name => "Project"
+  has_many :users_projects_associations
+  has_many :other_projects, :through => :users_projects_associations, :source => :project
   has_many :results
   has_many :groups_projects, :through => :research_groups, :source => :projects
 
@@ -19,6 +22,9 @@ class User < ActiveRecord::Base
   validates_length_of :password, :minimum => 6, :on => :create
   validates_length_of :password, :minimum => 6, :on => :update, :allow_blank => true
 
+  def projects
+    self.my_projects | self.other_projects
+  end
 
   has_one :profile
   accepts_nested_attributes_for :profile
@@ -55,7 +61,7 @@ class User < ActiveRecord::Base
     self.profile.phone = phone_number
   end
 
-  scope :top, find(:all, :order => "count(entries.id) desc", :joins => :entries, :group => 'user_id')
+  #scope :top, find(:all, :order => "count(entries.id) desc", :joins => :entries, :group => 'user_id')
 
   def validate_knowledge_area_and_department
     unless self.knowledge_area.nil? or self.department.nil?

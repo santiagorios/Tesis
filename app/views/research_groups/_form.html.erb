@@ -8,18 +8,27 @@
   <% end %>
 
   <%= f.input :name, :input_html => { :class => 'span7' } %>
-  <%= f.association :knowledge_area, :collection => @knowledge_areas, :input_html => { :class => 'span7' }  %>
 
-  <div class="control-group">
-    <label class="control-label"><%= t('activerecord.models.user.other') %></label>
-    <div class="controls">
-      <%= content_tag :ul, :class => "span7", :id => "users", data: {autocomplete_source: User.order(:email).map(&:name)}  do %>
-        <% for user in @research_group.users %>
-          <li><%= user.email %></li>
-        <% end %>
-      <% end %>
-    </div>
+
+  <div class="entry-images controls span7">
+    <%= f.fields_for :users_groups_associations do |user_form| %>
+      <div class="well">
+        <h4><%= t("activerecord.models.user.one") %></h4>
+        <%= user_form.association :user %>
+        <%= user_form.association :role %>
+
+
+        <div class="control-group">
+          <div class="controls">
+            <%= user_form.link_to_remove t("application.remove_user") %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= f.link_to_add t("application.add_user"), :users_groups_associations, :class => "add-image-link" %>
   </div>
+
+  <%= f.association :knowledge_area, :collection => @knowledge_areas, :input_html => { :class => 'span7' }  %>
 
 
 

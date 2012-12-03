@@ -22,8 +22,15 @@
   </div>
   <div class="page-header">
     <div>
-      <h3 class="author"><%= t("application.done_by") %>:</h3>
-      <h4 class="author"><%= link_to @project.author, user_path(@project.user) %></h4>
+      <% if @project.users_projects_associations.nil? or @project.users_projects_associations.count == 0 %>
+        <h3 class="author"><%= t("application.done_by") %>:</h3>
+        <h4 class="author"><%= link_to @project.author, user_path(@project.user) %></h4>
+      <% else %>
+        <h3 class=""><%= t("application.done_by") %>:</h3>
+        <% for users_projects_association in @project.users_projects_associations %>
+          <h4 class=""><%= link_to users_projects_association.user.name + " - " + users_projects_association.role.name, user_path(users_projects_association.user) %></h4>
+        <% end %>
+      <% end %>
     </div>
     <% unless @project.start_date.nil? %>
       <div>

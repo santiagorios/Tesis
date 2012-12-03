@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121130053316) do
+ActiveRecord::Schema.define(:version => 20121203011520) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -208,6 +208,12 @@ ActiveRecord::Schema.define(:version => 20121130053316) do
     t.integer  "result_type_id"
   end
 
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                                       :null => false
     t.string   "crypted_password"
@@ -223,5 +229,21 @@ ActiveRecord::Schema.define(:version => 20121130053316) do
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
+
+  create_table "users_groups_associations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.integer  "research_group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users_projects_associations", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "role_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

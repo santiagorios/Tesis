@@ -224,6 +224,10 @@ es:
         knowledge_area: "Area de conocimiento"
     errors:
       models:
+        users_groups_association:
+          attributes:
+            user_id:
+              taken: "Este usuario ya es parte del grupo."
         entry:
           attributes:
             title:
@@ -240,6 +244,7 @@ es:
               confirmation: "la confirmación no coincide"
   hello: "Hello world"
   application:
+    people_in_group: "Integrantes"
     remove_document: "Quitar este archivo"
     add_document: "Agregar archivo"
     research_group_created: "Grupo de investigación creado"

@@ -1,5 +1,5 @@
 class ResultsController < ApplicationController
-
+  before_filter :require_login, :only => [:new, :edit, :create, :update, :destroy, :myresults]
   def myresults
     @results = current_user.results.paginate(:page => params[:page])
 

@@ -7,12 +7,15 @@ class Project < ActiveRecord::Base
   self.per_page = 5
   has_and_belongs_to_many :research_sublines
   has_and_belongs_to_many :knowledge_areas
+  has_many :users_projects_associations
+  has_many :users, :through => :users_projects_associations
   belongs_to :user
   belongs_to :program
   has_many :results
 
-  attr_accessible :title, :description, :published, :program_id, :start_date, :end_date, :finished
+  attr_accessible :title, :description, :published, :program_id, :start_date, :end_date, :finished, :users_projects_associations_attributes
 
+  accepts_nested_attributes_for :users_projects_associations, :reject_if => lambda { |a| a[:user_id].blank? }, :allow_destroy => true
 
   def knowledge_area_names=(names)
     knowledge_areas = Array.new
@@ -47,7 +50,7 @@ class Project < ActiveRecord::Base
 
   def owned_by?(owner)
     return false unless owner.is_a? User
-    user == owner
+    user == owner || self.users.include?(owner)
   end
 
   def author
