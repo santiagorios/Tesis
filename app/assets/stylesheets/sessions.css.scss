@@ -32,6 +32,18 @@
    opacity: 0.95;
  }
 
+.dropdown-menu .forget-password a{
+  display: initial;
+  padding: 0px;
+  clear: initial;
+  margin-bottom: 0px
+}
+.dropdown-menu .forget-password {
+  padding-top: 10px;
+  margin-bottom: 0px;
+  opacity: 0.95;
+}
+
 @media (min-width: 1200px) {
   .input-login {
     width: 220px;
