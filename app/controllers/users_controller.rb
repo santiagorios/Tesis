@@ -1,6 +1,17 @@
 class UsersController < ApplicationController
   before_filter :require_login, :only => [:edit, :update, :myaccount]
 
+  skip_before_filter :require_login, :only => [:index, :new, :create, :activate]
+
+  def activate
+    if (@user = User.load_from_activation_token(params[:id]))
+      @user.activate!
+      redirect_to(login_path, :notice => t('application.user_activated'))
+    else
+      not_authenticated
+    end
+  end
+
   def new
   	@user = User.new
   end

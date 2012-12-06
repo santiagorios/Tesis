@@ -1,6 +1,12 @@
 VirtusKnowledge::Application.routes.draw do
 
 
+  get "password_resets/create"
+
+  get "password_resets/edit"
+
+  get "password_resets/update"
+
   get "indicators/show"
 
   ActiveAdmin.routes(self)
@@ -97,7 +103,13 @@ VirtusKnowledge::Application.routes.draw do
 
   get "signup" => "users#new", :as => "signup"
 
-  resources :users
+  resources :password_resets
+
+  resources :users  do
+    member do
+      get :activate
+    end
+  end
   resources :sessions
   resources :entries
   resources :research_lines

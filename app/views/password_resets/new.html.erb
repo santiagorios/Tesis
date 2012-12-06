@@ -1,0 +1,24 @@
+<div class="span7">
+  <div class="well">
+    <div class="page-header">
+      <h1>Olvido su clave?</h1>
+    </div>
+
+    <%= form_tag password_resets_path,  :class => 'form-horizontal', :method => :post do %>
+      <div class="control-group">
+        <div class="controls">
+          <div class="input-prepend">
+        <span class="add-on">
+          <i class="icon-envelope"></i>
+        </span><%= text_field_tag :email, nil, :placeholder => "Email" %>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <div class="pull-right">
+          <%= submit_tag "Resetear mi password", :class => 'btn btn-primary' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
