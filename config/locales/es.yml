@@ -149,6 +149,14 @@ es:
         one: "Indicador"
         other: "Indicadores"
     attributes:
+      users_groups_association:
+        user: "Usuario"
+        role: "Rol"
+        research_group: "Grupo"
+      users_projects_association:
+        user: "Usuario"
+        role: "Rol"
+        project: "Proyecto"
       result_type:
         name: "Nombre"
       document:
