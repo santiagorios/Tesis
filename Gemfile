@@ -64,3 +64,4 @@ gem "activeadmin"
 gem 'chronic'
 gem 'chronic_duration'
 gem "squeel"
+gem 'newrelic_rpm'
