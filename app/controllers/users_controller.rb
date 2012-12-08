@@ -74,7 +74,7 @@ class UsersController < ApplicationController
       @programs = @user_programs
 
       @myprojects = @user.my_projects.all(:limit => 2)
-      @other_projects = @users.other_projects.all(:limit => 3)
+      @other_projects = @user.other_projects.all(:limit => 3)
       @projects = @myprojects | @other_projects
       @projects.sort_by(&:created_at)
     else
