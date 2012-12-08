@@ -2,10 +2,10 @@ class PagesController < ApplicationController
   def home
     @entries_carousel = Entry.order("date desc").where(:published => true).joins(:images).all(:limit => 5, :group => :id)
     @entries = Entry.order("rand()").where(:published => true).all(:limit => 5, :group => :id)
-    @programs = Program.order("rand()").where(:published => true).all(:limit => 5, :group => :id)
+    @programs = Program.order("created_at desc").where(:published => true).all(:limit => 5, :group => :id)
     @projects = Project.order("rand()").where(:published => true).all(:limit => 5, :group => :id)
     @users = User.order("rand()").joins(:entries).all(:limit => 3, :group => :id)
-    @groups = ResearchGroup.all(:limit => 5)
+    @groups = ResearchGroup.order("created_at desc").all(:limit => 5)
 
     @departments = Department.order("rand()").all(:limit => 5)
     @research_lines = ResearchLine.order("rand()").all(:limit => 10)

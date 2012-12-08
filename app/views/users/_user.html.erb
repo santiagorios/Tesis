@@ -3,7 +3,7 @@
     <div class="span2">
       <%= link_to user_path(user), :class => 'thumbnail' do %>
         <% unless user.profile.nil? or user.profile.image.nil? or user.profile.image.blank? %>
-          <%= image_tag user.profile.image.image_url(:thumb) %>
+          <%= image_tag user.profile.image_url(:thumb) %>
         <% else %>
           <img src="http://www.placehold.it/160x155/EFEFEF/AAAAAA&amp;text=no+image">
         <% end %>
