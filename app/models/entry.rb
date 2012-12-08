@@ -28,7 +28,9 @@ class Entry < ActiveRecord::Base
   		research_subline = ResearchSubline.find_by_name(name)
       unless research_subline.nil?
         research_sublines.push(research_subline)
-        knowledge_areas.push(research_subline.knowledge_area)
+        unless research_subline.knowledge_area.nil?
+          knowledge_areas.push(research_subline.knowledge_area)
+        end
       end
   	end
     self.research_sublines = research_sublines
