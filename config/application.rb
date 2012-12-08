@@ -48,5 +48,7 @@ module VirtusKnowledge
     config.action_view.sanitized_allowed_attributes = 'id', 'class', 'style'
 
     config.assets.initialize_on_precompile = false
+
+    config.assets.precompile += ['active_admin.css', 'active_admin.js', 'active_admin/print.css']
   end
 end
