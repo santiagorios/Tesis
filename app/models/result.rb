@@ -4,7 +4,7 @@ class Result < ActiveRecord::Base
   belongs_to :result_type
   belongs_to :project
   has_many :images, :dependent => :destroy
-  attr_accessible :images_attributes, :title, :description, :published, :project_id
+  attr_accessible :images_attributes, :title, :description, :published, :project_id, :result_type_id
 
   accepts_nested_attributes_for :images, :reject_if => lambda { |a| a[:image].blank? }, :allow_destroy => true
 
