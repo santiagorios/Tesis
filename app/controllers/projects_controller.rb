@@ -92,7 +92,13 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-    @project = current_user.programs.find(params[:id])
+    @project = current_user.my_projects.find(params[:id])
+    if @project.nil?
+      @project = current_user.other_projects.find(params[:id])
+      if @project.nil?
+        @project = current_user.groups_projects.find(params[:id])
+      end
+    end
     @project.destroy
 
     respond_to do |format|

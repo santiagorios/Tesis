@@ -66,7 +66,7 @@ class ResultsController < ApplicationController
 
     respond_to do |format|
       if @result.save
-        session[:mixpanel] = session[:mixpanel] + "mixpanel.track('crear resultado');"
+        session[:mixpanel] = "mixpanel.track('crear resultado');"
         format.html { redirect_to @result, notice: t('result.create') }
         format.json { render json: @result, status: :created, location: @result }
       else
@@ -91,7 +91,7 @@ class ResultsController < ApplicationController
   end
 
   def destroy
-    @result = current_user.entries.find(params[:id])
+    @result = current_user.results.find(params[:id])
     @result.destroy
 
     respond_to do |format|

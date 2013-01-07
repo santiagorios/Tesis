@@ -253,6 +253,7 @@ es:
               confirmation: "la confirmación no coincide"
   hello: "Hello world"
   application:
+    please_sign_in: "Por favor, primero inicie sesión para continuar"
     remove_user: "Quitar este usuario"
     add_user: "Agregar usuario"
     people_in_group: "Integrantes"

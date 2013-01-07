@@ -15,6 +15,7 @@ en:
               blank: "can't be empty"
   hello: "Hello world"
   application:
+    please_sign_in: "Please sign in"
     warning: "Warning"
     home: "Home"
     explore: "Explore"
