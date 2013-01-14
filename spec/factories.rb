@@ -42,5 +42,12 @@ FactoryGirl.define do
       "Program Type #{n}"
     end
   end
+
+  factory :entry do
+    sequence(:title) { |n| "Entry #{n}" }
+    body "This is a long text"
+    user
+    program
+  end
 end
 
