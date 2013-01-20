@@ -1,6 +1,21 @@
 class EntriesController < ApplicationController
   before_filter :require_login, :only => [:new, :edit, :create, :update, :destroy, :myentries]
-  
+  before_filter :is_owner?, :only => [:edit, :update, :destroy, :show]
+  def is_owner?
+    entry = Entry.find(params[:id])
+    unless current_user.nil?
+      unless entry.owned_by?(current_user)
+        unless entry.published
+          redirect_to root_path
+        end
+      end
+    else
+      unless entry.published
+        redirect_to root_path, :notice => t('application.please_sign_in')
+      end
+    end
+  end
+
   def myentries
     @entries = current_user.entries.paginate(:page => params[:page]).order('date DESC')
 

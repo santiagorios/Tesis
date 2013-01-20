@@ -1,5 +1,21 @@
 class ResultsController < ApplicationController
   before_filter :require_login, :only => [:new, :edit, :create, :update, :destroy, :myresults]
+  before_filter :is_owner?, :only => [:edit, :update, :destroy, :show]
+  def is_owner?
+    result = Result.find(params[:id])
+    unless current_user.nil?
+      unless current_user.results.include?(result)
+        unless result.published
+          redirect_to root_path
+        end
+      end
+    else
+      unless result.published
+        redirect_to root_path, :notice => t('application.please_sign_in')
+      end
+    end
+  end
+
   def myresults
     @results = current_user.results.paginate(:page => params[:page])
 

@@ -72,7 +72,7 @@ SimpleNavigation::Configuration.run do |navigation|
     # primary.auto_highlight = false
     primary.item :title, t('application.sidebar_title'), :class => 'nav-header'
 
-    programs = Program.order('rand()').all(:limit => 5)
+    programs = Program.order('rand()').where(:published => true).all(:limit => 5)
     if !programs.empty?
       primary.item :programs, t('activerecord.models.program.other'), programs_path, :class => "nav-sub-header" do |sub_nav|
         for program in programs do

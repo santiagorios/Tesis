@@ -101,17 +101,32 @@
     <h3><%= t("activerecord.models.result.other") %>:</h3>
     <h4>
       <ul>
-        <% for result in @project.results %>
-          <li>
-            <%
-               unless result.result_type.nil?
-                 result_name = result.title + " (" + result.result_type.name + ")"
-               else
-                 result_name = result.title
-               end
-            %>
-            <%= link_to result_name, result_path(result.id) %>
-          </li>
+        <% if !current_user.nil? and @project.owned_by?(current_user) %>
+          <% for result in @project.results %>
+            <li>
+              <%
+                 unless result.result_type.nil?
+                   result_name = result.title + " (" + result.result_type.name + ")"
+                 else
+                   result_name = result.title
+                 end
+              %>
+              <%= link_to result_name, result_path(result.id) %>
+            </li>
+          <% end %>
+        <% else %>
+          <% for result in @project.results.where(:published => true) %>
+            <li>
+              <%
+                 unless result.result_type.nil?
+                   result_name = result.title + " (" + result.result_type.name + ")"
+                 else
+                   result_name = result.title
+                 end
+              %>
+              <%= link_to result_name, result_path(result.id) %>
+            </li>
+          <% end %>
         <% end %>
       </ul>
     </h4>

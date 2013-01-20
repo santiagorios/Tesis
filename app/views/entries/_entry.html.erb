@@ -29,7 +29,7 @@
       <% end %>
       </div>
       <% end %>
-      <h3><%= link_to entry.author, user_path(entry.user.id) %> <small><%= l entry.date, :format => :long %></small></h3>
+      <h3><%= link_to entry.author, user_path(entry.user.id) %> <% unless entry.date.nil? %><small><%= l entry.date, :format => :long %></small><% end %></h3>
       <% unless entry.body.blank? %>
         <%= truncate_html strip_tags(entry.body).gsub("&nbsp;", ""), :length => 250 %>
       <% end %>

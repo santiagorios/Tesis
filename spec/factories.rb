@@ -14,6 +14,7 @@ FactoryGirl.define do
     end
     description "This is a long text"
     program_type
+    user
   end
 
   factory :program_type do

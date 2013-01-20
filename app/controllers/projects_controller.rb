@@ -1,10 +1,18 @@
 class ProjectsController < ApplicationController
   before_filter :require_login, :only => [:new, :edit, :create, :update, :destroy, :myprojects]
-  before_filter :is_owner?, :only => [:edit, :update, :destroy]
+  before_filter :is_owner?, :only => [:edit, :update, :destroy, :show]
   def is_owner?
     project = Project.find(params[:id])
-    unless current_user.my_projects.include?(project) || current_user.other_projects.include?(project)
-      redirect_to root_path
+    unless current_user.nil?
+      unless current_user.my_projects.include?(project) || current_user.other_projects.include?(project)
+        unless project.published
+          redirect_to root_path
+        end
+      end
+    else
+      unless project.published
+        redirect_to root_path, :notice => t('application.please_sign_in')
+      end
     end
   end
   def myprojects

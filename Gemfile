@@ -43,6 +43,9 @@ group :test do
   gem "capybara"
   gem "guard-rspec"
   gem 'rb-fsevent', '~> 0.9.1'
+  gem 'cucumber-rails', :require => false
+  gem 'webrat'
+  gem 'database_cleaner'
 end
 
 

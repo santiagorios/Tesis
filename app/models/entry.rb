@@ -5,7 +5,7 @@ class Entry < ActiveRecord::Base
   validates :program_id, :presence => true
 
 	self.per_page = 5
-	after_initialize :default_values
+	#after_initialize :default_values
 
   has_many :documents, :dependent => :destroy
   attr_accessible :documents_attributes
@@ -68,9 +68,9 @@ class Entry < ActiveRecord::Base
     end
   end
 
-	private
-		def default_values
-			self.date ||= Time.now.strftime("%Y-%m-%d")
-      self.published = true
-		end
+	#private
+	#	def default_values
+	#		self.date ||= Time.now.strftime("%Y-%m-%d")
+   #   self.published = true
+	#	end
 end

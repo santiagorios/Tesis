@@ -1,6 +1,21 @@
 # encoding: utf-8
 class ProgramsController < ApplicationController
   before_filter :require_login, :only => [:new, :edit, :create, :update, :destroy, :myprograms]
+  def is_owner?
+    program = Program.find(params[:id])
+    unless current_user.nil?
+      if !program.owned_by?(current_user)
+        unless program.published
+          redirect_to root_path
+        end
+      end
+    else
+      unless program.published
+        redirect_to root_path, :notice => t('application.please_sign_in')
+      end
+    end
+  end
+  before_filter :is_owner?, :only => [:show]
 
   def myprograms
     @user_programs = current_user.programs
