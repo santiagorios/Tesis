@@ -66,6 +66,7 @@ describe "Manage Projects" do
     project = FactoryGirl.create(:project)
     user = FactoryGirl.create(:user)
     project.user = user
+    project.published = true
     project.save
     visit project_path(project)
     page.should have_content(project.title)

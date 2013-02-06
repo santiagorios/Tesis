@@ -60,6 +60,7 @@ describe "Manage Programs" do
     program = FactoryGirl.create(:program)
     user = FactoryGirl.create(:user)
     program.user = user
+    program.published = true
     program.save
     visit program_path(program)
     page.should have_content(program.title)

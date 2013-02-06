@@ -66,6 +66,7 @@ describe "Manage Entries" do
     entry = FactoryGirl.create(:entry)
     user = FactoryGirl.create(:user)
     entry.user = user
+    entry.published = true
     entry.save
     visit entry_path(entry)
     page.should have_content(entry.title)

@@ -27,7 +27,7 @@
     </div>
     <% unless @result.project.nil? %>
       <div>
-        <h3 class="author"><%= t("activerecord.models.program.one") %>:</h3>
+        <h3 class="author"><%= t("activerecord.models.project.one") %>:</h3>
         <h4 class="author"><%= link_to @result.project.title, project_path(@result.project) %></h4>
       </div>
     <% end %>

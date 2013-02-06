@@ -68,6 +68,7 @@ describe "Manage Results" do
     result = FactoryGirl.create(:result)
     user = FactoryGirl.create(:user)
     result.user = user
+    result.published = true
     result.save
     visit result_path(result)
     page.should have_content(result.title)
